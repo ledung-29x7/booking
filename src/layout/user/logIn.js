@@ -22,7 +22,7 @@ function Login(){
         e.preventDefault();
 
         $.ajax({
-            url: 'http://localhost:8000/api/login',
+            url: '',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
@@ -32,7 +32,7 @@ function Login(){
                 alert('Login failed!');
             } else {
                 dispatch()
-                navigate('/');
+                navigate('/hotel');
             }
             },
             error: (error) => {
@@ -53,19 +53,13 @@ function Login(){
                 </div>
 
                 {/* input  */}
-                <div className="flex flex-col gap-5 " onSubmit={handleSubmit}>
-                    <div className="">
-                        <div>Email</div>
-                        <input className=" w-full box px-2 h-11 border border-cyan-200  " 
-                        type="email" 
-                        placeholder="Your email" 
-                        onChange={handleChange}
-                        />
-                    </div>
+                <form className="flex flex-col gap-5 " onSubmit={handleSubmit}>
                     <div className="">
                         <div>Username</div>
                         <input className="w-full box px-2 h-11 border" 
-                        type="text" 
+                        type="text"
+                        name="userName"
+                        value={formData.userName}
                         placeholder="Username"
                         onChange={handleChange}
                         />
@@ -74,14 +68,17 @@ function Login(){
                         <div>Password</div>
                         <input className="w-full box px-2 h-11 border" 
                         type="password" 
+                        name="password"
                         placeholder="Password"
+                        value={formData.password}
                         onChange={handleChange}
                         />
                     </div>
-                </div>
+                </form>
                 {/* modal footer */}
                 <div className="">
                     <button
+                    
                     className="border box w-full h-12 font-bold bg-cyan-200"
                     >
                         Login

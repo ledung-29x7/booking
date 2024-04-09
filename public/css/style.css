@@ -566,6 +566,11 @@ code {
 }
 
 /* header */
+.navigation:hover{
+  color: #77dada;
+
+}
+
 .header-wapper{
   position: sticky;
   top: 0;
@@ -585,6 +590,7 @@ code {
   height: 100%;
   display: flex ;
   align-items: center;
+  color: #77dada;
 }
 
 /* home */
@@ -688,12 +694,12 @@ code {
   display: flex;
   height: 13px;
 }
-.option:hover{
 
+.option:hover{
   background-color: var(--tw-primary);
   box-shadow: 0px 0px 12px var(--tw-primary);
 }
-
+ 
 .utilitie{
   border-radius: 16px;
   width: -moz-fit-content;
