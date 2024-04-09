@@ -44,55 +44,6 @@ function HeaderUp() {
         window.addEventListener("click",handleClickOutsideModal);
         
     }, []);
-    
-   
-
-    // // Get the button that opens the modal
-    // var btnSignUp = document.getElementById("signUp");
-    // var btnLogin = document.getElementById("logIn");
-
-    
-
-    // // When the user clicks the button, open the modal 
-    // function handleSignUp() {
-    //     var modal = document.getElementById("modal");
-    //     modal.style.display = "block";
-    //     if(document.getElementById("signUp").style.display == "none"){
-    //             document.getElementById("signUp").style.display = "block"
-    //         }
-    //     document.getElementById("logIn").style.display = "none"
-    // }
-
-    // function handleLogin() {
-    //     var modal = document.getElementById("modal");
-    //     modal.style.display = "block";
-    //     if(document.getElementById("logIn").style.display == "none"){
-    //             document.getElementById("logIn").style.display = "block"
-    //         }
-    //     document.getElementById("signUp").style.display = "none";
-        
-    // }
-
-    // // When the user clicks on <span> (x), close the modal
-    // function handleClose() {
-    //     var modal = document.getElementById("modal");
-    //     modal.style.display = "none";
-        
-    // }
-
-    // // When the user clicks anywhere outside of the modal, close it
-    // function handle(event) {
-    //     var modal = document.getElementById("modal");
-    //     var overlay = document.getElementById("overlay")
-    //     if (event.target == overlay ) {
-    //         modal.style.display = "none";
-    //     }
-        
-    // }
-    // useEffect(()=>{
-        
-    //     window.addEventListener("click",handle)
-    // },[])
 
    
     return (
