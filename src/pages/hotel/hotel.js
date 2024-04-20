@@ -7,6 +7,7 @@ function Hotel(){
     return(
         <div className=" section-bg">
             <div className=" my-32">
+                <div className=" relative h-80">
                 <div className=" searchHotel flex flex-col gap-10 box">
                     <div className="flex flex-col gap-4">
                         <h4 className=" text-center font-bold text-4xl">where do you want to go?</h4>
@@ -21,16 +22,17 @@ function Hotel(){
                         </div>
                     </div>
                 </div>
+                </div>
                 {/* result search */}
                 <div>
-                    <div className="containerr px-8 py-20">
+                    <div className="containerr px-8 ">
                         <div className="">
                             <div className="flex flex-col ">
                                 <TitleHome title="Research" />
                             </div>
                         </div>
 
-                        <div className="flex gap-6">
+                        <div className="flex gap-6 py-8">
                             <div className=" box w-1/4 ">
                                 <div className="border-b border-gray-300 filter-result">
                                     <h4>Filter Results</h4>
