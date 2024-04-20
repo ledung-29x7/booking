@@ -1,8 +1,12 @@
+import { useNavigate } from "react-router-dom";
 
-function Blog({src,titleBlog,info,timeUp}){
-    return(
+function Blog({ src, titleBlog, info, timeUp, Wed }) {
+    var navigate = useNavigate();
+
+    return (
+
         <div>
-             <div className="w-96 flex flex-col gap-5 box" >
+            <div className="w-96 flex flex-col gap-5 box" onClick={() => navigate('/wed')} >
                 {/* image Hotel */}
                 <div className=" p-4 static pb-0 ">
                     <img loading="lazy" className=" rounded-3xl" src={src} alt="" />
@@ -17,7 +21,7 @@ function Blog({src,titleBlog,info,timeUp}){
                         </div>
                         <p className=" text-sm pb-6">{timeUp}</p>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
