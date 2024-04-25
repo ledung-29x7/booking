@@ -45,6 +45,10 @@ code {
   color: #77dada;
 }
 
+.img-article{
+  width:100% ;
+}
+
 /* home */
 .bottom{
   padding: 10px 16px;

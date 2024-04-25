@@ -11,7 +11,7 @@ function ThingsToDo() {
             <div className=" mt-14">
                 <Blog src="https://minio.fares.vn/mixivivu-dev/tour/blog/images/apbb39vj3e99sczz.webp"
                     titleBlog="Top 5 resort nổi tiếng ở Hạ Long"
-                    info="Nếu bạn chưa tìm được khu nghỉ dưỡng sang xịn tại Hạ Long, hãy để Mixi Vivu gợi ý giúp bạn 6 resort Hạ Long đáng để trải nghiệm trong chuyến du lịch khám phá vùng đất tươi đẹp nơi đây nhé!"
+                    info="Nếu bạn chưa tìm được khu nghỉ dưỡng sang xịn tại Hạ Long, hãy để chúng tôi gợi ý giúp bạn 6 resort Hạ Long đáng để trải nghiệm trong chuyến du lịch khám phá vùng đất tươi đẹp nơi đây nhé!"
                     timeUp="12/12/2022"
                 />
             </div>
