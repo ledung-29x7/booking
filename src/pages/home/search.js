@@ -16,6 +16,12 @@ function Search() {
         setSearchValue({...searchValue, [e.target.name]: e.target.value});
     }
 
+    // xử lý ngày tháng
+    const handleDate = () =>{
+        let date =  new Date()
+
+    }
+
     const handleKeyDown = (e) =>{
         if(e.key === "Enter")  {
             try {
@@ -54,6 +60,7 @@ function Search() {
                 type="date"
                 icon="fa-solid fa-calendar-days"
                 nameInput="dateIn"
+                value= {new Date().getDate}
                 onChange={handleSearch}
             />
             <BoxInput
