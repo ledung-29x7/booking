@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStore } from '../../store/contexts';
 import { actions } from '../../store/action';
 import $ from 'jquery';
+import BoxInputUser from './boxInputUser';
 
 function Login() {
 
@@ -49,7 +50,7 @@ function Login() {
     };
 
     return (
-        <div className="flex flex-col gap-8 px-8 m-4 mt-0">
+        <div className="flex flex-col gap-8 px-8 mx-4 mb-12 mt-0">
             {/* modal header */}
             <div className="auth-form_header">
                 <div className="flex justify-between mb-4 mt-2">
@@ -60,28 +61,27 @@ function Login() {
 
             {/* input  */}
             <form className="flex flex-col gap-5 " onSubmit={handleSubmit}>
-                <div className="">
-                    <input className="w-full box px-2 h-11 outline-none"
-                        type="text"
-                        name="userName"
-                        value={formData.userName}
-                        placeholder="Username"
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <input className="w-full box px-2 h-11 outline-none"
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                </div>
+                <BoxInputUser
+                    icon={"fa-solid fa-user"}
+                    type={"text"}
+                    nameInput={"userName"}
+                    placeholder={"User Name"}
+                    value={formData.userName}
+                    onChange={handleChange}
+                />
+
+                <BoxInputUser
+                    icon={"fa-solid fa-lock"}
+                    type={"password"}
+                    nameInput={"password"}
+                    placeholder={"Password"}
+                    value={formData.password}
+                    onChange={handleChange}
+                />
             </form>
             {/* modal footer */}
             <div className="">
-                <button className="border rounded-lg  w-full h-12 font-bold bg-cyan-200"
+                <button className="border text-teal-800 rounded-lg  w-full h-12 font-bold bg-cyan-200"
                 >
                     Login
                 </button>

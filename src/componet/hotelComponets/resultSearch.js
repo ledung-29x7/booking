@@ -5,7 +5,7 @@ function ResultSearch({src,local,nameHotel,infoHotel,price}){
     var navigate = useNavigate();
     return(
         
-        <div className=" h-72 flex gap-5 box cursor-pointer items-center" onClick={()=>navigate("/")} >
+        <div className=" h-72 flex gap-5 box cursor-pointer items-center" onClick={()=>navigate("/hotel/room")} >
             {/* image Hotel */}
             <div className=" p-4 static">
                 <img loading="lazy" className=" w-80 h-64 rounded-3xl" src={src} alt="" />

@@ -6,7 +6,7 @@ export const getUser = () => new Promise(async(resolve, reject) => {
             url:'musicgenre',
             method: 'GET'
         })
-        resolve(response)
+        resolve(response.data)
     } catch (error) {
         reject(error)
     }
@@ -14,8 +14,7 @@ export const getUser = () => new Promise(async(resolve, reject) => {
 
 export const addUser = (post) => new Promise(async(resolve, reject) => {
     try {
-        const response = await axios.post('musicgenre',post)
-        resolve(response)
+        await axios.post('musicgenre',post)
     } catch (error) {
         reject(error)
     }

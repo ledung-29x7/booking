@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../../store/contexts';
 import { actions } from '../../store/action';
-import $ from 'jquery';
+import * as apis from "../../apis"
+import BoxInputUser from './boxInputUser';
 
 function SignUp() {
     const [formData, setFormData] = useState({
@@ -29,30 +30,15 @@ function SignUp() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        $.ajax({
-            url: '',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(formData),
-            success: (data) => {
-                if (data.errors) {
-                    setErrors(data.errors);
-                    alert('Registration failed!');
-                } else {
-                    console.log(data);
-                    navigate('/login');
-                }
-            },
-            error: () => {
-                alert("adad")
-
-            },
-        });
+        const FetchData = async() => {
+            await apis.addUser(formData)
+        }
+        FetchData();
     };
 
     return (
 
-        <div className="flex flex-col gap-8 px-8 m-4 mt-0">
+        <div className="flex flex-col gap-8 px-8 mx-4 mb-12 mt-0">
             {/* modal header */}
             <div className="auth-form_header">
                 <div className="flex justify-between mb-4 mt-2">
@@ -63,42 +49,38 @@ function SignUp() {
 
             {/* input  */}
             <div className="flex flex-col gap-5 ">
-                <div className="">
-                    <input className=" w-full box px-2 h-11 outline-none"
-                        type="email"
-                        name='email'
-                        placeholder="Your email"
-                        value={formData.email}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className="">
-                    <input className="w-full box px-2 h-11 outline-none "
-                        type="text"
-                        name='userName'
-                        placeholder="Username"
-                        value={formData.userName}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <input className="w-full box px-2 h-11 outline-none "
-                        type="password"
-                        name='password'
-                        placeholder="Password"
-                        value={formData.password}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <input className="w-full box px-2 h-11 outline-none"
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Confirmation Password"
-                        value={formData.confirmPassword}
-                        onChange={handleChange}
-                    />
-                </div>
+                <BoxInputUser
+                    icon={"fa-solid fa-envelope"}
+                    type={"text"}
+                    nameInput={"email"}
+                    placeholder={"Email"}
+                    value={formData.email}
+                    onChange={handleChange}
+                />
+                <BoxInputUser
+                    icon={"fa-solid fa-user"}
+                    type={"text"}
+                    nameInput={"userName"}
+                    placeholder={"User Name"}
+                    value={formData.userName}
+                    onChange={handleChange}
+                />
+                <BoxInputUser
+                    icon={"fa-solid fa-lock"}
+                    type={"password"}
+                    nameInput={"password"}
+                    placeholder={"Password"}
+                    value={formData.password}
+                    onChange={handleChange}
+                />
+                <BoxInputUser
+                    icon={"fa-solid fa-lock"}
+                    type={"password"}
+                    nameInput={"confirmPassword"}
+                    placeholder={"Confirm Password"}
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                />
             </div>
             {/* modal footer */}
             <div className="">
