@@ -24,7 +24,7 @@ function RowUser({user}){
             </td>
             <td className=" text-center">
                 <button className=" buttom_crud w-14 h-8 bg-red-500">
-                    <FontAwesomeIcon icon="fa-solid fa-gabarge_can"/>
+                    <FontAwesomeIcon icon="fa-solid fa-trash-can" />
                 </button>
             </td>
         </tbody>

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useStore } from "../../../store/contexts";
 import { actions } from "../../../store/action";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as apis from "../../../apis"
 import EditUser from "./editUser";
 import RowUser from "./rowUser";
 import AddUser from "./addUser";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ListUser() {
     const [isShowEdit, setIsShowEdit] = useState(false);
@@ -16,13 +16,13 @@ function ListUser() {
     const { isEdit,isAdd,id } = state;
 
     // Read apis
-    // useEffect(() => {
-    //     const FetchData = async() => {
-    //         const response = await apis.getUser();
-    //         setUser(response)
-    //     }
-    //     FetchData();
-    // },[])
+    useEffect(() => {
+        const FetchData = async() => {
+            const response = await apis.getUser();
+            setUser(response)
+        }
+        FetchData();
+    },[])
 
     useEffect(() => {
         const GetEdit = (id) => {
@@ -107,7 +107,6 @@ function ListUser() {
                             key={us.id}
                             user={us}
                         />
-                        
                         ))}
                     </table>
                 </div>

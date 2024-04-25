@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function BoxInput({ placeholder, ai, type, icon, onKeyDown, onChange,nameInput }) {
+function BoxInput({ placeholder, ai, type, icon, onKeyDown, onChange,nameInput,value }) {
     return (
         <div className="search h-full">
             <div className="input-group ">
@@ -11,6 +11,7 @@ function BoxInput({ placeholder, ai, type, icon, onKeyDown, onChange,nameInput }
                     aria-invalid={ai}
                     type={type}
                     name={nameInput}
+                    value={value}
                     placeholder={placeholder}
                     onKeyDown={onKeyDown}
                     onChange={onChange}
