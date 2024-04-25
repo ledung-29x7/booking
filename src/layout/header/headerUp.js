@@ -72,7 +72,7 @@ function HeaderUp() {
     }, []);
 
     return (
-        <header className=" containerr px-8 flex justify-between items-center h-[96px]" >
+        <header className="container containerr flex justify-between items-center h-[96px]" >
             <div className=" flex items-center gap-24 h-full">
                 {/* logo home */}
                 <div className="h-full">
@@ -98,14 +98,9 @@ function HeaderUp() {
             </div>
             {/* đăng nhập đăng xuất */}
             <div className=" flex gap-10 items-center">
-                <button className=" w-24 bg-cyan-200 border-4 border-cyan-200 flex items-center justify-center  bottom font-bold "
-                    onClick={handleSignUp}>
-                    Sign up
-                </button>
-
-                <button className=" w-24 border-cyan-200 border-4 flex items-center justify-center bottom font-bold"
-                    onClick={handleLogin} >
-                    Login
+                <button className=" bg-cyan-200 flex items-center justify-center  bottom font-bold "
+                    onClick={handleLogin}>
+                    Sign up / Login
                 </button>
             </div>
             {isShowingSignUp ?

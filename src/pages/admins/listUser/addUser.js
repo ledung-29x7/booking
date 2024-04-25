@@ -5,6 +5,9 @@ import { actions } from "../../../store/action";
 import * as apis from "../../../apis"
 
 function AddUser() {
+
+    const role = ["Admin",  "Customer", "Manager"]
+
     const [formData, setFormData] = useState({
         userName: "",
         firstName: "",
@@ -30,7 +33,6 @@ function AddUser() {
         e.preventDefault();
         const FetchData = async() => {
             await apis.addUser(formData)
-            
         }
         FetchData();
     };
@@ -76,13 +78,11 @@ function AddUser() {
                             />
                         </div>
                         <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
-                            <input
-                                className="outline-none w-11/12 h-full"
-                                placeholder="Role"
-                                type="text"
-                                name="role"
-                                onChange={handleChange}
-                            />
+                            <select className="outline-none w-11/12 h-full" name="role" onChange={handleChange}>
+                                {role.map((rol)=>(
+                                    <option value={rol}>{rol}</option>
+                                ))}
+                            </select>
                         </div>
                     </div>
                     <div className="border-gray-500 border text-right rounded-lg overflow-hidden h-9">

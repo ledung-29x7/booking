@@ -4,18 +4,18 @@ import { useEffect, useState } from "react";
 import * as apis from "../../../apis";
 
 function EditUser({ user }) {
+    const role = ["Admin",  "Customer", "Manager"]
     const [valueEdit,setValueEdit] = useState({
         userName: '' ,
         firstName: '',
         lastName:'' ,
         role: ''
     })
-    console.log(user[0])
     const [state, dispatch] = useStore();
     const {id} = state;
 
     useEffect(()=> {
-        setValueEdit(user[0])
+        setValueEdit(user)
     },[user])
 
     function HandleCloseEdit() {
@@ -26,9 +26,10 @@ function EditUser({ user }) {
         setValueEdit({...valueEdit,[e.target.name]: e.target.value})
     }
 
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault();
         const FetchEdit = async() => {
-            await apis.editUser(id,valueEdit);
+            await apis.editUser(id,valueEdit)
         }
         FetchEdit()
     }
@@ -76,14 +77,11 @@ function EditUser({ user }) {
                             />
                         </div>
                         <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
-                            <input
-                                className="outline-none w-11/12 h-full"
-                                placeholder="Role"
-                                type="text"
-                                name="role"
-                                onChange={handleChange}
-                                value={valueEdit.role}
-                            />
+                            <select className="outline-none w-11/12 h-full" value={valueEdit.role} name="role" onChange={handleChange}>
+                                {role.map((rol)=>(
+                                    <option value={rol}>{rol}</option>
+                                ))}
+                            </select>
                         </div>
                     </div>
                     <div className="border-gray-500 border text-right rounded-lg overflow-hidden h-9">

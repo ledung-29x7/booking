@@ -16,14 +16,7 @@ function Home(){
                         <h4 className=" text-center font-bold text-4xl">where do you want to go?</h4>
                         <p className=" text-center text-lg text-gray-900 opacity-60">Hundreds of places for you to explore</p>
                     </div>
-                    <div className=" flex gap-5 ">
-                        <Search placeholder="Ban muon di dau " />
-                        <Search placeholder="lich trinh cua ban" />
-                        <Search so luong nguoi />
-                        <div className="flex items-center">
-                            <button className=" bg-cyan-200 border-4 border-cyan-200 flex items-center justify-center h-fit w-fit bottom font-bold">Search</button>
-                        </div>
-                    </div>
+                        <Search />
                 </div>
             </div>
 

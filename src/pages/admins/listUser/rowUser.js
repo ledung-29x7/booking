@@ -1,4 +1,4 @@
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useStore } from "../../../store/contexts";
 import { actions } from "../../../store/action";
 
@@ -18,10 +18,14 @@ function RowUser({user}){
             <td>{user.lastName}</td>
             <td>{user.role}</td>
             <td className=" text-center">
-                <button onClick={HandleEdit} className="buttom_crud w-14 h-8 bg-amber-400 ">Edit</button>
+                <button onClick={HandleEdit} className="buttom_crud w-14 h-8 bg-amber-400 ">
+                    <FontAwesomeIcon icon="fa-solid fa-pen" />
+                </button>
             </td>
             <td className=" text-center">
-                <button className=" buttom_crud w-14 h-8 bg-red-500">Delete</button>
+                <button className=" buttom_crud w-14 h-8 bg-red-500">
+                    <FontAwesomeIcon icon="fa-solid fa-gabarge_can"/>
+                </button>
             </td>
         </tbody>
     );

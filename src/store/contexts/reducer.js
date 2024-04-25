@@ -11,7 +11,7 @@ export const initState = {
     isLogin : false,
     isEdit: false,
     isAdd: false,
-    id : null
+    id : null,
 }
 
 function Reducers(state,action){

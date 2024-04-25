@@ -5,33 +5,34 @@ import * as apis from "../../../apis"
 import EditUser from "./editUser";
 import RowUser from "./rowUser";
 import AddUser from "./addUser";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ListUser() {
     const [isShowEdit, setIsShowEdit] = useState(false);
     const [isShowAdd, setisShowAdd] = useState(false);
-    const [users,setUser] = useState([]);
+    const [users,setUser] = useState([{id:1,userName:"Caprson",firstName:"Nguyen",lastName:"Hong Son",role:"Customer"}]);
     const [editUs,setEditUs] = useState({});
     const [state, dispatch] = useStore();
     const { isEdit,isAdd,id } = state;
 
     // Read apis
-    useEffect(() => {
-        const FetchData = async() => {
-            const response = await apis.getUser();
-            setUser(response.data)
-        }
-        FetchData();
-    },[id])
+    // useEffect(() => {
+    //     const FetchData = async() => {
+    //         const response = await apis.getUser();
+    //         setUser(response)
+    //     }
+    //     FetchData();
+    // },[])
+
     useEffect(() => {
         const GetEdit = (id) => {
             if(id != null){
-                var getIdEND = users.filter(ob => ob.id ===id) 
+                var getIdEND = users.find(ob => ob.id ===id) 
             }
             setEditUs(getIdEND)
         }
         GetEdit(id)
     },[id])
-
     // open form Edit
     useEffect(() => {
         function OpenEdit(isEdit) {
@@ -82,13 +83,17 @@ function ListUser() {
                         </h4>
                         <img className="w-24" src="../icon/heading-border.png" alt="" />
                     </div>
-                    <div className="mx-10 ">
-                        <button onClick={HandleOpenAdd} className="buttom_crud w-20 h-8 bg-lime-600">Add User</button>
+                    <div className="mx-10 bg-lime-600 w-32 h-10 flex justify-center items-center gap-3 rounded-md">
+                        <FontAwesomeIcon style={{color:"white"}} icon="fa-solid fa-plus"/>
+                        <button onClick={HandleOpenAdd} className="buttom_crud ">Add User</button>
                     </div>
                 </div>
-                <div className="frame mt-5 shadow_uslist relative">
-                    <table className=" w-full shadow ">
-                        <tr className="sticky top-0 bg-slate-200 h-12">
+                <div>
+                    
+                </div>
+                <div className=" mt-4">
+                    <table className="  w-full shadow ">
+                        <tr className="bg-slate-200 h-12">
                             <th>ID</th>
                             <th>User Name</th>
                             <th>Firt Name</th>

@@ -32,8 +32,6 @@ code {
 .containerr{
   width: 100%;
   max-width: 1280px;
-  padding-left: 16px ;
-  padding-right: 16px;
   margin: auto;
 }
 
@@ -47,7 +45,8 @@ code {
 
 /* home */
 .bottom{
-  padding: 10px 16px;
+  padding: 14px 16px;
+  color: #0e4f4f;
   white-space: nowrap;
   border-radius: 100px;
   box-shadow: var(--tw-shadow);
@@ -102,11 +101,16 @@ code {
   position: relative;
   padding: 16px 20px;
   border-radius: 28px;
-  border: 1px solid var(--tw-gray-200);
+  border: 2px solid #eaecf0;
   box-shadow: var(--tw-shadow);
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.input-group:focus-within{
+  box-shadow: -2px -2px 2px 2px #77dada,
+  2px 2px 2px 2px #77dada;
 }
 
 /* hotel */
@@ -234,4 +238,10 @@ table,th,td {
 .buttom_crud{
   border-radius: 5px;
   color: #fff;
+}
+
+@media only screen and (max-width: 1280px) {
+  .container {
+      padding:0 8px
+  }
 }
