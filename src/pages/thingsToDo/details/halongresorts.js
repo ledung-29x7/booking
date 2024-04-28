@@ -6,7 +6,7 @@ import resort01d from "../../../image/resorts/resort01d.jpg";
 
 function HaLongresorts({src,titleBlog,info,timeUp}){
     return(
-        <div className="w-96 flex flex-col gap-5 box">
+        <div className="containerr py-20">
             <h1>FLC Grand Hạ Long</h1>
             <img className="img-article" src={resort01}></img>
             <p>FLC Grand Hạ Long, các tòa căn hộ khách sạn đẳng cấp 5 sao tọa lạc trên đỉnh đồi trung tâm thành phố. Đây là nơi đẹp nhất để chiêm ngưỡng trọn vẹn kỳ quan thiên nhiên Vịnh Hạ Long. Sở hữu những tiện ích đẳng cấp hàng đầu như sân golf 18 hố dạng links, trung tâm hội nghị quốc tế 1500 chỗ, bể bơi bốn mùa 1000m2 và Skybar view vịnh cao nhất thành phố.</p>

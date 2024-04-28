@@ -6,11 +6,8 @@ import DefaultLayoutAdmin from "../layout/defaultLayout/defaultLayoutAdmin";
 import ListUser from "../pages/admins/listUser/listUsers";
 import ListHotel from "../pages/admins/listHotels/listHotel";
 import ListBooking from "../pages/admins/listBookings/listBooking";
-<<<<<<< Updated upstream
-=======
 import Room from "../pages/roomHotel/room";
 import HaLongresorts from "../pages/thingsToDo/details/halongresorts";
->>>>>>> Stashed changes
 
 const publicRoute = [
     { path: '/', componet: Home },
@@ -19,13 +16,10 @@ const publicRoute = [
     { path: '/admin', componet: Admin, layout: DefaultLayoutAdmin },
     { path: '/admin/listUser', componet: ListUser, layout: DefaultLayoutAdmin },
     { path: '/admin/listHotel', componet: ListHotel, layout: DefaultLayoutAdmin },
-<<<<<<< Updated upstream
-    { path: '/admin/listBooking', componet: ListBooking, layout: DefaultLayoutAdmin }
-=======
+    { path: '/admin/listBooking', componet: ListBooking, layout: DefaultLayoutAdmin },
     { path: '/admin/listBooking', componet: ListBooking, layout: DefaultLayoutAdmin },
     {path: '/hotel/room', componet: Room },
     {path: '/thingsToDo/halong', componet: HaLongresorts}
->>>>>>> Stashed changes
 ]
 
 export default publicRoute;
