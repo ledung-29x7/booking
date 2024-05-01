@@ -34,5 +34,9 @@ public class UserRegistrationDTO {
     @Pattern(regexp = "^(?!\\\\s*$)[a-zA-ZàáảãạâầấẩẫậăằắẳẵặèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđÀÁẢÃẠÂẦẤẨẪẬĂẰẮẲẴẶÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢÙÚỦŨỤƯỪỨỬỮỰỲÝỶỸỴĐ ]+$", message = "Last name must only contain letters")
     private String lastName;
 
+    @NotBlank(message = "Phone cannot be empty" )
+    @Pattern(regexp = "^0\\d{9,10}$")
+    private String phone;
+
     private RoleType roleType;
 }

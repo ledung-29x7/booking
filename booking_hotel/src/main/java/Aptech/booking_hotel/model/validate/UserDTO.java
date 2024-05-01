@@ -22,6 +22,10 @@ public class UserDTO {
     @Email(message = "Invalid email address")
     private String username;
 
+    @NotBlank(message = "Phone cannot be empty")
+    @Pattern(regexp = "^0\\d{9,10}$")
+    private String phone;
+
     @NotBlank(message = "Name cannot be empty")
     @Pattern(regexp = "^(?!\\\\s*$)[a-zA-ZàáảãạâầấẩẫậăằắẳẵặèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđÀÁẢÃẠÂẦẤẨẪẬĂẰẮẲẴẶÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢÙÚỦŨỤƯỪỨỬỮỰỲÝỶỸỴĐ ]+$", message = "First name must only contain letters")
     private String firstName;
