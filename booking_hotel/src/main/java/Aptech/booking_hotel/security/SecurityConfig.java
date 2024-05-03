@@ -49,7 +49,7 @@ public class SecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         //authorize.anyRequest().authenticated()
-                        authorize.requestMatchers(HttpMethod.GET,"/").permitAll()
+                        authorize.requestMatchers(HttpMethod.GET,"/","/search/**").permitAll()
                         .requestMatchers("/customer/**").permitAll()
                                 .anyRequest().authenticated()
 

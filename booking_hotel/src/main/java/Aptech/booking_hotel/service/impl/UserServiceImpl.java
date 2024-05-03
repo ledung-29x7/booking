@@ -1,9 +1,12 @@
 package Aptech.booking_hotel.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,8 @@ import Aptech.booking_hotel.responsitory.HotelManagerResponsitory;
 import Aptech.booking_hotel.responsitory.RoleResponsitory;
 import Aptech.booking_hotel.responsitory.UserResponsitory;
 import Aptech.booking_hotel.service.UserService;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 @Service
 public class UserServiceImpl implements UserService  {
 
@@ -45,6 +50,7 @@ public class UserServiceImpl implements UserService  {
         }
 
     @Override
+    @Transactional  // để nếu có exception thì sẽ rollback lại bước trước đó và ko lưu dữ liệu xuống database
     public User saveUser(UserRegistrationDTO registrationDTO) {
        Optional<User> existingUser = Optional.ofNullable(userResponsitory.findByUsername(registrationDTO.getUsername()));
 
@@ -81,35 +87,56 @@ public class UserServiceImpl implements UserService  {
     }
     @Override
     public User findUserByUsername(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findUserByUsername'");
+        return userResponsitory.findByUsername(username);
+    }
+
+    // nối User với UserDto
+    private UserDTO mapUserToUserDto(User user) {
+        return UserDTO.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .role(user.getRole())
+                .build();
     }
 
     @Override
     public UserDTO findUserDTOByUsername(String username) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findUserDTOByUsername'");
+        Optional<User> userOptional = Optional.ofNullable(userResponsitory.findByUsername(username));
+        User user = userOptional.orElseThrow(()-> new UsernameNotFoundException("Username not found"));
+        return mapUserToUserDto(user);
     }
+
 
     @Override
     public UserDTO findUserById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findUserById'");
+        User user = userResponsitory.findById(id).orElseThrow(()-> new EntityNotFoundException("User not found"));
+        return mapUserToUserDto(user);
     }
 
     @Override
     public List<UserDTO> findAllUsers() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'findAllUsers'");
+        List<User> users = userResponsitory.findAll(); // lấy toàn bộ user
+        List<UserDTO> userDTOs = new ArrayList<>(); // tạo 1 arraylist 
+        for (User user : users) {                     // truyền dữ liệu từ user vào userDto
+            UserDTO userDTO = mapUserToUserDto(user);
+            userDTOs.add(userDTO);
+        }
+        return userDTOs;
     }
 
     @Override
+    @Transactional
     public void updateUser(UserDTO userDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
+        User user = userResponsitory.findById(userDTO.getId()).orElseThrow(()-> new IllegalArgumentException("User not found"));
+
+        setFormattedDataToUser(user, userDTO);
+        userResponsitory.save(user);
     }
 
     @Override
+    // đổi 
     public void updateLoggedById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateLoggedById'");
@@ -117,14 +144,32 @@ public class UserServiceImpl implements UserService  {
 
     @Override
     public void deleteUserById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUserById'");
+        userResponsitory.deleteById(id);
     }
 
     @Override
     public User resetPassword(ResetPasswordDTO resetPasswordDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'resetPassword'");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String loggedInUsername = auth.getName();
+
+        User user = userResponsitory.findByUsername(loggedInUsername);
+        
+        if (user== null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        // phần nhập lại mật khẩu để xác thực
+        if (!passwordEncoder.matches(resetPasswordDTO.getOldPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("Old Password is incorrect");
+        }
+        user.setPassword(passwordEncoder.encode(resetPasswordDTO.getConfirmNewPassword())); // gán password mới 
+        return userResponsitory.save(user);
+    }
+    
+    private void setFormattedDataToUser(User user, UserDTO userDTO) {
+        user.setUsername(userDTO.getUsername());
+        user.setFirstName(formatText(userDTO.getFirstName()));
+        user.setLastName(formatText(userDTO.getLastName()));
+        user.setPhone(userDTO.getPhone());
     }
     
 }
