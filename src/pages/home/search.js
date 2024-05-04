@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BoxInput from './boxInput';
 
 function Search() {
@@ -17,10 +17,10 @@ function Search() {
     }
 
     // xử lý ngày tháng
-    const handleDate = () =>{
+    useEffect(()=>{
         let date =  new Date()
-
-    }
+        setSearchValue({dateIn:["0"+date.getDay()+"/"+"0"+date.getDate()+"/"+date.getFullYear()]})
+    },[])
 
     const handleKeyDown = (e) =>{
         if(e.key === "Enter")  {
@@ -48,6 +48,7 @@ function Search() {
     return (
         <div className=" flex gap-5 ">
             <BoxInput
+                style={{ color: "#667085" }}
                 placeholder="Bạn muốn đi đâu? "
                 type="text"
                 icon="fa-solid fa-magnifying-glass" 
@@ -56,14 +57,16 @@ function Search() {
                 onKeyDown={handleKeyDown}
                 />
             <BoxInput
+                style={{ color: "#667085" }}
                 placeholder="Ngày nhận phòng"
-                type="date"
+                type="button"
                 icon="fa-solid fa-calendar-days"
                 nameInput="dateIn"
-                value= {new Date().getDate}
+                value= {searchValue.dateIn}
                 onChange={handleSearch}
             />
             <BoxInput
+                style={{ color: "#667085" }}
                 placeholder="Ngày trả phòng"
                 type="date"
                 icon="fa-solid fa-calendar-days"
