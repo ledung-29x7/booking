@@ -1,4 +1,5 @@
 import Home from "../pages/home/home";
+import HaLongresorts from "../pages/thingsToDo/details/halongresorts";
 import Hotel from "../pages/hotel/hotel";
 import ThingsToDo from "../pages/thingsToDo/thingsToDo";
 import Admin from "../pages/admins/homeAdmin/admin";
@@ -26,6 +27,7 @@ const publicRoute = [
     { path: '/admin/listUser', componet: ListUser, layout: DefaultLayoutAdmin },
     { path: '/admin/listHotel', componet: ListHotel, layout: DefaultLayoutAdmin },
     { path: '/admin/listBooking', componet: ListBooking, layout: DefaultLayoutAdmin },
+    { path: '/thingsToDo/halong', componet: HaLongresorts},
     { path: '/hotel/room', componet: Room },
     { path: '/manage/listRooms', componet: ListRoom, layout: DefaultLayoutAdmin },
     { path: '/manage', componet: HomeManage, layout: DefaultLayoutAdmin },
