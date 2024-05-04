@@ -6,7 +6,7 @@ import DefaultLayoutAdmin from "../layout/defaultLayout/defaultLayoutAdmin";
 import ListUser from "../pages/admins/listUser/listUsers";
 import ListHotel from "../pages/admins/listHotels/listHotel";
 import ListBooking from "../pages/admins/listBookings/listBooking";
-import Room from "../pages/roomHotel/room";
+import Room from "../pages/hotel/roomHotel";
 import HaLongresorts from "../pages/thingsToDo/details/halongresorts";
 
 const publicRoute = [
