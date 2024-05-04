@@ -12,6 +12,15 @@ import resort03c from "../../../image/resorts/resort03c.jpg";
 import resort03d from "../../../image/resorts/resort03d.jpg";
 import resort03e from "../../../image/resorts/resort03e.jpg";
 import resort04 from "../../../image/resorts/resort04.jpg";
+import resort04a from "../../../image/resorts/resort04a.jpg";
+import resort04b from "../../../image/resorts/resort04b.jpg";
+import resort04c from "../../../image/resorts/resort04c.jpg";
+import resort04d from "../../../image/resorts/resort04d.jpg";
+import resort05 from "../../../image/resorts/resort04.jpg";
+import resort05a from "../../../image/resorts/resort05a.jpg";
+import resort05b from "../../../image/resorts/resort05b.jpg";
+import resort05c from "../../../image/resorts/resort05c.jpg";
+import resort05d from "../../../image/resorts/resort05d.jpg";
 
 function HaLongresorts({src,titleBlog,info,timeUp}){
     return(
@@ -53,25 +62,26 @@ function HaLongresorts({src,titleBlog,info,timeUp}){
             <p><b>Địa chỉ</b>: Bán Đảo 2, Đường Hùng Thắng, Thành phố Hạ Long</p>
             <img className="img-article" src={resort04}></img>
             <p>Phong cách thiết kế của Resort Royal Lotus Hạ Long được lấy cảm hứng từ xu hướng sống xanh toàn cầu. Công trình là sự kết hợp độc đáo và hoàn hảo giữa vẻ đẹp hiện đại của những khu biệt thự, phòng nghỉ và sự trong lành, tươi mát của phong cảnh thiên nhiên xung quanh.</p>
-            <img className="img-article" src={resort03e}></img>
+            <img className="img-article" src={resort04a}></img>
             <p>Royal Villas Hạ Long là khu nghỉ dưỡng duy nhất sở hữu hệ thống phòng khách sạn vừa có phòng nghỉ dưỡng dành cho gia đình. Chính vì vậy resort luôn là sự lựa chọn hàng đầu dành cho những chuyến du lịch nghỉ dưỡng của các đại gia đình hoặc những nhóm du khách đông người.</p>
-            <img className="img-article" src={resort03e}></img>
+            <img className="img-article" src={resort04b}></img>
             <p>Không chỉ dừng lại ở đó, nằm trên mảnh đất nhô ra sát bờ biển nên Royal Lotus Hạ Long sở hữu 3 mặt tiền giáp biển. Chính ưu điểm này đã giúp đem tới cảm giác thoáng đãng, bình yên nhưng cũng vô cùng riêng tư cho du khách khi đặt chân tới mảnh đất này.</p>
-            <img className="img-article" src={resort03e}></img>
+            <img className="img-article" src={resort04c}></img>
+            <img className="img-article" src={resort04d}></img>
             <p>Với dịch vụ chuyên nghiệp cùng khung cảnh thiên nhiên hữu tình, nên thơ của Hạ Long, Lotus Hạ Long đang là resort được đánh giá cao, hàng năm thu hút một lượng lớn du khách tới đây lưu trú, nghỉ dưỡng.</p>
             <br/>
             <h1>Tuan Chau Resort Ha Long (La Paz Tuan Chau)</h1>
             <p><b>Địa chỉ</b>: Đường Ngọc Châu, đảo Tuần Châu, Thành phố Hạ Long</p>
-            <img className="img-article" src={resort03e}></img>
+            <img className="img-article" src={resort05}></img>
             <p>Tuan Chau Resort Ha Long sở hữu quy mô rộng lớn lên đến 220 ha bao gồm 247 phòng nghỉ và biệt thự sang trọng. Các căn biệt thự được thiết kế biệt lập với nhau, tạo sự riêng tư, thoải mái cho các du khách.</p>
             <p>Tuan Chau Resort Ha Long lấy cảm hứng thiết kế từ các công trình địa phương của miền Bắc nước Pháp kết hợp cùng với những nét truyền thống của phong cách Việt. Các căn biệt thự ở đây nổi bật với thiết kế đối xứng đặc trưng của các công trình Châu Âu. Thiết kế này không chỉ tạo được tính đồ sộ cho công trình mà đâu đó vẫn mang vẻ đẹp tinh tế, lãng mạn của chất Pháp.</p>
-            <img className="img-article" src={resort03e}></img>
             <p>Resort được bao quanh bởi số lượng cây xanh khổng lồ của rừng thông, của những rặng dừa, rặng cọ, những bụi hoa giấy,...Tất cả tạo nên một không gian sống trong lành, mát mẻ và đẹp đẽ nhất.</p>
-            <img className="img-article" src={resort03e}></img>
+            <img className="img-article" src={resort05a}></img>
             <p>Điểm nhấn ở phần không gian ngoài trời tại Tuan Chau Resort Ha Long chính là thiết kế bể bơi ngoài trời rộng lớn được đặt ngay trước khu vực sảnh lễ tân. Bể bơi có hướng nhìn ra phía biển, tại đây, du khách hoàn toàn có thể vừa ngâm mình trong làn nước mát, vừa thưởng thức cảnh đẹp thiên nhiên hùng vĩ một cách chân thực nhất.</p>
-            <img className="img-article" src={resort03e}></img>
+            <img className="img-article" src={resort05b}></img>
+            <img className="img-article" src={resort05c}></img>
             <p>Tuan Chau Resort Ha Long cung cấp hơn 200 phòng ở với 3 loại biệt thự chính. Các phòng tại Tuan Chau Resort Ha Long đều được thiết kế rộng rãi với vẻ đẹp sang trọng, gồm đầy đủ các tiện ích.</p>
-            <img className="img-article" src={resort03e}></img>
+            <img className="img-article" src={resort05d}></img>
             <p>Các nhà hàng được thiết kế khác nhau nhưng tổng thể vẫn mang vẻ sang trọng, tinh tế của lối kiến trúc Pháp. Nội thất nhà hàng sử dụng nhiều các vật liệu bằng gỗ từ bàn ghế, sàn nhà, hệ thống cửa…tạo vẻ đẹp giản dị, gần gũi. Bên cạnh đó, ánh sáng vàng được dùng để chiếu sáng phần không gian nhà hàng còn đem đến cho du khách không gian ẩm thực ấm cúng, nhẹ nhàng trong mỗi bữa ăn.</p>
         </div>
     );
