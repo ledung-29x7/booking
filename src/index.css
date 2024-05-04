@@ -188,6 +188,7 @@ code {
   right: 0;
   bottom: 0;
   transition: 1s;
+  z-index: 99;
 }
 
 .modal_overlay {

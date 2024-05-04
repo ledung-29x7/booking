@@ -3,7 +3,9 @@ import {
     ISSHOWINGLOGIN,
     ISSHOWINGEDIT,
     ISSHOWINGADD,
-    EDITNDELETE
+    EDITNDELETE,
+    ISSHOWINFOROOM,
+    ISSHOWFORMBOOKING
 } from "./constants"
 
 // modal SignUp, Login
@@ -41,5 +43,21 @@ export const getIdEND = (id) => {
     return {
         type : EDITNDELETE,
         id
+    }
+}
+
+// Informatin Room
+export const ModalInforRoom = (isShow) =>{
+    return {
+        type : ISSHOWINFOROOM,
+        isShow
+    }
+}
+
+// Form Booking
+export const ModalFormBooking = (isShow) =>{
+    return {
+        type : ISSHOWFORMBOOKING,
+        isShow
     }
 }

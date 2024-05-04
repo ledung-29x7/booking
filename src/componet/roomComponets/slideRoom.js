@@ -1,9 +1,9 @@
 
 function SlideRoom({imgSlide}){
     return(
-        <div>
-            <div>
-                <img src={imgSlide} alt=""/>
+        <div className=" w-[70vw] h-[50vh] flex-shrink-0 cursor-pointer">
+            <div className="w-full h-full relative overflow-hidden">
+                <img className=" object-cover" loading="lazy" src={imgSlide} alt=""/>
             </div>
         </div>
     );

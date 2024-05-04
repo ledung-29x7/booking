@@ -13,10 +13,7 @@ function HeaderUp() {
     const [state, dispatch] = useStore();
     const { isSignUp, isLogin } = state;
 
-    function handleSignUp() {
-        setIsShowingSignUp(true);
-        setIsShowingLogin(false)
-    };
+
     // handle Login
     function handleLogin() {
         setIsShowingLogin(true);
@@ -72,7 +69,7 @@ function HeaderUp() {
     }, []);
 
     return (
-        <header className="container containerr flex justify-between items-center h-[96px]" >
+        <header className="container m-auto flex justify-between items-center h-[96px]" >
             <div className=" flex items-center gap-24 h-full">
                 {/* logo home */}
                 <div className="h-full">
@@ -92,7 +89,7 @@ function HeaderUp() {
                 <div className="flex gap-10 items-center cursor-pointer h-full">
                     <MenuItem to={'/hotel'} title="Hotel" />
                     <MenuItem to={'/thingsToDo'} title="Things to Do" />
-                    <MenuItem to={'/enterprise'} title="Enterprise" />
+                    <MenuItem to={'/bookings'} title="Bookings" />
                     <MenuItem to={'/parnership'} title="Partnership" />
                 </div>
             </div>
