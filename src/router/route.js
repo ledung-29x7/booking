@@ -35,8 +35,7 @@ const publicRoute = [
     { path: '/bookingConfirmation', componet: BookingComfirmation, layout: DefaultLayoutAdmin },
     { path: '/bookings', componet: MyBookings },
     { path: '/user/signin', componet: Login, layout: DefaultLayoutLogin },
-    { path: '/user/signup', componet: SignUp, layout: DefaultLayoutLogin }
-
+    { path: '/user/signup', componet: SignUp, layout: DefaultLayoutLogin },
 ]
 
 export default publicRoute;

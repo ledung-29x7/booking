@@ -1,17 +1,28 @@
-import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useStore } from "../../../store/contexts";
+import { actions } from "../../../store/action";
 
-function RowList({id,customer,nameHotel,bookingDate,price,}){
-    const navigate = useNavigate()
+function RowList({room}){
+    
+    const [,dispatch] = useStore();
+
+   
+
     return(
         <tbody className=" text-gray-600 h-11">
-            {/* <tr className=" text-center">{id}</tr>
-            <tr>{customer}</tr>
-            <tr>{nameHotel}</tr>
-            <tr>{bookingDate}</tr>
-            <tr>{price}</tr> */}
-            <tr className=" text-center">
-                <button onClick={()=>navigate("/manage/listRoom/addHotel")}  className="h-10 px-6 font-semibold rounded-md bg-black text-white">Add Hotel</button>
-            </tr>
+            <td className=" text-center">{room.id}</td>
+            <td>{room.HotelName}</td>
+            <td>{room.AddressLine}</td>
+            <td>{room.Country}</td>
+            <td>{room.SingleRoomCount}</td>
+            <td>{room.SingleRoomPrice}</td>
+            <td>{room.DoubleRoomCount}</td>
+            <td>{room.DoubleRoomPrice}</td>
+            <td className=" text-center">
+                <button className=" buttom_crud w-14 h-8 bg-red-500">
+                    <FontAwesomeIcon icon="fa-solid fa-trash-can" />
+                </button>
+            </td>
         </tbody>
     );
 }
