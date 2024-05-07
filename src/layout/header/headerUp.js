@@ -61,7 +61,6 @@ function HeaderUp() {
             setIsShowingLogin(false);
             setIsShowingSignUp(false);
         }
-        console.log(event.target)
     };
     
     useEffect(() => {

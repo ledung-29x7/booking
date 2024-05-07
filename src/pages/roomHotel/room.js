@@ -11,8 +11,10 @@ import CheckBox from "../../componet/hotelComponets/checkBox";
 import InfoRoom from "../../componet/roomComponets/infoRoom";
 import DetailRoom from "../../componet/roomComponets/detailRoom";
 import FormBooking from "./formBooking";
+import { useParams } from "react-router-dom";
 
 function Room() {
+    const {id} = useParams()
     const [state, dispatch] = useStore();
     const [showInfoRoom, setShowInfoRoom] = useState(false);
     const [showFormBooking, setShowFromBooking] = useState(false)
