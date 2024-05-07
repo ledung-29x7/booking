@@ -1,9 +1,39 @@
+import { useLocation } from "react-router-dom";
+import * as apis from "../../apis"
+import { useStore } from '../../store/contexts';
+import { actions } from '../../store/action';
 import Search from "../home/search";
 import TitleHome from "../../componet/homeComponets/titleHome";
 import CheckBox from "../../componet/hotelComponets/checkBox";
 import ResultSearch from "../../componet/hotelComponets/resultSearch";
+import { useState,useEffect } from "react";
 
 function Hotel(){
+    const [state,] = useStore();
+    const {getSearch} = state;
+    const [searchResult,setSearchResult] = useState([])
+
+    console.log(getSearch)
+    
+    useEffect(()=>{
+        if (getSearch !== null) {
+            const FetchData = async() => {
+                try {
+                    const response = await apis.getAddress(getSearch)
+                    setSearchResult(response)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            FetchData();
+        }
+
+    },[getSearch])
+
+
+    console.log(searchResult)
+
+
     return(
         <div className=" section-bg">
             <div className=" py-16">
@@ -39,11 +69,12 @@ function Hotel(){
                                 </div>
                             </div>
                             <div className=" w-3/4 flex flex-col gap-8">
-                                <ResultSearch local="Nha Trang" nameHotel="Chung Dung Hotel" 
-                                    infoHotel=" hotel ba chach" 
-                                    src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
-                                    price="3,000,000"
-                                />
+                                {searchResult?.map((resul)=>
+                                    <ResultSearch
+                                        key={resul.id}
+                                        resul={resul}
+                                    />
+                                )}
                             </div>
                         </div>
                     </div>

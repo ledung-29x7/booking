@@ -1,9 +1,11 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'https://6565d6c5eb8bb4b70ef26f1c.mockapi.io/api/v1/',
+    baseURL: 'http://localhost:8080/',
     timeout: 5000,
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+    }
 });
 
 axios.interceptors.request.use(function (config) {

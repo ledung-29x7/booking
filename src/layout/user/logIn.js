@@ -8,7 +8,7 @@ import BoxInputUser from './boxInputUser';
 function Login() {
 
     const [formData, setFormData] = useState({
-        userName: "",
+        username: "",
         password: "",
     });
     const [, dispatch] = useStore()
@@ -28,9 +28,8 @@ function Login() {
     // submit
     const handleSubmit = (e) => {
         e.preventDefault();
-
         $.ajax({
-            url: '',
+            url: 'http://localhost:8080/auth/login',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
@@ -44,10 +43,11 @@ function Login() {
                 }
             },
             error: (error) => {
-                alert("login failed!")
+                console.log(error)
             },
         });
     };
+    
 
     return (
         <div className="flex flex-col gap-8 px-8 mx-4 mb-12 mt-0">
@@ -64,9 +64,9 @@ function Login() {
                 <BoxInputUser
                     icon={"fa-solid fa-user"}
                     type={"text"}
-                    nameInput={"userName"}
+                    nameInput={"username"}
                     placeholder={"User Name"}
-                    value={formData.userName}
+                    value={formData.username}
                     onChange={handleChange}
                 />
 
@@ -78,7 +78,6 @@ function Login() {
                     value={formData.password}
                     onChange={handleChange}
                 />
-            </form>
             {/* modal footer */}
             <div className="">
                 <button className="border text-teal-800 rounded-lg  w-full h-12 font-bold bg-cyan-200"
@@ -86,6 +85,7 @@ function Login() {
                     Login
                 </button>
             </div>
+            </form>
         </div>
     );
 }

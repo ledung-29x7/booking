@@ -7,10 +7,11 @@ import BoxInputUser from './boxInputUser';
 
 function SignUp() {
     const [formData, setFormData] = useState({
-        userName: '',
-        email: '',
+        username: '',
         password: '',
-        confirmPassword: '',
+        firstName: '',
+        lastName: '',
+        phone: '',
     });
     const navigate = useNavigate();
     const [errors, setErrors] = useState([]);
@@ -30,8 +31,21 @@ function SignUp() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const FetchData = async() => {
+        const FetchData = async () => {
             await apis.addUser(formData)
+            .then(res=>{
+                console.log(res)
+                if (res.errors) {
+                    setErrors(res.errors);
+                    alert('Login failed!');
+                } else {
+                    dispatch(actions.Modal(false))
+                    navigate('/hotel');
+                }
+            })
+            .catch(errors=>{
+                console.log(errors)
+            })
         }
         FetchData();
     };
@@ -48,21 +62,14 @@ function SignUp() {
             </div>
 
             {/* input  */}
-            <div className="flex flex-col gap-5 ">
-                <BoxInputUser
-                    icon={"fa-solid fa-envelope"}
-                    type={"text"}
-                    nameInput={"email"}
-                    placeholder={"Email"}
-                    value={formData.email}
-                    onChange={handleChange}
-                />
+            <form className="flex flex-col gap-5 " onSubmit={handleSubmit} >
+
                 <BoxInputUser
                     icon={"fa-solid fa-user"}
                     type={"text"}
-                    nameInput={"userName"}
+                    nameInput={"username"}
                     placeholder={"User Name"}
-                    value={formData.userName}
+                    value={formData.username}
                     onChange={handleChange}
                 />
                 <BoxInputUser
@@ -75,21 +82,37 @@ function SignUp() {
                 />
                 <BoxInputUser
                     icon={"fa-solid fa-lock"}
-                    type={"password"}
-                    nameInput={"confirmPassword"}
-                    placeholder={"Confirm Password"}
-                    value={formData.confirmPassword}
+                    type={"text"}
+                    nameInput={"firstName"}
+                    placeholder={"First Name"}
+                    value={formData.firstName}
                     onChange={handleChange}
                 />
-            </div>
-            {/* modal footer */}
-            <div className="">
-                <button className=" rounded-lg w-full h-12 font-bold bg-cyan-200"
-                    onSubmit={handleSubmit}
-                >
-                    SignUp
-                </button>
-            </div>
+                <BoxInputUser
+                    icon={"fa-solid fa-lock"}
+                    type={"text"}
+                    nameInput={"lastName"}
+                    placeholder={"last Name"}
+                    value={formData.lastName}
+                    onChange={handleChange}
+                />
+                <BoxInputUser
+                    icon={"fa-solid fa-lock"}
+                    type={"text"}
+                    nameInput={"phone"}
+                    placeholder={"Phone"}
+                    value={formData.phone}
+                    onChange={handleChange}
+                />
+                {/* modal footer */}
+                <div className="">
+                    <button className=" rounded-lg w-full h-12 font-bold bg-cyan-200"
+                       
+                    >
+                        SignUp
+                    </button>
+                </div>
+            </form>
         </div>
 
     );
