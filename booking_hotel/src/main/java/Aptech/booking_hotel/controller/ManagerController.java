@@ -42,7 +42,7 @@ public class ManagerController {
     public ManagerController(HotelService hotelService, UserService userService, BookingService bookingService){
         this.bookingService=bookingService;
         this.userService=userService;
-        this.bookingService=bookingService;
+        this.hotelService=hotelService;
         
     }
     
