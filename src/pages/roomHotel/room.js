@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useStore } from "../../store/contexts";
 import { actions } from "../../store/action";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import * as apis from "../../apis"
 import TitleRoom from "../../componet/roomComponets/titleRoom";
 import SlideRoom from "../../componet/roomComponets/slideRoom";
 import TitleHome from "../../componet/homeComponets/titleHome";
@@ -11,14 +13,30 @@ import CheckBox from "../../componet/hotelComponets/checkBox";
 import InfoRoom from "../../componet/roomComponets/infoRoom";
 import DetailRoom from "../../componet/roomComponets/detailRoom";
 import FormBooking from "./formBooking";
-import { useParams } from "react-router-dom";
 
 function Room() {
     const {id} = useParams()
     const [state, dispatch] = useStore();
     const [showInfoRoom, setShowInfoRoom] = useState(false);
-    const [showFormBooking, setShowFromBooking] = useState(false)
-    const { isInforoom,isFormBooking } = state;
+    const [showFormBooking, setShowFromBooking] = useState(false);
+    const [dataRoom, setDataRoom] = useState([])
+    const { isInforoom,isFormBooking,getSearch } = state;
+
+    // get 
+    useEffect(()=>{
+        if (getSearch !== null) {
+            const FetchData = async() => {
+                try {
+                    const response = await apis.getRoom(getSearch,id)
+                    setDataRoom(response)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+            FetchData();
+        }
+
+    },[getSearch])
 
     // Open Information Room
     useEffect(() => {
@@ -87,15 +105,15 @@ function Room() {
                         <div className="flex flex-col gap-10">
                             <TitleHome title={"Dac diem noi bat"} />
                             <div className=" grid grid-cols-2 gap-x-8 gap-y-6">
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"bo suc"} />
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"bo suc"} />
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"bo suc"} />
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"bo suc"} />
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"bo suc"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
                             </div>
                             <div className="flex flex-col gap-6">
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
+                                <Utilitie src={"./icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
                                 <Utilitie src={"../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
                             </div>
                         </div>

@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import * as apis from "../../apis"
 import { useStore } from '../../store/contexts';
-import { actions } from '../../store/action';
 import Search from "../home/search";
 import TitleHome from "../../componet/homeComponets/titleHome";
 import CheckBox from "../../componet/hotelComponets/checkBox";
