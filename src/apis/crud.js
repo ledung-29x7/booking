@@ -1,5 +1,6 @@
 import axios from "../axios";
 
+// lấy dữ liệu User
 export const getUser = () => new Promise(async(resolve, reject) => {
     try {
         const response = await axios({
@@ -12,6 +13,7 @@ export const getUser = () => new Promise(async(resolve, reject) => {
     }
 })
 
+// lấy địa chỉ để tìm kiếm
 export const getAddress = (search) => new Promise(async(resolve, reject) => {
     try {
         const response = await axios({
@@ -28,10 +30,12 @@ export const getAddress = (search) => new Promise(async(resolve, reject) => {
         reject(error)
     }
 })
-export const getRoom = (search) => new Promise(async(resolve, reject) => {
+
+// lấy thông tin các phòng của hotel đấy
+export const getRoom = (search,id) => new Promise(async(resolve, reject) => {
     try {
         const response = await axios({
-            url:'search/availability',
+            url:`search/${id}`,
             method: 'GET',
             params: {
                 checkinDate: search.checkinDate,
