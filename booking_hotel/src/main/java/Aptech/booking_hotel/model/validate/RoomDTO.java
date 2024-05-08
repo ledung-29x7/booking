@@ -1,5 +1,6 @@
 package Aptech.booking_hotel.model.validate;
 
+import Aptech.booking_hotel.model.Image;
 import Aptech.booking_hotel.model.enums.RoomType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -25,4 +26,5 @@ public class RoomDTO {
     @NotNull(message = "Price cannot be empty")
     @PositiveOrZero(message ="Price Per Night must be 0 or more" )
     private Double pricePerNight;
+    private Image image;
 }

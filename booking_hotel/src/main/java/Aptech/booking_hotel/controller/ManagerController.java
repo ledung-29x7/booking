@@ -22,6 +22,7 @@ import Aptech.booking_hotel.model.validate.BookingDTO;
 import Aptech.booking_hotel.model.validate.HotelDTO;
 import Aptech.booking_hotel.model.validate.HotelRegistrationDTO;
 import Aptech.booking_hotel.service.BookingService;
+
 import Aptech.booking_hotel.service.HotelService;
 import Aptech.booking_hotel.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
@@ -42,6 +43,7 @@ public class ManagerController {
         this.bookingService=bookingService;
         this.userService=userService;
         this.bookingService=bookingService;
+        
     }
     
     // thêm mới hotel
@@ -70,6 +72,7 @@ public class ManagerController {
         List<HotelDTO> listHotels = hotelService.findAllHotelDtosByManagerId(managerId);
         return ResponseEntity.ok(listHotels);
     }
+
 
     @PutMapping("/hotels/{id}")
     public ResponseEntity<?> editHotel (@PathVariable Long id, @Valid @RequestBody HotelDTO hotelDTO, BindingResult result){

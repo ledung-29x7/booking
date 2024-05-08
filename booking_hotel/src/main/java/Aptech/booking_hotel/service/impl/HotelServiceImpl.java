@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import Aptech.booking_hotel.exception.UsernameAlreadyExistsException;
 import Aptech.booking_hotel.model.Address;
 import Aptech.booking_hotel.model.Hotel;
 import Aptech.booking_hotel.model.HotelManager;
@@ -159,7 +160,7 @@ public class HotelServiceImpl implements HotelService{
     public HotelDTO updateHotelByManagerId(HotelDTO hotelDTO, Long managerId) {
         Hotel existingHotel = hotelResponsitory.findById(hotelDTO.getId()).orElseThrow(()-> new EntityNotFoundException("Hotel not found"));
         if (hotelNameExistsAndNotSameHotel(hotelDTO.getName(), hotelDTO.getId())) {
-            throw new EntityNotFoundException("This hotel name is already registered!");
+            throw new UsernameAlreadyExistsException("This hotel name is already registered!");
         }
         existingHotel.setName(hotelDTO.getName());
         Address updateAddress =  addressService.updateAddress(hotelDTO.getAddressDTO());

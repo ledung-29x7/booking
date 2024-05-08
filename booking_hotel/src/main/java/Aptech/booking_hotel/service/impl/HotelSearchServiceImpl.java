@@ -68,6 +68,7 @@ public class HotelSearchServiceImpl implements HotelSearchService {
                                                                         .name(hotel.getName())
                                                                         .addressDTO(addressDTO)
                                                                         .roomDTOs(roomDTOs)
+                                                                        .image(hotel.getImage())
                                                                         .build();
 
         // kiểm tra số phòng đơn còn trống trả về dạng int

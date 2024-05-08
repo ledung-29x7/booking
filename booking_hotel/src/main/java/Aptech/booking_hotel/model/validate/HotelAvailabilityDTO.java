@@ -3,6 +3,7 @@ package Aptech.booking_hotel.model.validate;
 import java.util.ArrayList;
 import java.util.List;
 
+import Aptech.booking_hotel.model.Image;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,4 +22,5 @@ public class HotelAvailabilityDTO {
     private Integer maxAvailableSingleRooms; // số lượng phòng còn
     private Integer maxAvailableDoubleRooms;
     private Integer maxAvailableFamilyRooms;
+    private Image image;
 }

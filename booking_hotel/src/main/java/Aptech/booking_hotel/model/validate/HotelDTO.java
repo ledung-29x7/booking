@@ -3,6 +3,7 @@ package Aptech.booking_hotel.model.validate;
 import java.util.ArrayList;
 import java.util.List;
 
+import Aptech.booking_hotel.model.Image;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -31,4 +32,6 @@ public class HotelDTO {
     private List<RoomDTO> roomDTOs = new ArrayList<>();
 
     private String managerUsername;
+
+    private Image image;
 }
