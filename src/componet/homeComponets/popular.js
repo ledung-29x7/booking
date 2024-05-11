@@ -1,6 +1,6 @@
 
 
-function Popular({local, nameHotel,infoHotel,src,price}){
+function Popular({local, nameHotel,infoHotel,src,rating}){
     return(
         <div className=" ">
             <div className="w-96 flex flex-col gap-5 box" >
@@ -22,9 +22,9 @@ function Popular({local, nameHotel,infoHotel,src,price}){
                             <p className=" text-base">{infoHotel}</p>
                         </div>
                     </div>
-                    {/* price */}
+                    {/* rating */}
                     <div className="flex items-center justify-between px-6 pt-5 pb-5">
-                        <p className=" text-lg font-bold">{price}/ guest</p>
+                        <p className=" text-lg font-bold">{rating}</p>
                         <button className="bg-cyan-200 border-4
                         border-cyan-200 
                         flex 

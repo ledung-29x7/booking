@@ -10,11 +10,13 @@ function Home() {
         <div>
             {/* Banner */}
             <div className="banner">
-                <video className="home-bn-video" src="https://minio.fares.vn/mixivivu-dev/video/Mixivivuduthuyen.mp4" autoPlay muted playsInline loop></video>
+                {/*Change the video depending on the occasion. The first one will be used on non-holiday days.*/}
+                {/*<video className="home-bn-video" src="https://minio.fares.vn/mixivivu-dev/video/Mixivivuduthuyen.mp4" autoPlay muted playsInline loop></video>*/}
+                <video className="home-bn-video" src="../video/Ant halloween intro.mp4" autoPlay muted playsInline loop></video>
                 <div className="searchBox flex flex-col gap-10 box">
                     <div className="flex flex-col gap-4">
-                        <h4 className=" text-center font-bold text-4xl">where do you want to go?</h4>
-                        <p className=" text-center text-lg text-gray-900 opacity-60">Hundreds of places for you to explore</p>
+                        <h1 style={{fontSize: "30px", fontFamily: "Chiller", color: "red"}}>WHERE DO YOU WANT TO GO?</h1>
+                        <h2 style={{fontSize: "18px", fontFamily: "Chiller", color: "red"}}>Hundreds of places for you to explore</h2>
                     </div>
                     <Search />
                 </div>
@@ -23,39 +25,57 @@ function Home() {
             {/* Popular home */}
             <div className=" pt-32 ">
                 <div className="containerr flex flex-col gap-20 px-8 py-20">
-                    <TitleHome title="Prominent tourist destination"
-                        introduce="hotel duoc nhieu tuong tac nhat"
-                    />
+                    <TitleHome title="Hotels" introduce="..."/>
                     <div className=" flex gap-6 flex-wrap">
-                        <Popular local="Da Nang" nameHotel="Chung Dung Hotel"
-                            infoHotel=" hotel ba chach"
+                        <Popular local="Hanoi" nameHotel="Sofitel Legend Metropole Hotel"
+                            infoHotel="Là địa danh lịch sử sang trọng từ..."
                             src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
-                            price="3,000,000"
+                            rating="5/5"
                         />
-                        <Popular local="Da Nang" nameHotel="Chung Dung Hotel"
-                            infoHotel=" hotel ba chach"
+                        <Popular local="Hanoi" nameHotel="Meliá Hanoi"
+                            infoHotel="..."
                             src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
-                            price="3,000,000"
+                            rating="5/5"
                         />
-                        <Popular local="Da Nang" nameHotel="Chung Dung Hotel"
-                            infoHotel=" hotel ba chach"
+                        <Popular local="Hanoi" nameHotel="Pan Pacific Hanoi"
+                            infoHotel="..."
                             src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
-                            price="3,000,000"
+                            rating="5/5"
                         />
-                        <Popular local="Nha Trang" nameHotel="Chung Dung Hotel"
-                            infoHotel=" hotel ba chach"
+                        <Popular local="Hanoi" nameHotel="Grand Vista Hanoi"
+                            infoHotel="..."
                             src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
-                            price="3,000,000"
+                            rating="5/5"
                         />
-                        <Popular local="Phu Quoc" nameHotel="Chung Dung Hotel"
-                            infoHotel=" hotel ba chach"
+                        <Popular local="Hanoi" nameHotel="InterContinential Hanoi Westlake"
+                            infoHotel="..."
                             src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
-                            price="3,000,000"
+                            rating="5/5"
                         />
-                        <Popular local="Da Nang" nameHotel="Chung Dung Hotel"
-                            infoHotel=" hotel ba chach"
+                        <Popular local="Hanoi" nameHotel="Movenpick Hanoi"
+                            infoHotel="..."
                             src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
-                            price="3,000,000"
+                            rating="5/5"
+                        />
+                        <Popular local="Hanoi" nameHotel="Hilton Hanoi Opera"
+                            infoHotel="..."
+                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            rating="5/5"
+                        />
+                        <Popular local="Hanoi" nameHotel="Elegant Suites Westlake"
+                            infoHotel="..."
+                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            rating="5/5"
+                        />
+                        <Popular local="Hanoi" nameHotel="Pullman Hanoi"
+                            infoHotel="..."
+                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            rating="5/5"
+                        />
+                        <Popular local="Hanoi" nameHotel="JW Mariott Hotel Hanoi"
+                            infoHotel="..."
+                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            rating="5/5"
                         />
                     </div>
                     <div></div>
@@ -65,15 +85,19 @@ function Home() {
             {/* địa điểm du lịch  */}
             <div className="bg-[#f3ffff] section-bg">
                 <div className="containerr flex flex-col gap-20 px-8 pb-20 ">
-                    <TitleHome title="Localtion camping"
-                        introduce="nhung dia diem hot can ban den kham pha"
+                    <TitleHome title="Tourist attractions"
+                        introduce="Interesting places you can go..."
                     />
                     <div className="flex gap-6 container ">
                         <LocaltionPicnic
                             src="https://ik.imagekit.io/tvlk/image/imageResource/2022/12/13/1670914145711-fc8b8f2cd80cbf7dd48de3ce415ae463.jpeg?tr=q-75,w-256"
+                            nameLocal="Nhà Hát Lớn Hà Nội"
+                            infoLocal="1 Tràng Tiền, Phan Chu Trinh, Hoàn Kiếm, Hà Nội"
                         />
                         <LocaltionPicnic
                             src="https://ik.imagekit.io/tvlk/image/imageResource/2022/12/13/1670914145711-fc8b8f2cd80cbf7dd48de3ce415ae463.jpeg?tr=q-75,w-256"
+                            nameLocal="Hoàng thành Thăng Long"
+                            infoLocal="19c Hoàng Diệu, Điện Biên, Ba Đình, Hà Nội"
                         />
                         <LocaltionPicnic
                             src="https://ik.imagekit.io/tvlk/image/imageResource/2022/12/13/1670914145711-fc8b8f2cd80cbf7dd48de3ce415ae463.jpeg?tr=q-75,w-256"

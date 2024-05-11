@@ -9,7 +9,6 @@ function ThingsToDo() {
         <div className=" containerr py-20">
             <h1 className=" text-4xl font-bold" style={{textAlign: "center"}}>Khám Phá các điểm du lịch và cập nhật tin tức mới</h1>
             <br></br>
-            <img className="icon-border" src="./icon/heading-border.png"/>
             <div className="mt-14">
                 <Blog src="https://minio.fares.vn/mixivivu-dev/tour/blog/images/apbb39vj3e99sczz.webp"
                     titleBlog="Top 5 resort nổi tiếng ở Hạ Long"
