@@ -45,7 +45,7 @@ function Search() {
         let date = new Date()
         setSearchValue(
             {
-                checkinDate: date.getFullYear() + "-" + "0" + (date.getMonth() + 1) + "-" + "0" + date.getDate(),
+                checkinDate: date.getFullYear() + "-" + "0" + (date.getMonth() + 1) + "-"  + date.getDate(),
                 checkoutDate: date.getFullYear() + "-" + "0" + (date.getMonth() + 1) + "-" + (date.getDate() + 3)
             })
     }, [])
