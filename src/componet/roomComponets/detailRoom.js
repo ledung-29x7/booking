@@ -2,11 +2,19 @@ import DetailImageRoom from "./detailImageRoom";
 import IconNText from "./iconNText";
 import { useStore } from "../../store/contexts";
 import { actions } from "../../store/action";
+import { useEffect, useState } from "react";
 
 
-function DetailRoom({nameRoom,dientich,feature,convenient,price}){
+function DetailRoom({dataInfoRoom}){
 
-    const [,dispatch] = useStore();
+    const [state,dispatch] = useStore();
+    const {getIdRoom} = state;
+    const [dtDetail,setDtDetail] = useState({});
+
+    useEffect(()=>{
+        var findData = dataInfoRoom.find((ob)=>ob.id === getIdRoom)
+        setDtDetail(findData);
+    },[getIdRoom])
 
     function handleClose(){
         dispatch(actions.ModalInforRoom(false))
@@ -36,7 +44,7 @@ function DetailRoom({nameRoom,dientich,feature,convenient,price}){
                 </div>
                 <div className=" px-5 w-full flex flex-col justify-between">
                     
-                    <h3 className="text-2xl font-semibold">{"nameRoom"}</h3>
+                    <h3 className="text-2xl font-semibold">{dtDetail?.roomType}</h3>
                     
                     <div className="py-5 flex-initial flex flex-col gap-3 ">
                         <h4 className="text-xl">Thông tin phòng</h4>
@@ -68,7 +76,7 @@ function DetailRoom({nameRoom,dientich,feature,convenient,price}){
                         <span className=" text-yellow-700 font-bold">Giá chỉ từ</span>
                         <div className="flex justify-between">
                             <div className="">
-                                <span className=" text-lg font-semibold text-[#0e4f4f]">{"4500000"} VND</span>
+                                <span className=" text-lg font-semibold text-[#0e4f4f]">{dtDetail?.pricePerNight} $</span>
                                 <span className=" text-gray-600 font-semibold">/phòng/đêm</span>
                             </div>
                             <button className=" px-6 py-1 rounded-lg bg-cyan-500 text-white" 

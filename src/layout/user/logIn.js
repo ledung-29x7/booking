@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../../store/contexts';
 import { actions } from '../../store/action';
-import $ from 'jquery';
+import * as apis from '../../apis';
 import BoxInputUser from './boxInputUser';
 
 function Login() {
@@ -28,24 +28,23 @@ function Login() {
     // submit
     const handleSubmit = (e) => {
         e.preventDefault();
-        $.ajax({
-            url: 'http://localhost:8080/auth/login',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(formData),
-            success: (data) => {
-                if (data.errors) {
-                    setErrors(data.errors);
+        const FetchData = async () => {
+            await apis.Login(formData)
+            .then(res=>{
+                console.log(res)
+                if (res.errors) {
+                    setErrors(res.errors);
                     alert('Login failed!');
                 } else {
-                    dispatch()
-                    navigate('/hotel');
+                    dispatch(actions.ModalLogin(false))
+                    navigate('/');
                 }
-            },
-            error: (error) => {
-                console.log(error)
-            },
-        });
+            })
+            .catch(errors=>{
+                console.log(errors)
+            })
+        }
+        FetchData();
     };
     
 

@@ -6,7 +6,9 @@ import {
     EDITNDELETE,
     ISSHOWINFOROOM,
     ISSHOWFORMBOOKING,
-    GETSEARCH
+    GETSEARCH,
+    GETIDROOM,
+    ISSUCCESSFULL
 } from "./constants"
 
 // modal SignUp, Login
@@ -16,7 +18,6 @@ export const Modal = (isShow) => {
         isShow
     }
 }
-
 export const ModalLogin = (isShowLogin) => {
     return {
         type : ISSHOWINGLOGIN,
@@ -31,7 +32,6 @@ export const ModalEdit =  (showEdit) => {
         showEdit
     }
 }
-
 export const ModalAdd = (showAdd) => {
     return{
         type : ISSHOWINGADD,
@@ -63,6 +63,14 @@ export const ModalFormBooking = (isShow) =>{
     }
 }
 
+// Alart success
+export const ModalSuccsessfull = (isSucc) =>{
+    return {
+        type : ISSUCCESSFULL,
+        isSucc
+    }
+}
+
 // 
 export const GetSearch = (search) => {
     return {
@@ -70,3 +78,12 @@ export const GetSearch = (search) => {
         search
     }
 }
+
+//get id room
+export const GetIdRoom = (id) => {
+    return {
+        type: GETIDROOM,
+        id
+    }
+}
+// 

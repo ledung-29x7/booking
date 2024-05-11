@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import InputRoom from "./inputRoom";
+import { useState } from "react";
 
 function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
     const navigate = useNavigate();
+    const [infoPay,setInfoPay] = useState({
+        
+    });
     return (
         <div className="flex flex-col containerr px-8 ">
             <div className=" flex py-6 border-b font-bold">
@@ -62,19 +66,23 @@ function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
                     </div>
                     <div className="flex flex-col gap-6">
                         <InputRoom
-                            placeholder={"Nhập Họ và tên"}
+                            nameInput={"cardName"}
+                            placeholder={"Cardholder Name"}
                         />
                         <InputRoom
-                            placeholder={"Nhập Họ và tên"}
+                            nameInput={"cardNumber"}
+                            placeholder={"Card Number"}
                         />
                         <div className="flex justify-between gap-5">
                             <div className="flex-1">
                                 <InputRoom
+                                    nameInput={"expiration"}
                                     placeholder={"Nhập Họ và tên"}
                                 />
                             </div>
                             <div className="flex-1">
                                 <InputRoom
+                                    nameInput={"CVC"}
                                     placeholder={"Nhập Họ và tên"}
                                 />
                             </div>

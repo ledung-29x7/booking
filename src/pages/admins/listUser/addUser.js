@@ -6,14 +6,20 @@ import * as apis from "../../../apis"
 
 function AddUser() {
 
-    const role = ["Admin",  "Customer", "Manager"]
+    const role = [
+        {id:1, roleType:"ADMIN"} ,
+        {id:2, roleType:"CUSTOMER"},
+        {id:3, roleType:"MANAGER"}
+    ]
 
-    const [formData, setFormData] = useState({
-        userName: "",
-        firstName: "",
-        lastName: "",
-        role: ""
-    });
+    const [valueAdd,setValueAdd] = useState({
+        username: '' ,
+        phone: '',
+        firstName: '',
+        lastName:'' ,
+        role: {id: 0, roleType:"" },
+    })
+
     const navigate = useNavigate();
     const [errors, setErrors] = useState([]);
     const [,dispatch] = useStore();
@@ -24,15 +30,37 @@ function AddUser() {
     }
 
     // hande input
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    function handleChange (e){
+        if (e.target.name === "role") {
+            // Find the role object from the role array based on the selected role ID
+            const selectedRole = role.find(rol => rol.id === parseInt(e.target.value, 10)); // Convert value to integer if necessary
+            // Update the state with the selected role object
+            setValueAdd(prevState => ({
+              ...prevState,
+              role: selectedRole
+            }));
+        } else{
+            setValueAdd({...valueAdd,[e.target.name]: e.target.value})
+        }
+    }
 
     // submit
     const handleSubmit = (e) => {
-        e.preventDefault();
         const FetchData = async() => {
-            await apis.addUser(formData)
+            e.preventDefault();
+            try {
+                await apis.addUser(valueAdd)
+                .then(res=>{
+                    if(res.status === 200){
+                        return(
+                            dispatch(actions.ModalAdd(false)),
+                            dispatch(actions.ModalSuccsessfull(true))
+                        )
+                    }
+                })
+            } catch (error) {
+                console.log(error)
+            }
         }
         FetchData();
     };
@@ -78,9 +106,9 @@ function AddUser() {
                             />
                         </div>
                         <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
-                            <select className="outline-none w-11/12 h-full" name="role" onChange={handleChange}>
+                            <select className="outline-none w-11/12 h-full" value={valueAdd.role?.id} name="role" onChange={handleChange}>
                                 {role.map((rol)=>(
-                                    <option value={rol}>{rol}</option>
+                                    <option key={rol.id} value={rol?.id}>{rol?.roleType}</option>
                                 ))}
                             </select>
                         </div>

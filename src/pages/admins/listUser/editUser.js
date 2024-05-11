@@ -2,18 +2,28 @@ import { useStore } from "../../../store/contexts";
 import { actions } from "../../../store/action";
 import { useEffect, useState } from "react";
 import * as apis from "../../../apis";
+import { useNavigate } from "react-router-dom";
 
 function EditUser({ user }) {
-    const role = ["Admin",  "Customer", "Manager"]
+    const role = [
+        {id:1, roleType:"ADMIN"} ,
+        {id:2, roleType:"CUSTOMER"},
+        {id:3, roleType:"MANAGER"}
+    ]
+
     const [valueEdit,setValueEdit] = useState({
-        userName: '' ,
+        username: '' ,
+        phone: '',
         firstName: '',
         lastName:'' ,
-        role: ''
+        role: {id: 0, roleType:"" },
     })
-    const [state, dispatch] = useStore();
-    const {id} = state;
 
+    const navigate = useNavigate();
+    const [state, dispatch] = useStore();
+    const {idEdit} = state;
+
+    // as
     useEffect(()=> {
         setValueEdit(user)
     },[user])
@@ -23,16 +33,39 @@ function EditUser({ user }) {
     }
 
     function handleChange (e){
-        setValueEdit({...valueEdit,[e.target.name]: e.target.value})
+        if (e.target.name === "role") {
+            // Find the role object from the role array based on the selected role ID
+            const selectedRole = role.find(rol => rol.id === parseInt(e.target.value, 10)); // Convert value to integer if necessary
+            // Update the state with the selected role object
+            setValueEdit(prevState => ({
+              ...prevState,
+              role: selectedRole
+            }));
+        } else{
+            setValueEdit({...valueEdit,[e.target.name]: e.target.value})
+        }
     }
 
     function handleSubmit(e) {
-        e.preventDefault();
         const FetchEdit = async() => {
-            await apis.editUser(id,valueEdit)
+            try {
+                e.preventDefault();
+                await apis.editUser("users",idEdit,valueEdit)
+                .then(res=>{
+                    if(res.status === 200){
+                        return(
+                            dispatch(actions.ModalEdit(false)),
+                            dispatch(actions.ModalSuccsessfull(true))
+                        )
+                    }
+                })
+            } catch (error) {
+                console.log(error)
+            }
         }
         FetchEdit()
     }
+
     return (
         <div className="auth-form">
             <div className="px-10 my-7 flex justify-between w-full h-14 font-bold text-xl border-b border-b-slate-400 ">
@@ -50,12 +83,24 @@ function EditUser({ user }) {
                             <input
                                 className="outline-none w-11/12 h-full"
                                 placeholder="Username"
-                                value={valueEdit.userName}
+                                value={valueEdit.username}
                                 type="text"
-                                name="userName"
+                                name="username"
                                 onChange={handleChange}  
                             />
                         </div>
+
+                        <div className=" border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9 ">
+                            <input
+                                className="outline-none w-11/12 h-full"
+                                placeholder="Phone"
+                                value={valueEdit.phone}
+                                type="text"
+                                name="phone"
+                                onChange={handleChange}  
+                            />
+                        </div>
+
                         <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
                             <input
                                 className="outline-none w-11/12 h-full"
@@ -66,6 +111,7 @@ function EditUser({ user }) {
                                 onChange={handleChange}
                             />
                         </div>
+
                         <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
                             <input
                                 className="outline-none w-11/12 h-full"
@@ -77,9 +123,9 @@ function EditUser({ user }) {
                             />
                         </div>
                         <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
-                            <select className="outline-none w-11/12 h-full" value={valueEdit.role} name="role" onChange={handleChange}>
+                            <select className="outline-none w-11/12 h-full" value={valueEdit.role?.id} name="role" onChange={handleChange}>
                                 {role.map((rol)=>(
-                                    <option value={rol}>{rol}</option>
+                                    <option key={rol.id} value={rol.id} >{rol?.roleType}</option>
                                 ))}
                             </select>
                         </div>

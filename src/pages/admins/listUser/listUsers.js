@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useStore } from "../../../store/contexts";
-import { actions } from "../../../store/action";
+import { actions,actionsGetData } from "../../../store/action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as apis from "../../../apis"
 import EditUser from "./editUser";
 import RowUser from "./rowUser";
 import AddUser from "./addUser";
@@ -10,30 +9,43 @@ import AddUser from "./addUser";
 function ListUser() {
     const [isShowEdit, setIsShowEdit] = useState(false);
     const [isShowAdd, setisShowAdd] = useState(false);
-    const [users,setUser] = useState([{id:1,userName:"Caprson",firstName:"Nguyen",lastName:"Hong Son",role:"Customer"}]);
+    const [isSucc,setIsSucc] = useState(false);
+    const [users,setUser] = useState([]);
     const [editUs,setEditUs] = useState({});
     const [state, dispatch] = useStore();
-    const { isEdit,isAdd,id } = state;
+    const { isEdit,isAdd,idEdit,getData,isSuccessfull } = state;
 
-    // Read apis
+    // Call apis
+    const CallData = () => {
+        dispatch(actionsGetData.getData("users")
+        .then((data)=>{
+            dispatch(actionsGetData.GetDataUser(data.data))
+        }));
+    }
+
+    // callBack apis 5s
     useEffect(() => {
-        const FetchData = async() => {
-            const response = await apis.getUser();
-            setUser(response)
-            console.log(response)
-        }
-        FetchData();
+        CallData();
+        const callApi = setInterval(CallData, 8000)
+        return() => callApi && clearInterval(callApi)
     },[])
 
+    // assign value to users
+    useEffect(()=>{
+        setUser(getData)
+    },[getData])
+
+    // get id Edit
     useEffect(() => {
-        const GetEdit = (id) => {
-            if(id != null){
-                var getIdEND = users.find(ob => ob.id ===id) 
+        const GetEdit = (idEdit) => {
+            if(idEdit !== null){
+                var getIdEND = users?.find(ob => ob.id === idEdit) 
+                setEditUs(getIdEND)
             }
-            setEditUs(getIdEND)
         }
-        GetEdit(id)
-    },[id])
+        GetEdit(idEdit)
+    },[idEdit])
+
     // open form Edit
     useEffect(() => {
         function OpenEdit(isEdit) {
@@ -49,6 +61,7 @@ function ListUser() {
         dispatch(actions.ModalAdd(true))
     }
 
+    //  Open form Add
     useEffect(() => {
         function OpenAdd (isAdd) {
             return(
@@ -58,7 +71,15 @@ function ListUser() {
         OpenAdd(isAdd)
     },[isAdd])
 
-    // when click 
+    // 
+    useEffect(() => {
+        setIsSucc(isSuccessfull)
+        setTimeout(() => {
+            setIsSucc(false)
+        }, 5000);
+    },[isSuccessfull])
+
+    // When you click outside the modal, it will close all form
     const handleClickOutsideModal = (event) => {
         var overlay = document.getElementById("overlay")
         if (event.target === overlay) {
@@ -68,15 +89,13 @@ function ListUser() {
             dispatch(actions.ModalAdd(false))
         }
     };
-
-    // 
     useEffect(() => {
         window.addEventListener('click', handleClickOutsideModal)
     })
 
     return (
         <div className=" my-10 px-10">
-            <div className=" containerr">
+            <div className=" containerr flex flex-col gap-6">
                 <div className=" flex justify-between items-center">
                     <div className="flex flex-col gap-5">
                         <h4 className="font-bold text-4xl w-80">
@@ -89,9 +108,13 @@ function ListUser() {
                         <button onClick={HandleOpenAdd} className="buttom_crud ">Add User</button>
                     </div>
                 </div>
-                <div>
-                    
-                </div>
+                {isSucc ?
+                    <div className="">
+                        <div className=" bg-green-600">
+                            <h4 className=" text-white"> You have successfully edited </h4>
+                        </div>
+                    </div>
+                :null}
                 <div className=" mt-4">
                     <table className="  w-full shadow ">
                         <tr className="bg-slate-200 h-12">
@@ -103,7 +126,7 @@ function ListUser() {
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
-                        {users.map((us)=>(
+                        {users?.map((us)=>(
                             <RowUser
                             key={us.id}
                             user={us}
