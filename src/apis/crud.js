@@ -1,10 +1,23 @@
 import axios from "../axios";
 
-// lấy dữ liệu User
-export const getUser = () => new Promise(async(resolve, reject) => {
+// lấy dữ liệu User, hotel
+export const getUser = (ad) => new Promise(async(resolve, reject) => {
     try {
         const response = await axios({
-            url:'admin/users',
+            url:`admin/${ad}`,
+            method: 'GET',
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+//
+export const getInfoEdit = (ad,id) => new Promise(async(resolve, reject) => {
+    try {
+        const response = await axios({
+            url:`admin/${ad}/${id}`,
             method: 'GET',
         })
         resolve(response.data)
@@ -50,7 +63,8 @@ export const getRoom = (search,id) => new Promise(async(resolve, reject) => {
 
 export const addUser = (post) => new Promise(async(resolve, reject) => {
     try {
-        await axios.post('auth/signup',post)
+        const response= await axios.post('auth/signup',post);
+        resolve(response)
     } catch (error) {
         reject(error)
     }
@@ -58,16 +72,16 @@ export const addUser = (post) => new Promise(async(resolve, reject) => {
 
 export const Login = (post) => new Promise(async(resolve, reject) => {
     try {
-        await axios.get('auth/login',post)
-        resolve()
+        const response = await axios.post('auth/login',post)
+        resolve(response)
     } catch (error) {
         reject(error)
     }
 })
 
-export const editUser = (id,put) => new Promise(async(resolve,reject) => {
+export const editUser = (host,id,put) => new Promise(async(resolve,reject) => {
     try {
-        const response = await axios.put('musicgenre'+"/"+ id,put)
+        const response = await axios.put(`admin/${host}/${id}`,put)
         resolve(response)
     } catch (error) {
         reject(error)

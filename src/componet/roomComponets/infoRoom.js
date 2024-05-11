@@ -2,12 +2,13 @@ import Utilities from "../hotelComponets/utilities";
 import { useStore } from "../../store/contexts";
 import { actions } from "../../store/action";
 
-function InfoRoom({nameRoom,sizeR,kindOfRoom,amoutPeople,bed,price}){
+function InfoRoom({dataInfoRoom}){
     
     const [,dispath] = useStore();
 
     const handleDetailRoom = () => {
         dispath(actions.ModalInforRoom(true))
+        dispath(actions.GetIdRoom(dataInfoRoom.id))
     }
 
     const handleFormBooking = () => {
@@ -19,7 +20,7 @@ function InfoRoom({nameRoom,sizeR,kindOfRoom,amoutPeople,bed,price}){
             {/* title */}
             <div className=" py-3">
                 <span className=" text-xl font-semibold">
-                    {nameRoom}
+                    {dataInfoRoom.roomType}
                 </span>
             </div>
             {/* info  */}
@@ -31,7 +32,7 @@ function InfoRoom({nameRoom,sizeR,kindOfRoom,amoutPeople,bed,price}){
                     </div>
                     <div className="flex flex-col gap-6">
                         <span className=" text-gray-600">
-                            {sizeR} m2
+                            {30} m2
                         </span>
                         <div className="flex flex-col gap-3">
                             <Utilities utilitie={"vòi tắm đứng"}/>
@@ -49,14 +50,14 @@ function InfoRoom({nameRoom,sizeR,kindOfRoom,amoutPeople,bed,price}){
                 <div className=" flex flex-col justify-between gap-6 flex-1 border-2 rounded-2xl px-4 py-6">
                     <div className=" flex flex-col gap-4 pb-3 border-b-2 ">
                         <span className=" text-lg font-semibold">
-                            {kindOfRoom}
+                            {dataInfoRoom.roomType}
                         </span>
                         <div className=" flex justify-between px-4 text-gray-600">
                             <span className="">
-                                {bed}
+                                {1}
                             </span>
                             <span className="">
-                                {amoutPeople} nguoi
+                                {2} nguoi
                             </span>
                         </div>
                     </div>
@@ -73,7 +74,7 @@ function InfoRoom({nameRoom,sizeR,kindOfRoom,amoutPeople,bed,price}){
                     </div>
                     <div className=" flex justify-between items-center">
                         <span className=" text-xl font-semibold">
-                            {price}đ  
+                            {dataInfoRoom.pricePerNight}$
                         </span>
                         <button className=" bottom bg-cyan-500"
                             onClick={handleFormBooking}

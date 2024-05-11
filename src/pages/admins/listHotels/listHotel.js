@@ -1,14 +1,50 @@
 import { useEffect, useState } from "react";
 import { useStore } from "../../../store/contexts";
-import { actions } from "../../../store/action";
+import { actions,actionsGetData } from "../../../store/action";
 import EditHotel from "./editHotel";
 import RowHotel from "./rowHotel";
 
 function ListHotel() {
     const [isShowEdit,setIsShowEdit] = useState(false);
+    const [isSucc,setIsSucc] = useState(false);
+    const [hotels,setHotels] = useState([]);
+    const [editHt,setEditHt] = useState({});
     const [state,dispatch] = useStore();
-    const {isEdit} = state;
+    const {isEdit,idEdit,getData} = state;
 
+    // Call apis
+    const CallData = () => {
+        dispatch(actionsGetData.getData("hotels")
+        .then((data)=>{
+
+            dispatch(actionsGetData.GetDataUser(data.data))
+        }));
+    }
+
+    // callBack apis 5s
+    useEffect(() => {
+        CallData();
+        const callApi = setInterval(CallData, 8000)
+        return() => callApi && clearInterval(callApi)
+    },[])
+
+    // assign value to users
+    useEffect(()=>{
+        setHotels(getData)
+    },[getData])
+
+    // get id edit
+    useEffect(() => {
+        const GetEdit = (idEdit) => {
+            if(idEdit !== null){
+                var getIdEND = hotels?.find(ob => ob.id === idEdit) 
+                setEditHt(getIdEND)
+            }
+        }
+        GetEdit(idEdit)
+    },[idEdit])
+
+    // Open form Edit 
     useEffect(() => {
         function OpenEdit(isEdit) {
             return(
@@ -37,7 +73,7 @@ function ListHotel() {
 
     return (
         <div className=" my-10 px-10">
-            <div className=" containerr">
+            <div className=" containerr flex flex-col gap-6">
                 <div className=" flex justify-between items-center">
                     <div className="flex flex-col gap-5">
                         <h4 className="font-bold text-4xl w-80">
@@ -45,11 +81,17 @@ function ListHotel() {
                         </h4>
                         <img className="w-24" src="../icon/heading-border.png" alt="" />
                     </div>
-                    <div className="mx-10 ">
-                        <button  className="buttom_crud w-20 h-8 bg-lime-600">Add Hotel</button>
-                    </div>
                 </div>
-                <div className="frame mt-5 shadow_uslist relative">
+
+                {isSucc ?
+                    <div className="">
+                        <div className=" bg-green-600">
+                            <h4 className=" text-white"> You have successfully edited </h4>
+                        </div>
+                    </div>
+                :null}
+
+                <div className=" mt-5 shadow_uslist relative">
                     <table className=" w-full shadow ">
                         <tr className="sticky top-0 bg-slate-200 h-12">
                             <th>ID</th>
@@ -58,9 +100,12 @@ function ListHotel() {
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
-                        <RowHotel
-
-                        />
+                        {hotels?.map((dt,index)=>
+                            <RowHotel
+                                key={index}
+                                hotels={dt}
+                            />
+                        )}
                     </table>
                 </div>
             </div>
@@ -70,7 +115,7 @@ function ListHotel() {
                     <div className="flex w-full h-full">
                         <div id="overlay" className="modal_overlay"></div>
                         <div className="modal_body">
-                            <EditHotel />
+                            <EditHotel hotel={editHt} />
                         </div>
                     </div>
                 </div>

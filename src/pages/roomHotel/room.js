@@ -35,7 +35,6 @@ function Room() {
             }
             FetchData();
         }
-
     },[getSearch])
 
     // Open Information Room
@@ -67,7 +66,7 @@ function Room() {
     return (
         <div className="">
             <div className="flex flex-col containerr px-8 py-20 ">
-                <TitleRoom address={"so8, ton that thuyet, Nam Tu Liem, Ha Noi"} sao={5} title={"Room VIP Chung Dung"} introduce={"3,550,000/phòng"} />
+                <TitleRoom address={dataRoom.addressDTO} sao={5} title={dataRoom.name} introduce={dataRoom.roomDTOs} />
             </div>
             <div className=" px-6">
                 {/* sildes */}
@@ -103,7 +102,7 @@ function Room() {
                     <div className="flex flex-col gap-20 flex-grow">
                         {/* dac diem noi bat */}
                         <div className="flex flex-col gap-10">
-                            <TitleHome title={"Dac diem noi bat"} />
+                            <TitleHome title={"Outstanding Features"} />
                             <div className=" grid grid-cols-2 gap-x-8 gap-y-6">
                                 <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
                                 <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
@@ -113,8 +112,8 @@ function Room() {
                             </div>
                             <div className="flex flex-col gap-6">
                                 <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
-                                <Utilitie src={"./icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
                             </div>
                         </div>
 
@@ -133,41 +132,12 @@ function Room() {
                                 </div>
                             </div>
                             <div className=" p-8 rounded-3xl bg-[url('https://mixivivu.com/section-background.png')] flex flex-col gap-10 bg-[#f2f4f7]">
-                                <InfoRoom nameRoom={"Superior Double"}
-                                    sizeR={30}
-                                    kindOfRoom={"Phong Superior doi"}
-                                    amoutPeople={2}
-                                    bed={"1 giường cỡ queen "}
-                                    price={3000000}
+                                {dataRoom.roomDTOs?.map((dtroom,key)=>
+                                    <InfoRoom 
+                                    key={key}
+                                    dataInfoRoom={dtroom}
                                 />
-                                <InfoRoom nameRoom={"Superior Double"}
-                                    sizeR={30}
-                                    kindOfRoom={"Phong Superior doi"}
-                                    amoutPeople={2}
-                                    bed={"1 giường cỡ queen "}
-                                    price={3000000}
-                                />
-                                <InfoRoom nameRoom={"Superior Double"}
-                                    sizeR={30}
-                                    kindOfRoom={"Phong Superior doi"}
-                                    amoutPeople={2}
-                                    bed={"1 giường cỡ queen "}
-                                    price={3000000}
-                                />
-                                <InfoRoom nameRoom={"Superior Double"}
-                                    sizeR={30}
-                                    kindOfRoom={"Phong Superior doi"}
-                                    amoutPeople={2}
-                                    bed={"1 giường cỡ queen "}
-                                    price={3000000}
-                                />
-                                <InfoRoom nameRoom={"Superior Double"}
-                                    sizeR={30}
-                                    kindOfRoom={"Phong Superior doi"}
-                                    amoutPeople={2}
-                                    bed={"1 giường cỡ queen "}
-                                    price={3000000}
-                                />
+                                )}
                             </div>
                         </div>
                     </div>
@@ -190,7 +160,7 @@ function Room() {
                     <div className="flex h-full w-full">
                         <div id="overlay" className="modal_overlay"></div>
                         <div className="modal_body">
-                            <DetailRoom />
+                            <DetailRoom dataInfoRoom={dataRoom.roomDTOs} />
                         </div>
                     </div>
                 </div>
@@ -203,7 +173,7 @@ function Room() {
                     <div className="flex h-full w-full">
                         <div id="overlay" className="modal_overlay"></div>
                         <div className="modal_body">
-                            <FormBooking />
+                            <FormBooking dataRoom={dataRoom.roomDTOs} />
                         </div>
                     </div>
                 </div>

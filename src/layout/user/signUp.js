@@ -40,7 +40,8 @@ function SignUp() {
                     alert('Login failed!');
                 } else {
                     dispatch(actions.Modal(false))
-                    navigate('/hotel');
+                    dispatch(actions.ModalLogin(true))
+                    navigate('/');
                 }
             })
             .catch(errors=>{

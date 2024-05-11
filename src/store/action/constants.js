@@ -5,4 +5,7 @@ export const ISSHOWINGADD = "isShowingAdd";
 export const EDITNDELETE = "editNDelete";
 export const ISSHOWINFOROOM = 'isShowInfoRoom';
 export const ISSHOWFORMBOOKING = 'isShowFormBooking';
+export const ISSUCCESSFULL = 'isSuccessfull';
 export const GETSEARCH = 'getSearch';
+export const GETIDROOM = 'getIdRoom';
+export const GETDATAUSER = 'getDataUser'

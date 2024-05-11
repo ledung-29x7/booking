@@ -2,7 +2,10 @@ import { useNavigate } from "react-router-dom";
 import Utilities from "./utilities";
 
 function ResultSearch({resul}){
-    var navigate = useNavigate();
+    const navigate = useNavigate();
+    console.log(resul)
+    const price = resul.roomDTOs?.find(ob => ob.roomType === "SINGLE").pricePerNight;
+
     return(
         
         <div className=" h-72 flex gap-5 box cursor-pointer items-center" onClick={()=>navigate(`/hotel/room/${resul.id}`)} >
@@ -21,7 +24,7 @@ function ResultSearch({resul}){
                     <p className=" font-bold text-xl opacity-70">{resul.name}</p>
                     <div className="flex items-center item gap-1 opacity-75 rounded-xl">
                         <img className="w-5 h-5" src="./icon/icons8-hotel-50.png" alt="" />
-                        <p className=" text-base">{resul.roomDTOs.pricePerNight}</p>
+                        <p className=" text-base">{price}</p>
                     </div>
                 </div>
                 {/* utilities */}
@@ -31,7 +34,7 @@ function ResultSearch({resul}){
                 </div>
                 {/* price */}
                 <div className="flex items-center justify-between pt-5 border-t border-gray-300">
-                    <p className=" text-lg font-semibold">{resul.roomDTOs.pricePerNight}/ guest</p>
+                    <p className=" text-lg font-semibold">{price}$/ guest</p>
                     <button className=" bg-[#77dada] border-4  w-24
                     border-[#77dada]
                     flex 
