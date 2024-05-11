@@ -15,6 +15,15 @@ code {
     monospace;
 }
 
+.frame-with-notes{
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.img-article{
+  width: 100%;
+}
+
 /* header */
 .navigation:hover{
   color: #77dada;
@@ -41,6 +50,13 @@ code {
   display: flex ;
   align-items: center;
   color: #77dada;
+}
+
+.icon-border{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
 }
 
 /* home */
