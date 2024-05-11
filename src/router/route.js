@@ -26,7 +26,7 @@ const publicRoute = [
     { path: '/admin/listUser', componet: ListUser, layout: DefaultLayoutAdmin },
     { path: '/admin/listHotel', componet: ListHotel, layout: DefaultLayoutAdmin },
     { path: '/admin/listBooking', componet: ListBooking, layout: DefaultLayoutAdmin },
-    { path: '/hotel/room', componet: Room },
+    { path: '/hotel/room/:id', componet: Room },
     { path: '/manage/listRooms', componet: ListRoom, layout: DefaultLayoutAdmin },
     { path: '/manage', componet: HomeManage, layout: DefaultLayoutAdmin },
     { path: '/manage/myHotels', componet: MyHotel, layout: DefaultLayoutAdmin },

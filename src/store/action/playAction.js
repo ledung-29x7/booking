@@ -5,7 +5,8 @@ import {
     ISSHOWINGADD,
     EDITNDELETE,
     ISSHOWINFOROOM,
-    ISSHOWFORMBOOKING
+    ISSHOWFORMBOOKING,
+    GETSEARCH
 } from "./constants"
 
 // modal SignUp, Login
@@ -59,5 +60,13 @@ export const ModalFormBooking = (isShow) =>{
     return {
         type : ISSHOWFORMBOOKING,
         isShow
+    }
+}
+
+// 
+export const GetSearch = (search) => {
+    return {
+        type : GETSEARCH,
+        search
     }
 }

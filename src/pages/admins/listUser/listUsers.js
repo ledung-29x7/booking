@@ -20,6 +20,7 @@ function ListUser() {
         const FetchData = async() => {
             const response = await apis.getUser();
             setUser(response)
+            console.log(response)
         }
         FetchData();
     },[])

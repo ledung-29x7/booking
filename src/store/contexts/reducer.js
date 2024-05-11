@@ -5,7 +5,8 @@ import {
     ISSHOWINGLOGIN,
     EDITNDELETE,
     ISSHOWINFOROOM,
-    ISSHOWFORMBOOKING
+    ISSHOWFORMBOOKING,
+    GETSEARCH
 } from "../action/constants";
 
 export const initState = {
@@ -15,7 +16,8 @@ export const initState = {
     isAdd: false,
     id : null,
     isInforoom : false,
-    isFormBooking : false
+    isFormBooking : false,
+    getSearch : null,
 }
 
 function Reducers(state,action){
@@ -54,6 +56,11 @@ function Reducers(state,action){
             return {
                 ...state,
                 isFormBooking: action.isShow
+            }
+        case GETSEARCH:
+            return {
+                ...state,
+                getSearch: action.search
             }
         default:
             return state;
