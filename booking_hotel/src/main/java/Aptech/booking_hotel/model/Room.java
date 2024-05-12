@@ -15,6 +15,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -51,8 +53,17 @@ public class Room {
     @Builder.Default
     private List<Availability> availabilities = new ArrayList<>();
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
-    private List<RoomService> roomService;
+    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
+    // private List<RoomServiceModel> roomService;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "room_service",
+        joinColumns = @JoinColumn(name="room_id"),
+        inverseJoinColumns = @JoinColumn(name="service_id")
+    )
+    private List<Service> services;
+
     
     @OneToOne(cascade = CascadeType.ALL)
     private Image image;

@@ -94,12 +94,11 @@ public class AdminController {
         }
     }
 
-        @PutMapping("/hotels/{id}")
-    public ResponseEntity<HotelDTO> editHotel(
+    @PutMapping("/hotels/{id}")
+        public ResponseEntity<HotelDTO> editHotel(
         @PathVariable Long id,
         @Valid @RequestBody HotelDTO hotelDTO,
-        BindingResult result
-    ) {
+        BindingResult result) {
         if (result.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }

@@ -7,14 +7,23 @@ import Aptech.booking_hotel.model.validate.BookingDTO;
 import Aptech.booking_hotel.model.validate.BookingInitiationDTO;
 
 public interface BookingService {
-    Booking saveBooking(BookingInitiationDTO bookingInitiationDTO, Long customerId);
-    BookingDTO confirmBooking(BookingInitiationDTO bookingInitiationDTO, Long customerId);
+    
+    Booking saveBooking(BookingInitiationDTO bookingInitiationDTO, Long userId);
+    
+    BookingDTO confirmBooking(BookingInitiationDTO bookingInitiationDTO, Long userId);
+    
     List<BookingDTO> findAllBooking();
+    
     BookingDTO findBookingById(Long bookingId);
+    
     List<BookingDTO> findBookingsByCustomerId(Long customerId);
+    
     BookingDTO findBookingByIdAndCustomerId(Long bookingId, Long customerId);
+    
     List<BookingDTO> findBookingByManagerId(Long managerId);
+    
     BookingDTO fingBookingByIdAndManagerId(Long bookingId, Long managerId);
+    
     BookingDTO mapBookingModelToBookingDto(Booking booking);
     
 }

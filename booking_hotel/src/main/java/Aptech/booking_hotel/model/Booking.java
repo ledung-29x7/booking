@@ -2,12 +2,14 @@ package Aptech.booking_hotel.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.stereotype.Component;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -31,6 +33,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Component
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,8 +71,10 @@ public class Booking {
     @PrePersist
     protected void onCreate(){
         // tao chuỗi ngẫu nhiên
-        this.confirmationNumber = UUID.randomUUID().toString().substring(0,0);
+        this.confirmationNumber = UUID.randomUUID().toString();
     }
+
+    private Long durationDays ;
 
     @Override
     public String toString() {

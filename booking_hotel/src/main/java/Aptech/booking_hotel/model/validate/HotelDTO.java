@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Aptech.booking_hotel.model.Image;
+import Aptech.booking_hotel.model.enums.StarRating;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -32,6 +33,8 @@ public class HotelDTO {
     private List<RoomDTO> roomDTOs = new ArrayList<>();
 
     private String managerUsername;
+
+    private StarRating starRating;
 
     private Image image;
 }

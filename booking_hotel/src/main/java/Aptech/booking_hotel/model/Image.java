@@ -1,5 +1,7 @@
 package Aptech.booking_hotel.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,12 +25,20 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(nullable = false)
+ 
+    @Column(name = "cover_image_path")
     private String imageCover;
 
+    @Column(name = "detail_image1_path")
     private String detailedPhoto1;
+    
+    @Column(name = "detail_image2_path")
     private String detailedPhoto2;
+    
+    @Column(name = "detail_image3_path")
     private String detailedPhoto3;
+    
+    @Column(name = "detail_image4_path")
     private String detailedPhoto4;
 
     @Override

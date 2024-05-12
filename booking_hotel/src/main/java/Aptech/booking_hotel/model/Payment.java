@@ -38,6 +38,9 @@ public class Payment {
 
     @Column(unique = true, nullable = false)
     private String transactionId;
+    
+    @Column(nullable = false)
+    private BigDecimal totalPrice;
 
     @CreationTimestamp
     private LocalDateTime paymentDate;
@@ -46,8 +49,6 @@ public class Payment {
     @JoinColumn(nullable = false)
     private Booking booking;
 
-    @Column(nullable = false)
-    private BigDecimal totalPrice;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -65,6 +66,7 @@ public class Payment {
     protected void onCreate(){
         this.transactionId = UUID.randomUUID().toString();
     }
+
 
     @Override
     public String toString() {

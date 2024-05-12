@@ -14,6 +14,7 @@ import Aptech.booking_hotel.model.validate.RoomDTO;
 import Aptech.booking_hotel.responsitory.RoomResponsitory;
 import Aptech.booking_hotel.service.RoomService;
 import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class RoomServiceImpl implements RoomService {
 
@@ -55,6 +56,7 @@ public class RoomServiceImpl implements RoomService {
         existingRoom.setRoomType(roomDTO.getRoomType());
         existingRoom.setRoomCount(roomDTO.getRoomCount());
         existingRoom.setPricePerNight(roomDTO.getPricePerNight());
+        existingRoom.setImage(roomDTO.getImage());
 
         Room updateRoom = roomResponsitory.save(existingRoom);
         return updateRoom;
@@ -72,6 +74,8 @@ public class RoomServiceImpl implements RoomService {
                         .roomType(roomDTO.getRoomType())
                         .roomCount(roomDTO.getRoomCount())
                         .pricePerNight(roomDTO.getPricePerNight())
+                        .image(roomDTO.getImage())
+                        .services(roomDTO.getServices())
                         .build();
         return room;
     }
@@ -84,6 +88,8 @@ public class RoomServiceImpl implements RoomService {
                     .roomType(room.getRoomType())
                     .roomCount(room.getRoomCount())
                     .pricePerNight(room.getPricePerNight())
+                    .image(room.getImage())
+                    //.services(room.getServices())
                     .build();
     }
     

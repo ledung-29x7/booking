@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,12 +39,11 @@ public class ManagerController {
     private HotelService hotelService;
     private UserService userService ;
     private BookingService bookingService;
-
+    @Autowired
     public ManagerController(HotelService hotelService, UserService userService, BookingService bookingService){
-        this.bookingService=bookingService;
-        this.userService=userService;
-        this.hotelService=hotelService;
-        
+        this.bookingService = bookingService;
+        this.userService = userService;
+        this.hotelService= hotelService;
     }
     
     // thêm mới hotel
@@ -65,12 +65,17 @@ public class ManagerController {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         return userService.findUserByUsername(username).getHotelManager().getId();
     }
-    // lấy tất cả khách sạn
+    // lấy tất cả khách sạn mà manager này quản lý
     @GetMapping("/hotels")
     public ResponseEntity<List<HotelDTO>> listHotels(){
         Long managerId = getCurrentManagerId();
-        List<HotelDTO> listHotels = hotelService.findAllHotelDtosByManagerId(managerId);
-        return ResponseEntity.ok(listHotels);
+        try {
+            List<HotelDTO> listHotels = hotelService.findAllHotelDtosByManagerId(managerId);
+            return ResponseEntity.ok(listHotels);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
     }
 
 

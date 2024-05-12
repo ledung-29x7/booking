@@ -18,12 +18,14 @@ import Aptech.booking_hotel.model.validate.AddressDTO;
 import Aptech.booking_hotel.model.validate.BookingDTO;
 import Aptech.booking_hotel.model.validate.BookingInitiationDTO;
 import Aptech.booking_hotel.model.validate.RoomSelectionDTO;
+import Aptech.booking_hotel.model.validate.UserDTO;
 import Aptech.booking_hotel.responsitory.BookingResponsitory;
 import Aptech.booking_hotel.service.AvailabilityService;
 import Aptech.booking_hotel.service.BookingService;
 import Aptech.booking_hotel.service.CustomerService;
 import Aptech.booking_hotel.service.HotelService;
 import Aptech.booking_hotel.service.PaymentService;
+import Aptech.booking_hotel.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 @Service
@@ -31,22 +33,26 @@ public class BookingServiceImpl implements BookingService {
 
     private BookingResponsitory bookingResponsitory;
     private AvailabilityService availabilityService;
+    private PaymentService paymentService;
     private CustomerService customerService;
     private HotelService hotelService;
-    private PaymentService paymentService;
+
 
     @Autowired
     public BookingServiceImpl(BookingResponsitory bookingResponsitory,
                                 AvailabilityService availabilityService,
+                                PaymentService paymentService,
                                 CustomerService customerService,
-                                HotelService hotelService,
-                                PaymentService paymentService
+                                HotelService hotelService
+                
+                                
     ){
         this.bookingResponsitory=bookingResponsitory;
         this.availabilityService=availabilityService;
+        this.paymentService=paymentService;
         this.customerService=customerService;
         this.hotelService=hotelService;
-        this.paymentService=paymentService;
+        // this.vnPayService=vnPayService;
     }
         // Kiểm tra xem ngày đặt phòng có trong quá khứ hay không và ngày trả phòng không được trước ngày đặt phòng
         private void validateBookingDates(LocalDate checkinDate, LocalDate checkoutDate) {
@@ -80,19 +86,21 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     @Transactional
-    public Booking saveBooking(BookingInitiationDTO bookingInitiationDTO, Long customerId) {
+    public Booking saveBooking(BookingInitiationDTO bookingInitiationDTO, Long userId) {
         validateBookingDates(bookingInitiationDTO.getCheckinDate(), bookingInitiationDTO.getCheckoutDate());
-        Customer customer = customerService.findByUserId(customerId).orElseThrow(()-> new EntityNotFoundException("Customer not found"));
+        System.out.println(userId);
+        Customer customer = customerService.findByUserId(userId).orElseThrow(()-> new EntityNotFoundException("Customer not found"));
+
         Hotel hotel = hotelService.findHotelById(bookingInitiationDTO.getHotelId()).orElseThrow(()-> new EntityNotFoundException("Hotel not found"));
         Booking booking = mapBookingInitDtoToBookingModel(bookingInitiationDTO,customer,hotel);
+        
         return bookingResponsitory.save(booking);
     }
 
-
-
     @Override
-    public BookingDTO confirmBooking(BookingInitiationDTO bookingInitiationDTO, Long customerId) {
-        Booking savedBooking = this.saveBooking(bookingInitiationDTO, customerId);
+    @Transactional
+    public BookingDTO confirmBooking(BookingInitiationDTO bookingInitiationDTO, Long userId) {
+        Booking savedBooking = this.saveBooking(bookingInitiationDTO, userId);
         Payment savePayment = paymentService.savePayment(bookingInitiationDTO, savedBooking);
         savedBooking.setPayment(savePayment);
         bookingResponsitory.save(savedBooking);
@@ -105,12 +113,15 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public List<BookingDTO> findAllBooking() {
         List<Booking> bookings = bookingResponsitory.findAll();
-        return bookings.stream().map(this::mapBookingModelToBookingDto).toList();
+        return bookings.stream()
+                        .map(this::mapBookingModelToBookingDto)
+                        .collect(Collectors.toList());
     }
 
     @Override
     public BookingDTO findBookingById(Long bookingId) {
-        Booking booking = bookingResponsitory.findById(bookingId).orElseThrow(()-> new EntityNotFoundException("Booking not found"));
+        Booking booking = bookingResponsitory.findById(bookingId)
+                                            .orElseThrow(()-> new EntityNotFoundException("Booking not found"));
         return mapBookingModelToBookingDto(booking);
     }
 
@@ -178,6 +189,7 @@ public class BookingServiceImpl implements BookingService {
                         .customerEmail(customerUser.getUsername())
                         .paymentStatus(booking.getPayment().getPaymentStatus())
                         .paymentMethod(booking.getPayment().getPaymentMethod())
+                        .durationDays(booking.getDurationDays())
                         .build();
     }
     

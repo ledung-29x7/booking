@@ -1,5 +1,10 @@
 package Aptech.booking_hotel.model.validate;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class ImageDTO {
     
     private Long id;

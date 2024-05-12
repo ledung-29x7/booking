@@ -1,6 +1,6 @@
 package Aptech.booking_hotel.model.validate;
 
-import org.hibernate.validator.constraints.CreditCardNumber;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;

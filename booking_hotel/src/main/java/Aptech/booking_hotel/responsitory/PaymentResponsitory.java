@@ -15,4 +15,6 @@ public interface PaymentResponsitory extends JpaRepository<Payment,Long> {
     //                     @Param("paymentStatus") String paymentStatus,
     //                     @Param("paymentMethod") String paymentMethod,
     //                     @Param("currency") String currency);
+
+    Payment findByTransactionId(String transactionId);
 }

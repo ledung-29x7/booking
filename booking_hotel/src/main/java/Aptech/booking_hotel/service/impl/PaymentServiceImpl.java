@@ -26,9 +26,9 @@ public class PaymentServiceImpl implements PaymentService {
         Payment payment = Payment.builder()
                                 .booking(booking)
                                 .totalPrice(bookingInitiationDTO.getTotalPrice())
-                                .paymentMethod(PaymentMethod.DEBIT_CAD)
-                                .paymentStatus(PaymentStatus.COMPLETED)
-                                .currency(Currency.USD)
+                                .paymentMethod(PaymentMethod.VNPAY)
+                                .paymentStatus(PaymentStatus.PENDING)
+                                .currency(Currency.VND)
                                 .build();
         return paymentResponsitory.save(payment);
     }

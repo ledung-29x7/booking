@@ -16,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 public class UserRegistrationDTO {
-
+    
     @NotBlank(message = "Email address cannot be empty")
     @Email(message = "Invalid email address")
     private String username;

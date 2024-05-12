@@ -187,6 +187,8 @@ public class HotelServiceImpl implements HotelService{
                         .addressDTO(addressDTO)
                         .roomDTOs(roomDTOs)
                         .managerUsername(hotel.getHotelManager().getUser().getUsername())
+                        .starRating(hotel.getStarRating())
+                        .image(hotel.getImage())
                         .build();
     }
 
@@ -198,6 +200,7 @@ public class HotelServiceImpl implements HotelService{
     private Hotel mapHotelRegistrationDtoToHotel(HotelRegistrationDTO dto) {
         return Hotel.builder()
                 .name(formatText(dto.getName()))
+                .starRating(dto.getStarRating())
                 .build();
     }
 

@@ -17,7 +17,7 @@ public class AddressDTO {
     private Long id;
 
    @NotBlank(message = "Address line cannot be empty")
-   @Pattern(regexp = "^[a-zA-Z0-9.,:-]+$", message = ("Address line can only contain letters, numbers, and some special characters (. , : - )") )
+   //@Pattern(regexp = "^(?!\\\\s*$)[a-zA-ZàáảãạâầấẩẫậăằắẳẵặèéẻẽẹêềếểễệìíỉĩịòóỏõọôồốổỗộơờớởỡợùúủũụưừứửữựỳýỷỹỵđÀÁẢÃẠÂẦẤẨẪẬĂẰẮẲẴẶÈÉẺẼẸÊỀẾỂỄỆÌÍỈĨỊÒÓỎÕỌÔỒỐỔỖỘƠỜỚỞỠỢÙÚỦŨỤƯỪỨỬỮỰỲÝỶỸỴĐ ]+$", message = ("Address line can only contain letters, numbers, and some special characters (. , : - )") )
     private String addressLine;
     
     @NotBlank(message = "Address line cannot be empty")
