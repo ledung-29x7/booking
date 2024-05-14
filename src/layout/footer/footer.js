@@ -25,19 +25,19 @@ function Footer() {
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
-                        <span className="text-white font-bold">San Pham</span>
+                        <span className="text-white font-bold">Production</span>
                         <div className="flex gap-2 flex-col">
-                            <a href="/">Booking Khach San</a>
-                            <a href="/">quan ly khach hang</a>
+                            <Link to={"/hotel"}>
+                                <p>Hotel Booking</p>
+                            </Link>
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
-                        <span className="text-white font-bold">Khach San</span>
+                        <span className="text-white font-bold">Travel</span>
                         <div className="flex gap-2 flex-col">
                             <Link to={"/thingsToDo"}>
                                 <p>Things To Do</p>
                             </Link>
-                            <a href="/">Dieu khoan Dieu kien chung</a>
                         </div>
                     </div>
                 </div>

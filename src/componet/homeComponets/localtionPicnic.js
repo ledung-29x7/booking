@@ -9,7 +9,7 @@ function LocaltionPicnic({src,nameLocal,infoLocal}){
             {/* info Local */}
             <div className=" flex flex-col gap-4 px-4 pb-4">
                 <h1 className=" text-sm font-semibold">{nameLocal}</h1>
-                <p className=" text-xl opacity-70">{infoLocal}</p>
+                <p className=" text-sm opacity-70">{infoLocal}</p>
             </div>
         </div>
     );

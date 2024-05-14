@@ -28,52 +28,52 @@ function Home() {
                     <TitleHome title="Hotels" introduce="..."/>
                     <div className=" flex gap-6 flex-wrap">
                         <Popular local="Hanoi" nameHotel="Sofitel Legend Metropole Hotel"
-                            infoHotel="..."
+                            infoHotel="More info >>"
                             src="../image/hotels/sofitel.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Meliá Hanoi"
-                            infoHotel="..."
+                            infoHotel="More info >>"
                             src="../image/hotels/meliahn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Pan Pacific Hanoi"
-                            infoHotel="..."
+                            infoHotel="More info >>"
                             src="../image/hotels/panpacific.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Grand Vista Hanoi"
-                            infoHotel="..."
+                            infoHotel="More info >>"
                             src="../image/hotels/grandvista.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="InterContinential Hanoi Westlake"
-                            infoHotel="..."
+                            infoHotel="More info >>"
                             src="../image/hotels/intercontinentalwestlake.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Movenpick Hanoi"
-                            infoHotel="..."
+                            infoHotel="More info >>"
                             src="../image/hotels/movenpickhn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Hilton Hanoi Opera"
-                            infoHotel="..."
+                            infoHotel="More info >>"
                             src="../image/hotels/hiltonhn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Elegant Suites Westlake"
-                            infoHotel="..."
+                            infoHotel="More info >>"
                             src="../image/hotels/elegantsuite.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Pullman Hanoi"
-                            infoHotel="..."
+                            infoHotel="More info >>"
                             src="../image/hotels/pullmanhn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="JW Mariott Hotel Hanoi"
-                            infoHotel="..."
+                            infoHotel="More info >>"
                             src="../image/hotels/mariotthn.jpg"
                             rating="5/5"
                         />
@@ -90,21 +90,25 @@ function Home() {
                     />
                     <div className="flex gap-6 container ">
                         <LocaltionPicnic
-                            src="https://ik.imagekit.io/tvlk/image/imageResource/2022/12/13/1670914145711-fc8b8f2cd80cbf7dd48de3ce415ae463.jpeg?tr=q-75,w-256"
+                            src="../image/travel/hanoitravel01.jpg"
                             nameLocal="Nhà Hát Lớn Hà Nội"
                             infoLocal="1 Tràng Tiền, Phan Chu Trinh, Hoàn Kiếm, Hà Nội"
                         />
                         <LocaltionPicnic
-                            src="https://ik.imagekit.io/tvlk/image/imageResource/2022/12/13/1670914145711-fc8b8f2cd80cbf7dd48de3ce415ae463.jpeg?tr=q-75,w-256"
+                            src="../image/travel/hanoitravel10.jpg"
                             nameLocal="Hoàng thành Thăng Long"
                             infoLocal="19c Hoàng Diệu, Điện Biên, Ba Đình, Hà Nội"
                         />
                         <LocaltionPicnic
-                            src="https://ik.imagekit.io/tvlk/image/imageResource/2022/12/13/1670914145711-fc8b8f2cd80cbf7dd48de3ce415ae463.jpeg?tr=q-75,w-256"
+                            src="../image/travel/huetravel04.jpg"
+                            nameLocal="Chợ Đông Ba"
+                            infoLocal="Phú Hoà, Thành phố Huế, Thừa Thiên Huế"
                         />
 
                         <LocaltionPicnic
-                            src="https://ik.imagekit.io/tvlk/image/imageResource/2022/12/13/1670914145711-fc8b8f2cd80cbf7dd48de3ce415ae463.jpeg?tr=q-75,w-256"
+                            src="../image/travel/huetravel05.jpg"
+                            nameLocal="Trường Quốc học Huế"
+                            infoLocal="12 Lê Lợi, Vĩnh Ninh, Thành phố Huế, Thừa Thiên Huế"
                         />
                     </div>
                 </div>

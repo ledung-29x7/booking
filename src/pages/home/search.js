@@ -49,7 +49,7 @@ function Search() {
         <div className=" flex gap-5 ">
             <BoxInput
                 style={{ color: "#667085" }}
-                placeholder="Bạn muốn đi đâu? "
+                placeholder="Search a location..."
                 type="text"
                 icon="fa-solid fa-magnifying-glass" 
                 nameInput="result"

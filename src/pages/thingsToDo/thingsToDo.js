@@ -30,6 +30,13 @@ function ThingsToDo() {
                     timeUp="07/05/2024"
                 />
             </div>
+            <div className="mt-14">
+                <Blog04 src="image/travel/huetravel01.jpg"
+                    titleBlog="Top 7 điểm du lịch hút khách nhất xứ Huế"
+                    info="Xem tiếp >>"
+                    timeUp="13/05/2024"
+                />
+            </div>
         </div>
     );
 }

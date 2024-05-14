@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import Utilities from "./utilities";
 
-function ResultSearch({src,local,nameHotel,infoHotel,price}){
+function ResultSearch({src,local,nameHotel,infoHotel,rating}){
     var navigate = useNavigate();
     return(
         
         <div className=" h-72 flex gap-5 box cursor-pointer items-center" onClick={()=>navigate("/hotel/room")} >
             {/* image Hotel */}
             <div className=" p-4 static">
-                <img loading="lazy" className=" w-80 h-64 rounded-3xl" src={src} alt="" />
+                <img loading="lazy" className="img-container" src={src} alt="" />
             </div>
             {/* info */}
             <div className="flex flex-col flex-grow pr-5 ">
@@ -29,9 +29,9 @@ function ResultSearch({src,local,nameHotel,infoHotel,price}){
                     <Utilities utilitie="co dieu hoa" />
                     <Utilities utilitie="co nong lanh" />
                 </div>
-                {/* price */}
+                {/* rate */}
                 <div className="flex items-center justify-between pt-5 border-t border-gray-300">
-                    <p className=" text-lg font-semibold">{price}/ guest</p>
+                    <p className=" text-lg font-semibold">{rating}</p>
                     <button className=" bg-[#77dada] border-4  w-24
                     border-[#77dada]
                     flex 

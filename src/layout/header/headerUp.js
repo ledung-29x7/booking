@@ -75,7 +75,7 @@ function HeaderUp() {
                 <div className="h-full">
                     <Link className=" h-full flex items-center" to={"/"} >
                         <div className=" ">
-                            Home
+                            <b>Home</b>
                         </div>
                         <div>
                             <span>

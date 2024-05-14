@@ -2,6 +2,7 @@ import Home from "../pages/home/home";
 import HaLongresorts from "../pages/thingsToDo/details/halongresorts";
 import HanoiSfood from "../pages/thingsToDo/details/hanoispecialtyfood";
 import Hanoitravelpartone from "../pages/thingsToDo/details/hanoitravel";
+import Huetravel from "../pages/thingsToDo/details/huetravel";
 import Hotel from "../pages/hotel/hotel";
 import ThingsToDo from "../pages/thingsToDo/thingsToDo";
 import Admin from "../pages/admins/homeAdmin/admin";
@@ -32,6 +33,7 @@ const publicRoute = [
     { path: '/thingsToDo/halong', componet: HaLongresorts},
     { path: '/thingsToDo/hnfood', componet: HanoiSfood},
     { path: '/thingsToDo/hntravel', componet: Hanoitravelpartone},
+    { path: '/thingsToDo/huetravel', componet: Huetravel},
     { path: '/hotel/room', componet: Room },
     { path: '/manage/listRooms', componet: ListRoom, layout: DefaultLayoutAdmin },
     { path: '/manage', componet: HomeManage, layout: DefaultLayoutAdmin },
