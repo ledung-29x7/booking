@@ -11,12 +11,12 @@ function Home() {
             {/* Banner */}
             <div className="banner">
                 {/*Change the video depending on the occasion. The first one will be used on non-holiday days.*/}
-                {/*<video className="home-bn-video" src="https://minio.fares.vn/mixivivu-dev/video/Mixivivuduthuyen.mp4" autoPlay muted playsInline loop></video>*/}
-                <video className="home-bn-video" src="../video/Ant halloween intro.mp4" autoPlay muted playsInline loop></video>
+                <video className="home-bn-video" src="https://minio.fares.vn/mixivivu-dev/video/Mixivivuduthuyen.mp4" autoPlay muted playsInline loop></video>
+                {/*<video className="home-bn-video" src="../video/Cartoon Network soidutS VHS intro.mp4" autoPlay muted playsInline loop></video>*/}
                 <div className="searchBox flex flex-col gap-10 box">
                     <div className="flex flex-col gap-4">
-                        <h1 style={{fontSize: "30px", fontFamily: "Chiller", color: "red"}}>WHERE DO YOU WANT TO GO?</h1>
-                        <h2 style={{fontSize: "18px", fontFamily: "Chiller", color: "red"}}>Hundreds of places for you to explore</h2>
+                        <h1 style={{fontSize: "40px", textAlign: "center"}}>WHERE DO YOU WANT TO GO?</h1>
+                        <h2 style={{fontSize: "20px", textAlign: "center"}}>Hundreds of places for you to explore</h2>
                     </div>
                     <Search />
                 </div>
@@ -28,53 +28,53 @@ function Home() {
                     <TitleHome title="Hotels" introduce="..."/>
                     <div className=" flex gap-6 flex-wrap">
                         <Popular local="Hanoi" nameHotel="Sofitel Legend Metropole Hotel"
-                            infoHotel="Là địa danh lịch sử sang trọng từ..."
-                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            infoHotel="..."
+                            src="../image/hotels/sofitel.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Meliá Hanoi"
                             infoHotel="..."
-                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            src="../image/hotels/meliahn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Pan Pacific Hanoi"
                             infoHotel="..."
-                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            src="../image/hotels/panpacific.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Grand Vista Hanoi"
                             infoHotel="..."
-                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            src="../image/hotels/grandvista.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="InterContinential Hanoi Westlake"
                             infoHotel="..."
-                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            src="../image/hotels/intercontinentalwestlake.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Movenpick Hanoi"
                             infoHotel="..."
-                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            src="../image/hotels/movenpickhn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Hilton Hanoi Opera"
                             infoHotel="..."
-                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            src="../image/hotels/hiltonhn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Elegant Suites Westlake"
                             infoHotel="..."
-                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            src="../image/hotels/elegantsuite.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Pullman Hanoi"
                             infoHotel="..."
-                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            src="../image/hotels/pullmanhn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="JW Mariott Hotel Hanoi"
                             infoHotel="..."
-                            src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/thumbnail/no53ab0y526yl825.webp"
+                            src="../image/hotels/mariotthn.jpg"
                             rating="5/5"
                         />
                     </div>

@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 
 function Footer() {
@@ -11,21 +11,17 @@ function Footer() {
                         Booking
                     </a>
                     <div className=" ">
-                        <p className="">Công ty TNHH Du Lịch và Dịch Vụ ChungDung</p>
-                        <p className="">số nhà 8, đường Tôn Thất Thuyết, phương Mỹ Đình, quận Nam Từ Niêm, TP. Hà Nội</p>
+                        <p className="">© 2024 Dung Le Pte. Ltd. All Rights Reserved.</p>
                     </div>
                 </div>
                 <div className=" flex flex-grow gap-8 justify-between ">
                     <div className="flex flex-col gap-4">
-                        <span className="text-white font-bold">Gioi thieu</span>
+                        <span className="text-white font-bold">Introduction</span>
                         <div className="flex gap-2 flex-col">
-                            <a href="/" >ve chunng toi</a>
-                            <a href="/">Dieu khoan va dieu kien</a>
-                            <a href="/">Huong Dan su dung</a>
-                            <a href="/">Huong dan thah toan</a>
-                            <a href="/">Lien he</a>
-                            <a href="/">HotLine: </a>
-                            <a href="/">Email:</a>
+                            <a href="/">About Us</a>
+                            <a href="/">Term And Use</a>
+                            <a href="/">Payment</a>
+                            <a href="/">Contract Us</a>
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
@@ -38,7 +34,9 @@ function Footer() {
                     <div className="flex flex-col gap-4">
                         <span className="text-white font-bold">Khach San</span>
                         <div className="flex gap-2 flex-col">
-                            <a href="/">Blog</a>
+                            <Link to={"/thingsToDo"}>
+                                <p>Things To Do</p>
+                            </Link>
                             <a href="/">Dieu khoan Dieu kien chung</a>
                         </div>
                     </div>

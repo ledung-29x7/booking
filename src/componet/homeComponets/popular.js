@@ -6,7 +6,7 @@ function Popular({local, nameHotel,infoHotel,src,rating}){
             <div className="w-96 flex flex-col gap-5 box" >
                 {/* image Hotel */}
                 <div className=" p-4 static pb-0 ">
-                    <img loading="lazy" className=" rounded-3xl" src={src} alt="" />
+                    <img loading="lazy" className="img-container" src={src} alt="" />
                 </div>
                 {/* info */}
                 <div className="flex flex-col ">
