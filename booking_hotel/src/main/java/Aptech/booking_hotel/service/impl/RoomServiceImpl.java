@@ -12,9 +12,11 @@ import Aptech.booking_hotel.model.Image;
 import Aptech.booking_hotel.model.Room;
 import Aptech.booking_hotel.model.validate.ImageDTO;
 import Aptech.booking_hotel.model.validate.RoomDTO;
+import Aptech.booking_hotel.model.validate.ServiceDTO;
 import Aptech.booking_hotel.responsitory.RoomResponsitory;
 import Aptech.booking_hotel.service.ImageService;
 import Aptech.booking_hotel.service.RoomService;
+import Aptech.booking_hotel.service.ServiceService;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
@@ -22,11 +24,13 @@ public class RoomServiceImpl implements RoomService {
 
     private RoomResponsitory roomResponsitory;
     private ImageService imageService;
+    private ServiceService serviceService;
 
     @Autowired
-    public RoomServiceImpl(RoomResponsitory roomResponsitory, ImageService imageService){
+    public RoomServiceImpl(RoomResponsitory roomResponsitory, ImageService imageService, ServiceService serviceService){
         this.roomResponsitory=roomResponsitory;
         this.imageService=imageService;
+        this.serviceService=serviceService;
     }
 
 
@@ -55,12 +59,13 @@ public class RoomServiceImpl implements RoomService {
         // lấy room theo id
         Room existingRoom = roomResponsitory.findById(roomDTO.getId()).orElseThrow(()-> new EntityNotFoundException("Room not found"));
 
+        List<Image> images = imageService.saveImagesToRoom(roomDTO.getImageDTOs(), existingRoom);
         // gán giá trị mới 
         existingRoom.setRoomType(roomDTO.getRoomType());
         existingRoom.setRoomCount(roomDTO.getRoomCount());
         existingRoom.setPricePerNight(roomDTO.getPricePerNight());
-        //existingRoom.setImage(roomDTO.getImage());
-
+        existingRoom.setImages(images);
+        
         Room updateRoom = roomResponsitory.save(existingRoom);
         return updateRoom;
     }
@@ -87,6 +92,10 @@ public class RoomServiceImpl implements RoomService {
         List<ImageDTO> imageDTOs = room.getImages().stream()
                                         .map(imageService::mapImageToImageDto)
                                         .collect(Collectors.toList());
+
+        List<ServiceDTO> serviceDTOs = room.getServices().stream()
+                                            .map(serviceService::mapServiceToServiceDto)
+                                            .collect(Collectors.toList());
         return RoomDTO.builder()
                     .id(room.getId())
                     .hotelId(room.getHotel().getId())
@@ -94,7 +103,7 @@ public class RoomServiceImpl implements RoomService {
                     .roomCount(room.getRoomCount())
                     .pricePerNight(room.getPricePerNight())
                     .imageDTOs(imageDTOs)
-                    //.services(room.getServices())
+                    .serviceDTOs(serviceDTOs)
                     .build();
     }
     

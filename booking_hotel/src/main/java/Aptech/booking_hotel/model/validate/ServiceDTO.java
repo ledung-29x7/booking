@@ -1,12 +1,18 @@
 package Aptech.booking_hotel.model.validate;
 
-import java.util.ArrayList;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import Aptech.booking_hotel.model.Service;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ServiceDTO {
     private Long id;
     private String name;
-    private List<Service> services = new ArrayList<>();
+    
 }
