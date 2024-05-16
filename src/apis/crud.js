@@ -108,13 +108,10 @@ export const editUserRoom = (host,id,put) => new Promise(async(resolve,reject) =
     }
 })
 // contact
-export const getContact = (inputContact) => new Promise(async(resolve, reject) => {
+export const addContact = (post) => new Promise(async(resolve, reject) => {
     try {
-        const response = await axios({
-            url:'contact/${ad}',
-            method: 'GET',
-        })
-        resolve(response.data)
+        const response= await axios.post('contact',post);
+        resolve(response)
     } catch (error) {
         reject(error)
     }
