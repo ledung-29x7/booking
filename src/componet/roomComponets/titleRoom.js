@@ -26,7 +26,7 @@ function TitleRoom({title,introduce,sao,address}) {
             </div>
             <div className="w-72">
                 <p className=" text-2xl font-semibold text-lime-800 bottom-0">
-                    {price} $/Customer
+                    {price} $/Phòng
                 </p>
             </div>
         </div>

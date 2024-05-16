@@ -111,9 +111,9 @@ function Room() {
                                 <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
                             </div>
                             <div className="flex flex-col gap-6">
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Phòng được thiết kế với phong cách sang trọng và truyền thống"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Phòng được thiết kế với phong cách sang trọng và truyền thống"} />
+                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Phòng được thiết kế với phong cách sang trọng và truyền thống"} />
                             </div>
                         </div>
 
@@ -143,7 +143,7 @@ function Room() {
                     </div>
                     <div className=" min-w-96 max-w-[25vw]">
                         <div className=" rounded-[32px] box ">
-                            <div className=" px-6 py-5 border-b-2 border-b-[#eaecf0]">Room Information</div>
+                            <div className=" px-6 py-5 border-b-2 border-b-[#eaecf0]">Thông tin phòng</div>
                             <div className="py-5 px-6 flex flex-col gap-4">
                                 <Utilitie src={"../icon/icon-utiliti.svg"} util={"sang "} />
                                 <Utilitie src={"../icon/icon-utiliti.svg"} util={"xin"} />

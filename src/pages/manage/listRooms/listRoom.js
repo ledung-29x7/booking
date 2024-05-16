@@ -6,8 +6,8 @@ import * as apis from "../../../apis"
 import RowList from "./rowList";
 import AddRoom from "./addRoom";
 import { useNavigate } from "react-router-dom";
-
-function ListUser() {
+import EditRoom from "./editRoom";
+function ListRoom() {
     const navigate=useNavigate();
     const [isShowEdit, setIsShowEdit] = useState(false);
     const [isShowAdd, setisShowAdd] = useState(false);
@@ -19,8 +19,12 @@ function ListUser() {
     // Read apis
     useEffect(() => {
         const FetchData = async() => {
-            const response = await apis.getUser();
-            setUser(response)
+            try {
+                const response = await apis.getUserRoom("hotels");
+                setUser(response)
+            } catch (error) {
+                console.log(error)
+            }
         }
         FetchData();
     },[])
@@ -34,6 +38,7 @@ function ListUser() {
         }
         GetEdit(id)
     },[id])
+    console.log(editUs)
     // open form Edit
     useEffect(() => {
         function OpenEdit(isEdit) {
@@ -81,7 +86,7 @@ function ListUser() {
                     <div className="flex flex-col gap-5">
                         <h4 className="font-bold text-4xl w-80">
                         Add New Hotel                        </h4>
-                        <img className="w-24" src="../icon/heading-border.png" alt="" />
+                        {/* <img className="w-24" src="../icon/heading-border.png" alt="" /> */}
                     </div>
                     <div className="mx-10 bg-lime-600 w-32 h-10 flex justify-center items-center gap-3 rounded-md">
                         <FontAwesomeIcon style={{color:"white"}} icon="fa-solid fa-plus"/>
@@ -95,10 +100,13 @@ function ListUser() {
                     <table className="  w-full shadow ">
                         <tr className="bg-slate-200 h-12">
                             <th>ID</th>
-                            <th>User Name</th>
-                            <th>Firt Name</th>
-                            <th>Last Name</th>
-                            <th>Role</th>
+                            <th>HotelName</th>
+                            <th>Address Line</th>
+                            <th>Country</th>
+                            <th>Single Room Count</th>
+                            <th>Single Room Price</th>
+                            <th>Double Room Count</th>
+                            <th>Double Room Price</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -111,6 +119,18 @@ function ListUser() {
                     </table>
                 </div>
             </div>
+             {/* modal edit */}
+            {isShowEdit ?
+                <div className="modal z-50">
+                    <div className="flex w-full h-full">
+                        <div id="overlay" className="modal_overlay"></div>
+                        <div className="modal_body">
+                            <EditRoom user={editUs} />
+                        </div>
+                    </div>
+                </div>
+                : null
+            }
             {/* modal add */}
             {isShowAdd ?
                 <div className="modal z-50">
@@ -126,4 +146,4 @@ function ListUser() {
         </div>
     );
 }
-export default ListUser;
+export default ListRoom;

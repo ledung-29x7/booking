@@ -24,7 +24,7 @@ function Popular({local, nameHotel,infoHotel,src,price}){
                     </div>
                     {/* price */}
                     <div className="flex items-center justify-between px-6 pt-5 pb-5">
-                        <p className=" text-lg font-bold">{price}/ guest</p>
+                        <p className=" text-lg font-bold">{price}/khách</p>
                         <button className="bg-cyan-200 border-4
                         border-cyan-200 
                         flex 
@@ -34,7 +34,7 @@ function Popular({local, nameHotel,infoHotel,src,price}){
                         font-bold
                         opacity-60
                         ">
-                            Put
+                            Đặt ngay
                         </button>
                     </div>
                 </div>

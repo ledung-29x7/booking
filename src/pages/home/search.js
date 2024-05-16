@@ -81,7 +81,7 @@ function Search() {
                 onChange={handleSearch}
             />
             <div className="flex items-center">
-                <button className=" bg-cyan-200 flex items-center justify-center h-fit w-fit bottom font-bold">Search</button>
+                <button className=" bg-cyan-200 flex items-center justify-center h-fit w-fit bottom font-bold">Tìm kiếm</button>
             </div>
         </form>
     );

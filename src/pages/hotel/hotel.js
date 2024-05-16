@@ -39,8 +39,8 @@ function Hotel(){
                 <div className=" relative h-80">
                 <div className=" searchHotel flex flex-col gap-10 box">
                     <div className="flex flex-col gap-4">
-                        <h4 className=" text-center font-bold text-4xl">where do you want to go?</h4>
-                        <p className=" text-center text-lg text-gray-900 opacity-60">Hundreds of places for you to explore</p>
+                        <h4 className=" text-center font-bold text-4xl">Rong chơi bốn phương,giá vẫn yêu thương</h4>
+                        <p className=" text-center text-lg text-gray-900 opacity-60">Hơn 10000 khách sạn gì tốt đang chờ bạn</p>
                     </div>
                     <Search/>
                 </div>
@@ -50,14 +50,14 @@ function Hotel(){
                     <div className="containerr px-8 ">
                         <div className="">
                             <div className="flex flex-col ">
-                                <TitleHome title="Research" />
+                                <TitleHome title="Tìm kiếm theo" />
                             </div>
                         </div>
 
                         <div className="flex gap-6 py-8">
                             <div className=" box w-1/4 ">
                                 <div className="border-b border-gray-300 filter-result">
-                                    <h4>Filter Results</h4>
+                                    <h4>Tìm kiếm theo</h4>
                                 </div>
                                 <div className="filter-result">
                                     <CheckBox amenities="abc" />    

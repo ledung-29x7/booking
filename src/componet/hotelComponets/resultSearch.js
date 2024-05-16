@@ -29,12 +29,12 @@ function ResultSearch({resul}){
                 </div>
                 {/* utilities */}
                 <div className=" my-6 flex flex-wrap gap-2  ">
-                    <Utilities utilitie="co dieu hoa" />
-                    <Utilities utilitie="co nong lanh" />
+                    <Utilities utilitie="Có điều hoà" />
+                    <Utilities utilitie="Có nóng lạnh" />
                 </div>
                 {/* price */}
                 <div className="flex items-center justify-between pt-5 border-t border-gray-300">
-                    <p className=" text-lg font-semibold">{price}$/ guest</p>
+                    <p className=" text-lg font-semibold">{price}$/ Khách</p>
                     <button className=" bg-[#77dada] border-4  w-24
                     border-[#77dada]
                     flex 
@@ -44,7 +44,7 @@ function ResultSearch({resul}){
                     font-bold
                     opacity-60 
                     ">
-                        Put
+                        Đặt ngay
                     </button>
                 </div>
             </div>

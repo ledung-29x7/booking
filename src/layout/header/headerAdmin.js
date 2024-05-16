@@ -24,7 +24,7 @@ function HeaderAdmin() {
             <div className=" flex gap-10 items-center">
                 <button className=" bg-cyan-200 border-cyan-200 flex items-center justify-center  bottom font-bold "
                     >
-                    Sign up / Login
+                   Đăng ký / Đăng nhập
                 </button>
             </div>
 

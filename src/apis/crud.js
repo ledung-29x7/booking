@@ -87,4 +87,35 @@ export const editUser = (host,id,put) => new Promise(async(resolve,reject) => {
         reject(error)
     }
 })
-
+// manger
+export const getUserRoom = (ad) => new Promise(async(resolve, reject) => {
+    try {
+        const response = await axios({
+            url:`manager/${ad}`,
+            method: 'GET',
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+export const editUserRoom = (host,id,put) => new Promise(async(resolve,reject) => {
+    try {
+        const response = await axios.put(`manager/${host}/${id}`,put)
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+// contact
+export const getContact = (inputContact) => new Promise(async(resolve, reject) => {
+    try {
+        const response = await axios({
+            url:'contact/${ad}',
+            method: 'GET',
+        })
+        resolve(response.data)
+    } catch (error) {
+        reject(error)
+    }
+})

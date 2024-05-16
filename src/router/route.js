@@ -17,6 +17,7 @@ import MyBookings from "../pages/roomHotel/myBookings";
 import Login from "../layout/user/logIn";
 import SignUp from "../layout/user/signUp";
 import DefaultLayoutLogin from "../layout/defaultLayout/defaultLayoutLogin";
+import Contact from "../pages/contact/contact";
 
 const publicRoute = [
     { path: '/', componet: Home },
@@ -36,6 +37,7 @@ const publicRoute = [
     { path: '/bookings', componet: MyBookings },
     { path: '/user/signin', componet: Login, layout: DefaultLayoutLogin },
     { path: '/user/signup', componet: SignUp, layout: DefaultLayoutLogin },
+    { path: '/contact', componet: Contact}
 ]
 
 export default publicRoute;

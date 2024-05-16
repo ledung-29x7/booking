@@ -54,7 +54,7 @@ function Login() {
             <div className="auth-form_header">
                 <div className="flex justify-between mb-4 mt-2">
                     <h3 className=" text-3xl font-semibold">Login</h3>
-                    <span onClick={handleSignUp} className="auth-form_btn ">SignUp</span>
+                    <span onClick={handleSignUp} className="auth-form_btn ">Đăng kí</span>
                 </div>
             </div>
 
@@ -81,7 +81,7 @@ function Login() {
             <div className="">
                 <button className="border text-teal-800 rounded-lg  w-full h-12 font-bold bg-cyan-200"
                 >
-                    Login
+                    Đăng nhập
                 </button>
             </div>
             </form>

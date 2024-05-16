@@ -6,8 +6,8 @@ import * as apis from "../../../apis"
 
 function AddRoom() {
     const [formData, setFormData] = useState({
-        HotelName: "",
-        AddressLine: "",
+        name: "",
+        addressLine: "",
         City: "",
         Country: "",
         SingleRoomCount: "",
@@ -40,7 +40,7 @@ function AddRoom() {
     };
 
     return (
-        <div className="auth-form">
+        <div className=" w-[50vw] ">
             <div className=" p-10 pb-0">
                 {/* title edit */}
                 <div className=" flex justify-between w-full h-14 font-bold text-xl border-b border-b-slate-800 ">
