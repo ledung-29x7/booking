@@ -2,22 +2,60 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useStore } from '../../store/contexts';
-import { actions } from '../../store/action';
+import { actions,actionsGetData } from '../../store/action';
 import BoxInput from './boxInput';
+import { DatePicker } from "antd";
+import dayjs from 'dayjs'
 
-function Search() {
+function Search({setSearch}) {
     const location = useLocation();
     const navigate = useNavigate();
     const [, dispatch] = useStore();
-    const [searchValue, setSearchValue] = useState({
-        city: "",
-        checkinDate: '',
-        checkoutDate: ''
-    })
 
+    const date = new Date();
+    var setDateout = date.getFullYear()+"-"+ (date.getMonth()+1) + "-" + (date.getDate() + 4);
+
+    const [searchValue, setSearchValue] = useState({
+        city: setSearch?.city || "" ,
+        checkinDate: new Date(),
+        checkoutDate: setDateout 
+    })
+    console.log(searchValue)
+
+    
+    const { RangePicker } = DatePicker;
+    const disabledDate = (current) => {
+        // Không thể chọn ngày trước ngày hiện tại
+    return current && current < dayjs().endOf('day')
+    }
+
+    const dateFormatAux = (date) => {
+        
+        let d = new Date(date),
+            month = '' + (d.getMonth()+1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length<2) 
+            month = "0" + month;
+        if(day.length<2)
+            date ="0" + day;
+        return [year, month, day].join('-')
+    }
+
+
+    const handleinDate = (dates,dateStrings) => {
+        
+        setSearchValue({
+            ...searchValue,
+            checkinDate:dateFormatAux(dateStrings[0]) && dateFormatAux(dates[0]),
+            checkoutDate:dateFormatAux(dateStrings[1] && dateFormatAux(dates[1]))
+        })
+    }
     const handleSearch = (e) => {
         setSearchValue({ ...searchValue, [e.target.name]: e.target.value });
     }
+    
 
     const handleKeyDown = (e) => {
         try {
@@ -26,8 +64,11 @@ function Search() {
                 let queryPrams = new URLSearchParams(location.search)
                 queryPrams.set("search", searchValue.city + searchValue.checkinDate + searchValue.checkoutDate)
                 dispatch(actions.GetSearch(searchValue))
+                dispatch(actionsGetData.CheckinDate(searchValue.checkinDate))
+                dispatch(actionsGetData.CheckoutDate(searchValue.checkoutDate))
                 navigate({
-                    pathname: "/hotel",
+                    pathname: "/hotel", 
+                    search: queryPrams.toString(date)
                 })
             } else {
                 navigate({
@@ -40,16 +81,17 @@ function Search() {
         }
     }
 
+    
+
     // xử lý ngày tháng
     useEffect(() => {
-        let date = new Date()
-        setSearchValue(
-            {
-                checkinDate: date.getFullYear() + "-" + "0" + (date.getMonth() + 1) + "-"  + date.getDate(),
-                checkoutDate: date.getFullYear() + "-" + "0" + (date.getMonth() + 1) + "-" + (date.getDate() + 3)
-            })
+        const date = new Date();
+        var setDatein = date.getFullYear()+"-"+ (date.getMonth() + 1) + "-" + date.getDate();
+        setSearchValue({
+            checkinDate:dateFormatAux(setDatein),
+            checkoutDate:dateFormatAux(setDateout)
+        })
     }, [])
-
 
     return (
         <form className=" flex gap-5 " onSubmit={handleKeyDown}>
@@ -62,26 +104,18 @@ function Search() {
                 value={searchValue.city}
                 onChange={handleSearch}
             />
-            <BoxInput
-                style={{ color: "#667085" }}
-                placeholder="Ngày nhận phòng"
-                type="button"
-                icon="fa-solid fa-calendar-days"
-                nameInput="checkinDate"
-                value={searchValue.checkinDate}
-                onChange={handleSearch}
+            <RangePicker
+                
+                placeholder={"ngày nhận và trả phòng"} 
+                className='flex-1 focus-within:border-2 px-4 text-xl'
+                onChange={handleinDate}
+                defaultValue={[dayjs(searchValue.checkinDate),dayjs(searchValue.checkoutDate)]}
+                disabledDate={disabledDate} 
+                format={"DD/MM/YYYY"}
             />
-            <BoxInput
-                style={{ color: "#667085" }}
-                placeholder="Ngày trả phòng"
-                type="button"
-                icon="fa-solid fa-calendar-days"
-                nameInput="checkoutDate"
-                value={searchValue.checkoutDate}
-                onChange={handleSearch}
-            />
-            <div className="flex items-center">
-                <button className=" bg-cyan-200 flex items-center justify-center h-fit w-fit bottom font-bold">Search</button>
+           
+            <div className="flex items-center ">
+                <button className=" bg-cyan-200 px-5 py-4 transition duration-300 rounded-md font-bold hover:bg-cyan-800 hover:text-white">Search</button>
             </div>
         </form>
     );

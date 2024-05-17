@@ -1,25 +1,35 @@
 import { useStore } from "../../../store/contexts";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { actions } from "../../../store/action";
+import { useNavigate } from "react-router-dom";
 
-function RowRoom({id,nameRoom,singleRoomPrice,doubleRoomPrice}){
 
-    const [,dispatch] = useStore();
+function RowRoom({ room}) {
 
-    function HandleEdit(){
-        dispatch(actions.ModalEdit(true))
+    const [, dispatch] = useStore();
+    const navigate = useNavigate();
+
+    function HandleEdit() {
+        navigate(`/manager/myHotels/edit/${room.id}`)
     }
 
-    return(
+    return (
         <tbody className=" text-gray-600 h-11">
-            <td className=" text-center">{id}</td>
-            <td>{nameRoom}</td>
-            <td>{singleRoomPrice}</td>
-            <td>{doubleRoomPrice}</td>
+            <td className=" text-center">{room.id}</td>
+            <td>{room.name}</td>
+            <td>{room.addressDTO?.addressLine}</td>
+            <td>{room.roomDTOs?.roomCount}</td>
             <td className=" text-center">
-                <button onClick={HandleEdit} className="buttom_crud w-14 h-8 bg-amber-400 ">Edit</button>
+                <button className=" buttom_crud w-14 h-8 text-yellow-500"
+                    onClick={HandleEdit}
+                >
+                    <FontAwesomeIcon style={{ color: "#EFE616" }} icon="fa-solid fa-pen" />
+                </button>
             </td>
             <td className=" text-center">
-                <button className=" buttom_crud w-14 h-8 bg-red-500">Delete</button>
+                <button className=" buttom_crud w-14 h-8 ">
+                    <FontAwesomeIcon style={{ color: "#F44F44" }} icon="fa-solid fa-trash-can" />
+                </button>
             </td>
         </tbody>
     );

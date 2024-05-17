@@ -11,6 +11,7 @@ function Hotel(){
     const [state,] = useStore();
     const {getSearch} = state;
     const [searchResult,setSearchResult] = useState([])
+    
 
     console.log(getSearch)
     
@@ -20,18 +21,18 @@ function Hotel(){
                 try {
                     const response = await apis.getAddress(getSearch)
                     setSearchResult(response)
+            
                 } catch (error) {
                     console.log(error)
                 }
             }
             FetchData();
         }
-
     },[getSearch])
 
+   
 
     console.log(searchResult)
-
 
     return(
         <div className=" section-bg">
@@ -42,7 +43,7 @@ function Hotel(){
                         <h4 className=" text-center font-bold text-4xl">where do you want to go?</h4>
                         <p className=" text-center text-lg text-gray-900 opacity-60">Hundreds of places for you to explore</p>
                     </div>
-                    <Search/>
+                    <Search setSearch={getSearch}/>
                 </div>
                 </div>
                 {/* result search */}

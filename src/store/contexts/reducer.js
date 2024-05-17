@@ -9,7 +9,14 @@ import {
     GETSEARCH,
     GETIDROOM,
     GETDATAUSER,
-    ISSUCCESSFULL
+    ISSUCCESSFULL,
+    GETPRICEROOM,
+    PRICEROOMSINGLE,
+    PRICEROOMDOUBLE,
+    PRICEROOMFAMILY,
+    CHECKINDATE,
+    CHECKOUTDATE,
+    COUNTROOM
 } from "../action/constants";
 
 export const initState = {
@@ -24,6 +31,13 @@ export const initState = {
     getSearch : null,
     getIdRoom: null,
     getData: [],
+    getPriceRoom: 0,
+    priceRoomS: 0,
+    priceRoomD: 0,
+    priceRoomF: 0,
+    checkin : "",
+    checkout : "",
+    countNType: {}
 }
 
 function Reducers(state,action){
@@ -82,6 +96,41 @@ function Reducers(state,action){
             return {
                 ...state,
                 getData : action.resul
+            }
+        case GETPRICEROOM: // Get token Authorization
+            return {
+                ...state,
+                getPriceRoom: action.price 
+            }
+        case PRICEROOMSINGLE: // get PRICE room Single
+            return {
+                ...state,
+                priceRoomS: action.priceS
+            }
+        case PRICEROOMDOUBLE: // get Price room Double
+            return {
+                ...state,
+                priceRoomD: action.priceD
+            }
+        case PRICEROOMFAMILY: // get Price room Family
+            return {
+                ...state,
+                priceRoomF: action.priceF
+            }
+        case CHECKINDATE: //get Checkin Date
+            return {
+                ...state,
+                checkin: action.date
+            }
+        case CHECKOUTDATE: //get CheckOUT Date
+            return {
+                ...state,
+                checkout: action.date
+            }
+        case COUNTROOM:
+            return {
+                ...state,
+                countNType: action.countNtype
             }
         default:
             return state;

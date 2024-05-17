@@ -11,14 +11,19 @@ import { useEffect, useState } from "react";
 function FormBooking({ dataRoom }) {
     const navigate = useNavigate();
     const [state,dispatch] = useStore();
-    const {getIdRoom} = state;
-    const [dataInfoRoom, setDataInfoRoom] = useState();
+    const {getIdRoom,} = state;
+    const [dataInfoRoom, setDataInfoRoom] = useState({});
     const [bookingInfo,setBookingInfo] = useState({
-        checkinDate: '',
-        fullName: '',
-        amountOfPeople: '',
-        phone: '',
-        email: ''
+        checkinDate: "",
+        checkoutDate: "",
+        durationDays: 0,
+        roomSelections: [
+            {
+                roomType: "",
+                count: 1
+            }
+        ],
+        totalPrice: 0
     });
 
     useEffect(()=>{
@@ -26,30 +31,12 @@ function FormBooking({ dataRoom }) {
         setDataInfoRoom(findData)
     },[])
 
+
+
     return (
         <div className="p-10 w-[800px] flex flex-col gap-10">
-            <div className=" flex justify-between box p-3 ">
-                <div className=" flex gap-4">
-                    <div className=" min-w-16 w-16 h-16 rounded-xl overflow-hidden cursor-pointer">
-                        <DetailImageRoom src={"https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/Ph%C3%B2ng%20Ocean%20Suite/ceb6gpnbn7ujv921.webp"} />
-                    </div>
-                    <div className="">
-                        <h3 className=" text-xl font-bold">{dataInfoRoom?.roomType}</h3>
-                        <div className="flex gap-4 ">
-                            <IconNText icon="fa-solid fa-bed" text={`30 m2`} />
-                            <IconNText icon="fa-solid fa-user" text={"tối đa: 2"} />
-                        </div>
-                    </div>
-                </div>
-                <div className="flex gap-5">
-                    <div>
-                        <div className="font-bold text-xl">{dataInfoRoom?.pricePerNight}</div>
-                        <div className=""> /phòng</div>
-                    </div>
-                    <div className=" flex justify-center bottom w-24 bg-lime-100">
-                        <span className="font-bold">{"quantity"}</span>
-                    </div>
-                </div>
+            <div className="">
+               Nhập thông tin của bạn 
             </div>
             <div className=" flex flex-col gap-6">
                 <div className="grid grid-cols-2 gap-6 justify-start ">

@@ -5,6 +5,7 @@ import LocaltionPicnic from "../../componet/homeComponets/localtionPicnic";
 import TitleHome from "../../componet/homeComponets/titleHome";
 
 function Home() {
+    
 
     return (
         <div>
@@ -13,7 +14,7 @@ function Home() {
                 <video className="home-bn-video" src="https://minio.fares.vn/mixivivu-dev/video/Mixivivuduthuyen.mp4" autoPlay muted playsInline loop></video>
                 <div className="searchBox flex flex-col gap-10 box">
                     <div className="flex flex-col gap-4">
-                        <h4 className=" text-center font-bold text-4xl">where do you want to go?</h4>
+                        <h4 className=" text-center font-bold text-4xl">Where do you want to go?</h4>
                         <p className=" text-center text-lg text-gray-900 opacity-60">Hundreds of places for you to explore</p>
                     </div>
                     <Search />

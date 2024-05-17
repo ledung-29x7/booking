@@ -1,38 +1,41 @@
 import { useEffect, useState } from "react";
 import { useStore } from "../../../store/contexts";
 import { actions } from "../../../store/action";
-import EditRoom from "./editRoom";
-import RowRoom from "./rowRoom";
-function MyHotel() {
-    const [isShowEdit,setIsShowEdit] = useState(false);
-    const [state,dispatch] = useStore();
-    const {isEdit} = state;
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
+import * as apis from "../../../apis"
+import RowList from "./rowRoom";
+
+function ListUser() {
+    const navigate = useNavigate();
+    const [rooms,setRooms] = useState([]);
+    const [editRoom,setEditRoom] = useState({});
+    const [state, dispatch] = useStore();   
+    const { idEdit,getToken } = state;
+
+    // Read apis
+    console.log(getToken)
+    useEffect(() => {
+        const FetchData = async() => {
+            try {
+                const response = await apis.getManager("hotels")
+                setRooms(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        FetchData()
+    },[])
 
     useEffect(() => {
-        function OpenEdit(isEdit) {
-            return(
-                setIsShowEdit(isEdit)
-            )
+        const GetEdit = (id) => {
+            if(id != null){
+                var getIdEND = rooms.find(ob => ob.id ===id) 
+            }
+            setEditRoom(getIdEND)
         }
-        OpenEdit(isEdit)
-    },[isEdit])
-
-    // Open Add user
-    
-
-    // when click outside overlay 
-    const handleClickOutsideModal = (event) => {
-        var overlay = document.getElementById("overlay")
-        if (event.target === overlay) {
-            setIsShowEdit(false)
-            dispatch(actions.ModalEdit(false))
-        }
-    };
-
-    // 
-    useEffect(() =>{
-        window.addEventListener('click',handleClickOutsideModal)
-    })
+        GetEdit(idEdit)
+    },[idEdit])
 
     return (
         <div className=" my-10 px-10">
@@ -40,44 +43,38 @@ function MyHotel() {
                 <div className=" flex justify-between items-center">
                     <div className="flex flex-col gap-5">
                         <h4 className="font-bold text-4xl w-80">
-                           MyHotels
-                        </h4>
+                        Add New Hotel                        </h4>
                         <img className="w-24" src="../icon/heading-border.png" alt="" />
                     </div>
-                    {/* <div className="mx-10 ">
-                        <button  className="buttom_crud w-20 h-8 bg-lime-600">Add Room</button>
-                    </div> */}
+                    <div className="mx-10 bg-lime-600 w-32 h-10 flex justify-center items-center gap-3 rounded-md">
+                        <FontAwesomeIcon style={{color:"white"}} icon="fa-solid fa-plus"/>
+                        <button className="buttom_crud ">Add hotel</button>
+                    </div>
                 </div>
-                <div className="frame mt-5 shadow_uslist relative">
-                    <table className=" w-full shadow ">
-                        <tr className="sticky top-0 bg-slate-200 h-12">
+                <div>
+                    
+                </div>
+                <div className=" mt-4">
+                    <table className="  w-full shadow ">
+                        <tr className="bg-slate-200 h-12">
                             <th>ID</th>
-                            <th>Name Room</th>
-                            <th>singleRoomPrice</th>
-                            <th>doubleRoomPrice</th>
+                            <th>Tên Khách Sạn</th>
+                            <th>Địa Chỉ</th>
+                            <th>Sô Lượng Phòng</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
-                        <RowRoom
-
+                        {rooms.map((us)=>(
+                            <RowList
+                            key={us.id}
+                            room={us}
                         />
+                        ))}
                     </table>
                 </div>
             </div>
-            {/* modal edit */}
-            {isShowEdit ?
-                <div className="modal z-50">
-                    <div className="flex w-full h-full">
-                        <div id="overlay" className="modal_overlay"></div>
-                        <div className="modal_body">
-                            <EditRoom />
-                        </div>
-                    </div>
-                </div>
-            : null
-            }
+            {/* modal add */}
         </div>
     );
 }
-export default MyHotel
-
+export default ListUser;

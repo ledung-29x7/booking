@@ -17,6 +17,7 @@ import MyBookings from "../pages/roomHotel/myBookings";
 import Login from "../layout/user/logIn";
 import SignUp from "../layout/user/signUp";
 import DefaultLayoutLogin from "../layout/defaultLayout/defaultLayoutLogin";
+import EditManagerHotel from "../pages/manage/myHotels/editHotel";
 
 const publicRoute = [
     { path: '/', componet: Home },
@@ -27,15 +28,16 @@ const publicRoute = [
     { path: '/admin/listHotel', componet: ListHotel, layout: DefaultLayoutAdmin },
     { path: '/admin/listBooking', componet: ListBooking, layout: DefaultLayoutAdmin },
     { path: '/hotel/room/:id', componet: Room },
-    { path: '/manage/listRooms', componet: ListRoom, layout: DefaultLayoutAdmin },
-    { path: '/manage', componet: HomeManage, layout: DefaultLayoutAdmin },
-    { path: '/manage/myHotels', componet: MyHotel, layout: DefaultLayoutAdmin },
-    { path: '/manage/manageBookings', componet: ManagerBooking, layout: DefaultLayoutAdmin },
+    { path: '/manager/listRooms', componet: ListRoom, layout: DefaultLayoutAdmin },
+    { path: '/manager', componet: HomeManage, layout: DefaultLayoutAdmin },
+    { path: '/manager/myHotels', componet: MyHotel, layout: DefaultLayoutAdmin },
+    { path: '/manager/manageBookings', componet: ManagerBooking, layout: DefaultLayoutAdmin },
     { path: '/pay', componet: Pay, layout: DefaultLayoutAdmin },
     { path: '/bookingConfirmation', componet: BookingComfirmation, layout: DefaultLayoutAdmin },
     { path: '/bookings', componet: MyBookings },
     { path: '/user/signin', componet: Login, layout: DefaultLayoutLogin },
     { path: '/user/signup', componet: SignUp, layout: DefaultLayoutLogin },
+    { path: '/manager/myHotels/edit/:id', componet: EditManagerHotel, layout:DefaultLayoutAdmin}
 ]
 
 export default publicRoute;

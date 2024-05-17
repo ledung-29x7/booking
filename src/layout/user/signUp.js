@@ -32,7 +32,7 @@ function SignUp() {
         e.preventDefault();
 
         const FetchData = async () => {
-            await apis.addUser(formData)
+            await apis.SignUp(formData)
             .then(res=>{
                 console.log(res)
                 if (res.errors) {

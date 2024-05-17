@@ -17,7 +17,7 @@ function HeaderUp() {
     // handle Login
     function handleLogin() {
         setIsShowingLogin(true);
-        setIsShowingSignUp(false);
+        dispatch(actions.ModalLogin(true))
     }
 
     // show SignUp

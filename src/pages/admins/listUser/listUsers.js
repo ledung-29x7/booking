@@ -23,11 +23,9 @@ function ListUser() {
         }));
     }
 
-    // callBack apis 5s
+    // callBack apis 
     useEffect(() => {
         CallData();
-        const callApi = setInterval(CallData, 8000)
-        return() => callApi && clearInterval(callApi)
     },[])
 
     // assign value to users

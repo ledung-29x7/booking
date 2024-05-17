@@ -61,7 +61,29 @@ export const getRoom = (search,id) => new Promise(async(resolve, reject) => {
     }
 })
 
+export const GetImage = ({id}) => new Promise(async(resolve, reject) => {
+    try {
+        const response = await axios({
+            url:`image/view/${id}`,
+            method: 'GET',
+            
+        })
+        resolve(response.data)
+    } catch (error) {
+        reject(error)
+    }
+})
+
 export const addUser = (post) => new Promise(async(resolve, reject) => {
+    try {
+        const response= await axios.post('admin/',post);
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const SignUp = (post) => new Promise(async(resolve, reject) => {
     try {
         const response= await axios.post('auth/signup',post);
         resolve(response)
@@ -88,3 +110,70 @@ export const editUser = (host,id,put) => new Promise(async(resolve,reject) => {
     }
 })
 
+// Get Room
+export const getManager = (host) => new Promise(async(resolve,reject) => {
+    try {
+        const response = await axios({
+            url:`manager/${host}`,
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
+            }
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const editRoom = (host,id,put) => new Promise(async(resolve,reject) => {
+    try {
+        const response = await axios({
+            url:`manager/${host}/${id}`,
+            method: "put",
+            data:put,
+            headers: {
+                "Content-Type": "multipart/form-data",
+                'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
+            }
+        })
+
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+// BOOKING
+export const Booking = (bok) => new Promise(async(resolve,reject)=> {
+    try {
+        const response = await axios({
+            url:`booking/initiate`,
+            method: 'POST',
+            data:bok,
+            headers: {
+               
+                'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
+            }
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+// PAYMENT
+export const Payment = (pay) => new Promise(async(resolve,reject)=> {
+    try {
+        const response = await axios({
+            url:`booking/payment`,
+            method: "post",
+            data:pay,
+            headers: {
+                'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
+            }
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
