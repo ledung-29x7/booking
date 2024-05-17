@@ -1,12 +1,43 @@
 import { useNavigate } from "react-router-dom";
 import InputRoom from "./inputRoom";
+import * as apis from "../../apis";
 import { useState } from "react";
 
 function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
     const navigate = useNavigate();
     const [infoPay,setInfoPay] = useState({
         
+            cardholderName:"",
+            cardNumber:"",
+            expirationDate:"",
+            cvc:""
+        
     });
+
+    const handleChange = (e) => {
+        setInfoPay({...infoPay,[e.target.name]: e.target.value})
+    }
+
+    const handleSubmit = (e) => {
+        const FetchData = async () => {
+            e.preventDefault();
+            try {
+                const response = await apis.Payment(infoPay)
+                .then(res=> {
+                    if (res.status === 200) {
+                        navigate("/bookingConfirmation")
+                        
+                        console.log(res)
+                    }
+                })
+            } catch (error) {
+                console.log(sessionStorage.getItem("bookingRoom"))
+                console.log(error)
+            }
+        }
+        FetchData();
+    }
+
     return (
         <div className="flex flex-col containerr px-8 ">
             <div className=" flex py-6 border-b font-bold">
@@ -59,42 +90,50 @@ function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
                     </div>
                 </div>
                 {/* enter info Pay */}
-                <div className="flex flex-col justify-between flex-[2_1_0%] px-5">
+                <form action="/pay" className="flex flex-col justify-between flex-[2_1_0%] px-5" onSubmit={handleSubmit}>
                     <div className="">
                         <h3 className="font-bold text-xl">Total Price: </h3>
                         <div>{totalPrice}</div>
                     </div>
                     <div className="flex flex-col gap-6">
                         <InputRoom
-                            nameInput={"cardName"}
+                            nameInput={"cardholderName"}
                             placeholder={"Cardholder Name"}
+                            onChange={handleChange}
+                            value={infoPay.cardholderName}
                         />
                         <InputRoom
                             nameInput={"cardNumber"}
                             placeholder={"Card Number"}
+                            onChange={handleChange}
+                            value={infoPay.cardNumber}
                         />
                         <div className="flex justify-between gap-5">
                             <div className="flex-1">
                                 <InputRoom
-                                    nameInput={"expiration"}
-                                    placeholder={"Nhập Họ và tên"}
+                                    nameInput={"expirationDate"}
+                                    placeholder={"Expiration Date"}
+                                    onChange={handleChange}
+                                    value={infoPay.expirationDate}
                                 />
                             </div>
                             <div className="flex-1">
                                 <InputRoom
-                                    nameInput={"CVC"}
-                                    placeholder={"Nhập Họ và tên"}
+                                    nameInput={"cvc"}
+                                    placeholder={"CVC"}
+                                    onChange={handleChange}
+                                    value={infoPay.cvc}
                                 />
                             </div>
                             
                         </div>
                     </div>
                     <div>
-                        <button onClick={() => navigate("/bookingConfirmation")} className="  bg-sky-600 rounded-3xl text-white px-6 py-3">
+                        <button  className="  bg-sky-600 rounded-3xl text-white px-6 py-3">
                             Complete Booking
                         </button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );

@@ -4,17 +4,17 @@ function HomeManage(){
     <div className="my-14">
     <div className=" containerr flex gap-12 h-full">
         <ManageTask
-        link={"/manage/listRooms"}
+        link={"/manager/listRooms"}
         nameTask="Room Lists"
         icon="fa-solid fa-key" 
         />
         <ManageTask
-        link={"/manage/myHotels"}
+        link={"/manager/myHotels"}
         nameTask="My Hotel"
         icon="fa-solid fa-hotel"
         />
         <ManageTask
-        link={"/manage/manageBookings"}
+        link={"/manager/manageBookings"}
         nameTask="List Booking"
         icon="fa-solid fa-calendar-days" 
         />

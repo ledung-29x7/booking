@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function BoxInput({ style, placeholder, ai, type, icon, onKeyDown, onChange,nameInput,value }) {
     return (
         <div className="search h-full">
-            <div className="input-group ">
+            <div className="input-group transition duration-300 ">
                 <div className='flex justify-center'>
                     <FontAwesomeIcon style={style} icon={icon} />
                 </div>
-                <input className=" text-left h-6 w-full outline-none"
+                <input className=" text-left h-6 w-full outline-none placeholder:text-sm   "
                     aria-invalid={ai}
                     type={type}
                     name={nameInput}
@@ -17,6 +17,7 @@ function BoxInput({ style, placeholder, ai, type, icon, onKeyDown, onChange,name
                     onChange={onChange}
                 />
             </div>
+            
         </div>
     );
 }

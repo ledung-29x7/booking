@@ -8,7 +8,8 @@ import {
     ISSHOWFORMBOOKING,
     GETSEARCH,
     GETIDROOM,
-    ISSUCCESSFULL
+    ISSUCCESSFULL,
+    GETPRICEROOM,
 } from "./constants"
 
 // modal SignUp, Login
@@ -86,4 +87,13 @@ export const GetIdRoom = (id) => {
         id
     }
 }
-// 
+
+// get Price Room
+export const GetPriceRoom = (price) => {
+    return {
+        type:GETPRICEROOM,
+        price
+    }
+}
+
+

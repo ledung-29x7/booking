@@ -1,14 +1,15 @@
 import { useStore } from "../../../store/contexts";
 import { actions } from "../../../store/action";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as apis from "../../../apis";
 
 function EditHotel({ hotel }) {
 
-    const [state,dispatch] = useStore();
-    const {idEdit} = state;
-    const [valueEdit,setValueEdit] = useState({
-        name: '' ,
+    const [state, dispatch] = useStore();
+    const { idEdit } = state;
+    const [valueEdit, setValueEdit] = useState({
+        ...hotel,
+        name: '',
         managerUsername: '',
         addressDTO: {
             id: 0,
@@ -17,37 +18,52 @@ function EditHotel({ hotel }) {
             city: "",
             country: ""
         },
-        ...hotel?.roomDTOs,
-        ...hotel.image
     })
 
     console.log(hotel)
 
-    useEffect(()=> {
+    useEffect(() => {
         setValueEdit(hotel)
-    },[hotel])
+    }, [hotel])
 
-    const handleChange = (e) =>{
-        setValueEdit({...valueEdit,[e.target.name]: e.target.value})
-    } 
-    
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        // Nếu trường đang thay đổi thuộc addressDTO
+        if (name.includes('addressDTO')) {
+            const addressName = name.split('.')[1]; // Lấy tên trường con (ví dụ: addressLine, district, city, country)
+            setValueEdit({
+                ...valueEdit,
+                addressDTO: {
+                    ...valueEdit.addressDTO,
+                    [addressName]: value
+                }
+            });
+        } else {
+            setValueEdit({
+                ...valueEdit,
+                [name]: value
+            });
+        }
+    }
+
     function HandleCloseEdit() {
         dispatch(actions.ModalEdit(false));
     }
 
     function handleSubmit(e) {
-        const FetchEdit = async() => {
+        const FetchEdit = async () => {
             try {
                 e.preventDefault();
-                await apis.editUser("hotels",idEdit,valueEdit)
-                .then(res=>{
-                    if(res.status === 200){
-                        return(
-                            dispatch(actions.ModalEdit(false)),
-                            dispatch(actions.ModalSuccsessfull(true))
-                        )
-                    }
-                })
+                await apis.editUser("hotels", idEdit, valueEdit)
+                    .then(res => {
+                        if (res.status === 200) {
+                            return (
+                                setValueEdit(res.data),
+                                dispatch(actions.ModalEdit(false)),
+                                dispatch(actions.ModalSuccsessfull(true))
+                            )
+                        }
+                    })
             } catch (error) {
                 console.log(error)
             }
@@ -56,12 +72,12 @@ function EditHotel({ hotel }) {
     }
     return (
         <div className="auth-form">
-                <div className=" px-10 my-7 flex justify-between w-full h-14 font-bold text-xl border-b border-b-slate-800 ">
-                    <span>Edit Hotel</span>
-                    <span onClick={HandleCloseEdit} className=" w-6 h-6 text-2xl text-slate-500 flex justify-center items-center text-center cursor-pointer "  >
-                        &times;
-                    </span>
-                </div>
+            <div className=" px-10 my-7 flex justify-between w-full h-14 font-bold text-xl border-b border-b-slate-800 ">
+                <span>Edit Hotel</span>
+                <span onClick={HandleCloseEdit} className=" w-6 h-6 text-2xl text-slate-500 flex justify-center items-center text-center cursor-pointer "  >
+                    &times;
+                </span>
+            </div>
             <div className=" px-10">
                 {/* title edit */}
                 <form className=" my-7 flex flex-col gap-10" onSubmit={handleSubmit}>
@@ -74,7 +90,7 @@ function EditHotel({ hotel }) {
                                 type="text"
                                 name="name"
                                 onChange={handleChange}
-                                value={valueEdit.name}
+                                value={valueEdit?.name}
                             />
                         </div>
                         <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
@@ -83,16 +99,18 @@ function EditHotel({ hotel }) {
                                 type="text"
                                 placeholder="Address Line"
                                 name="managerUsername"
-                                value={valueEdit.managerUsername}
+                                onChange={handleChange}
+                                value={valueEdit?.managerUsername}
                             />
                         </div>
                         <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
                             <input
                                 className="outline-none w-11/12 h-full"
-                                placeholder="District"
+                                placeholder="AddressLine"
                                 type="text"
-                                name=""
-                            // value={hotel.district}
+                                name="addressDTO.addressLine"
+                                onChange={handleChange}
+                                value={valueEdit?.addressDTO?.addressLine}
                             />
                         </div>
                         <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
@@ -100,8 +118,30 @@ function EditHotel({ hotel }) {
                                 className="outline-none w-11/12 h-full"
                                 placeholder="Municipality"
                                 type="text"
-                                name=""
-                            // value={hotel.municipality}
+                                name="addressDTO.district"
+                                onChange={handleChange}
+                                value={valueEdit?.addressDTO?.district}
+                            />
+                        </div>
+
+                        <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
+                            <input
+                                className="outline-none w-11/12 h-full"
+                                placeholder="Municipality"
+                                type="text"
+                                name="addressDTO.city"
+                                onChange={handleChange}
+                                value={valueEdit?.addressDTO?.city}
+                            />
+                        </div>
+                        <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
+                            <input
+                                className="outline-none w-11/12 h-full"
+                                placeholder="Municipality"
+                                type="text"
+                                name="addressDTO.country"
+                                onChange={handleChange}
+                                value={valueEdit?.addressDTO?.country}
                             />
                         </div>
                     </div>

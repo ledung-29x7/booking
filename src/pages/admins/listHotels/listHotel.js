@@ -24,8 +24,6 @@ function ListHotel() {
     // callBack apis 5s
     useEffect(() => {
         CallData();
-        const callApi = setInterval(CallData, 8000)
-        return() => callApi && clearInterval(callApi)
     },[])
 
     // assign value to users

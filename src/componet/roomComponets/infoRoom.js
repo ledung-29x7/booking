@@ -1,10 +1,17 @@
 import Utilities from "../hotelComponets/utilities";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useStore } from "../../store/contexts";
-import { actions } from "../../store/action";
+import { actions, actionsGetData } from "../../store/action";
+import { useEffect, useState } from "react";
+import Room from "../../pages/roomHotel/room";
 
-function InfoRoom({dataInfoRoom}){
-    
-    const [,dispath] = useStore();
+function InfoRoom({ dataInfoRoom }) {
+
+    const [, dispath] = useStore();
+    const [count, setCount] = useState(0);
+    const [singleRoomCount, setSingleRoomCount] = useState(0);
+    const [doubleRoomCount, setDoubleRoomCount] = useState(0);
+    const [familyRoomCount, setFamilyRoomCount] = useState(0);
 
     const handleDetailRoom = () => {
         dispath(actions.ModalInforRoom(true))
@@ -15,12 +22,71 @@ function InfoRoom({dataInfoRoom}){
         dispath(actions.ModalFormBooking(true))
     }
 
-    return(
+    const handlePlusCount = () => {
+        if (count < dataInfoRoom?.roomCount) {
+            setCount((cont) => cont += 1);
+            if (dataInfoRoom?.roomType === "SINGLE") {
+                setSingleRoomCount((prev) => prev += 1);
+            } else if (dataInfoRoom?.roomType === "DOUBLE") {
+                setDoubleRoomCount((prev) => prev += 1);
+            } else if (dataInfoRoom?.roomType === "FAMILY") {
+                setFamilyRoomCount((prev) => prev += 1);
+            }
+        }
+    };
+
+    const handleMinusCount = () => {
+        if (count > 0) {
+            setCount((cont) => cont -= 1);
+            if (dataInfoRoom?.roomType === "SINGLE") {
+                setSingleRoomCount((prev) => prev -= 1);
+            } else if (dataInfoRoom?.roomType === "DOUBLE") {
+                setDoubleRoomCount((prev) => prev -= 1);
+            } else if (dataInfoRoom?.roomType === "FAMILY") {
+                setFamilyRoomCount((prev) => prev -= 1);
+            }
+        }
+    };
+
+    useEffect(() => {
+        var singlePrice = dataInfoRoom?.pricePerNight * singleRoomCount;
+        dispath(actionsGetData.TotalPriceS(singlePrice))
+        dispath(actionsGetData.CountNType({
+
+            roomType: "SINGLE",
+            count: singleRoomCount
+
+        }))
+    }, [singleRoomCount]);
+
+    useEffect(() => {
+        var doublePrice = dataInfoRoom?.pricePerNight * doubleRoomCount;
+        dispath(actionsGetData.TotalPriceD(doublePrice))
+        dispath(actionsGetData.CountNType({
+
+            roomType: "DOUBLE",
+            count: doubleRoomCount
+
+        }))
+    }, [doubleRoomCount])
+
+    useEffect(() => {
+        var familyPrice = dataInfoRoom?.pricePerNight * familyRoomCount;
+        dispath(actionsGetData.TotalPriceF(familyPrice))
+        dispath(actionsGetData.CountNType({
+
+            roomType: "FAMILY",
+            count: familyRoomCount
+
+        }))
+    }, [familyRoomCount])
+
+    return (
         <div className="box px-5 py-6">
             {/* title */}
             <div className=" py-3">
                 <span className=" text-xl font-semibold">
-                    {dataInfoRoom.roomType}
+                    {dataInfoRoom?.roomType}
                 </span>
             </div>
             {/* info  */}
@@ -28,16 +94,16 @@ function InfoRoom({dataInfoRoom}){
                 {/* image and size Room */}
                 <div className=" flex flex-col gap-5 flex-1 pr-4">
                     <div className=" w-72 rounded-2xl overflow-hidden">
-                        <img  src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/Ph%C3%B2ng%20Delta%20Suite/a6f3b1uro1rfttjx.webp" alt=""/>
+                        <img src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/Ph%C3%B2ng%20Delta%20Suite/a6f3b1uro1rfttjx.webp" alt="" />
                     </div>
                     <div className="flex flex-col gap-6">
                         <span className=" text-gray-600">
                             {30} m2
                         </span>
                         <div className="flex flex-col gap-3">
-                            <Utilities utilitie={"vòi tắm đứng"}/>
-                            <Utilities utilitie={"tủ lạnh khu vực chờ"}/>
-                            <Utilities utilitie={"máy lạnh"}/>
+                            <Utilities utilitie={"vòi tắm đứng"} />
+                            <Utilities utilitie={"tủ lạnh khu vực chờ"} />
+                            <Utilities utilitie={"máy lạnh"} />
                         </div>
                         <div className="flex justify-center">
                             <button className=" rounded-2xl px-6 py-1 bg-cyan-400 text-white" type="buttom" onClick={handleDetailRoom} >
@@ -73,14 +139,22 @@ function InfoRoom({dataInfoRoom}){
                         </div>
                     </div>
                     <div className=" flex justify-between items-center">
+                        <div className=" px-5 py-3 box flex gap-5 ">
+                            <button className=""
+                                onClick={handleMinusCount}
+                            >
+                                <FontAwesomeIcon icon="fa-solid fa-minus" />
+                            </button>
+                            <span>{count}</span>
+                            <button className=" "
+                                onClick={handlePlusCount}
+                            >
+                                <FontAwesomeIcon icon="fa-solid fa-plus" />
+                            </button>
+                        </div>
                         <span className=" text-xl font-semibold">
                             {dataInfoRoom.pricePerNight}$
                         </span>
-                        <button className=" bottom bg-cyan-500"
-                            onClick={handleFormBooking}
-                        >
-                            Đặt ngay
-                        </button>
                     </div>
                 </div>
                 {/* end Utilitis */}

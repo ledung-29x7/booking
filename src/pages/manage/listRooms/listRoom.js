@@ -2,77 +2,40 @@ import { useEffect, useState } from "react";
 import { useStore } from "../../../store/contexts";
 import { actions } from "../../../store/action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import * as apis from "../../../apis"
 import RowList from "./rowList";
-import AddRoom from "./addRoom";
-import { useNavigate } from "react-router-dom";
 
 function ListUser() {
-    const navigate=useNavigate();
-    const [isShowEdit, setIsShowEdit] = useState(false);
-    const [isShowAdd, setisShowAdd] = useState(false);
-    const [users,setUser] = useState([]);
-    const [editUs,setEditUs] = useState({});
-    const [state, dispatch] = useStore();
-    const { isEdit,isAdd,id } = state;
+    const navigate = useNavigate();
+    const [rooms,setRooms] = useState([]);
+    const [editRoom,setEditRoom] = useState({});
+    const [state, dispatch] = useStore();   
+    const { idEdit,getToken } = state;
 
     // Read apis
+    console.log(getToken)
     useEffect(() => {
         const FetchData = async() => {
-            const response = await apis.getUser();
-            setUser(response)
+            try {
+                const response = await apis.getManager("hotels","eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYW5hZ2VyQGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX01BTkFHRVIiLCJpYXQiOjE3MTU1OTQ1MjUsImV4cCI6MTcxNTU5ODEyNX0.GGM7dcQrJMxMvzIG3FmMranNoU-_YzbNP7yqIAVZQnE")
+                setRooms(response.data)
+            } catch (error) {
+                console.log(error)
+            }
         }
-        FetchData();
+        FetchData()
     },[])
 
     useEffect(() => {
         const GetEdit = (id) => {
             if(id != null){
-                var getIdEND = users.find(ob => ob.id ===id) 
+                var getIdEND = rooms.find(ob => ob.id ===id) 
             }
-            setEditUs(getIdEND)
+            setEditRoom(getIdEND)
         }
-        GetEdit(id)
-    },[id])
-    // open form Edit
-    useEffect(() => {
-        function OpenEdit(isEdit) {
-            return (
-                setIsShowEdit(isEdit)
-            );
-        }
-        OpenEdit(isEdit)
-    }, [isEdit])
-
-    // Open form Add
-    function HandleOpenAdd() {
-        dispatch(actions.ModalAdd(true))
-    }
-
-    useEffect(() => {
-        function OpenAdd (isAdd) {
-            return(
-                setisShowAdd(isAdd)
-            );
-        }
-        OpenAdd(isAdd)
-    },[isAdd])
-
-    // when click 
-    const handleClickOutsideModal = (event) => {
-        var overlay = document.getElementById("overlay")
-        if (event.target === overlay) {
-            setIsShowEdit(false)
-            setisShowAdd(false)
-            dispatch(actions.ModalEdit(false))
-            dispatch(actions.ModalAdd(false))
-        }
-    };
-
-    // 
-    useEffect(() => {
-        window.addEventListener('click', handleClickOutsideModal)
-    })
+        GetEdit(idEdit)
+    },[idEdit])
 
     return (
         <div className=" my-10 px-10">
@@ -85,7 +48,7 @@ function ListUser() {
                     </div>
                     <div className="mx-10 bg-lime-600 w-32 h-10 flex justify-center items-center gap-3 rounded-md">
                         <FontAwesomeIcon style={{color:"white"}} icon="fa-solid fa-plus"/>
-                        <button onClick={HandleOpenAdd} className="buttom_crud ">Add hotel</button>
+                        <button className="buttom_crud ">Add hotel</button>
                     </div>
                 </div>
                 <div>
@@ -95,14 +58,13 @@ function ListUser() {
                     <table className="  w-full shadow ">
                         <tr className="bg-slate-200 h-12">
                             <th>ID</th>
-                            <th>User Name</th>
-                            <th>Firt Name</th>
-                            <th>Last Name</th>
-                            <th>Role</th>
+                            <th>Tên Khách Sạn</th>
+                            <th>Địa Chỉ</th>
+                            <th>Sô Lượng Phòng</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
-                        {users.map((us)=>(
+                        {rooms.map((us)=>(
                             <RowList
                             key={us.id}
                             room={us}
@@ -112,17 +74,6 @@ function ListUser() {
                 </div>
             </div>
             {/* modal add */}
-            {isShowAdd ?
-                <div className="modal z-50">
-                    <div className="flex w-full h-full">
-                        <div id="overlay" className="modal_overlay"></div>
-                        <div className="modal_body">
-                            <AddRoom />
-                        </div>
-                    </div>
-                </div>
-                : null
-            }
         </div>
     );
 }

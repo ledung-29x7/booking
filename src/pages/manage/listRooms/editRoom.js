@@ -4,19 +4,13 @@ import { useEffect, useState } from "react";
 import * as apis from "../../../apis";
 import { useNavigate } from "react-router-dom";
 
-function EditUser({ user }) {
-    const role = [
-        {id:1, roleType:"ADMIN"} ,
-        {id:2, roleType:"CUSTOMER"},
-        {id:3, roleType:"MANAGER"}
-    ]
+function EditRoom({ room }) {
 
     const [valueEdit,setValueEdit] = useState({
-        username: '' ,
-        phone: '',
-        firstName: '',
-        lastName:'' ,
-        role: {id: 0, roleType:"" },
+        ...room,
+        roomType: "",
+        roomCount: 0,
+        pricePerNight: 0
     })
 
     const navigate = useNavigate();
@@ -25,25 +19,17 @@ function EditUser({ user }) {
 
     // as
     useEffect(()=> {
-        setValueEdit(user)
-    },[user])
+        setValueEdit(room)
+    },[room])
 
     function HandleCloseEdit() {
         dispatch(actions.ModalEdit(false));
     }
 
     function handleChange (e){
-        if (e.target.name === "role") {
-            // Find the role object from the role array based on the selected role ID
-            const selectedRole = role.find(rol => rol.id === parseInt(e.target.value, 10)); // Convert value to integer if necessary
-            // Update the state with the selected role object
-            setValueEdit(prevState => ({
-              ...prevState,
-              role: selectedRole
-            }));
-        } else{
+        
             setValueEdit({...valueEdit,[e.target.name]: e.target.value})
-        }
+        
     }
 
     function handleSubmit(e) {
@@ -123,13 +109,7 @@ function EditUser({ user }) {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
-                            <select className="outline-none w-11/12 h-full" value={valueEdit.role?.id} name="role" onChange={handleChange}>
-                                {role.map((rol)=>(
-                                    <option key={rol.id} value={rol.id} >{rol?.roleType}</option>
-                                ))}
-                            </select>
-                        </div>
+                       
                     </div>
                     <div className="border-gray-500 border text-right rounded-lg overflow-hidden h-9">
                         <button className=" bg-blue-500 h-full w-full font-bold text-white">Update</button>
@@ -142,4 +122,4 @@ function EditUser({ user }) {
         </div>
     );
 }
-export default EditUser;
+export default EditRoom;

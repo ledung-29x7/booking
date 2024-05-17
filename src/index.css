@@ -100,8 +100,8 @@ code {
 .input-group{
   position: relative;
   padding: 16px 20px;
-  border-radius: 28px;
-  border: 2px solid #eaecf0;
+  border-radius: 8px;
+  border: 1px solid #acb3c0;
   box-shadow: var(--tw-shadow);
   display: flex;
   align-items: center;
@@ -109,8 +109,10 @@ code {
 }
 
 .input-group:focus-within{
-  box-shadow: -2px -2px 2px 2px #77dada,
-  2px 2px 2px 2px #77dada;
+  border:2px solid #548efb ;
+}
+.input-group:hover{
+  border-color:  #548efb ;
 }
 
 /* hotel */
@@ -239,6 +241,12 @@ table,th,td {
 .buttom_crud{
   border-radius: 5px;
   color: #fff;
+}
+
+.calenderInput {
+  font-size: 16px;
+  font-family: Archivo, sans-serif;
+  font-weight: 500;
 }
 
 @media only screen and (max-width: 1280px) {

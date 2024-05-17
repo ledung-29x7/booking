@@ -31,11 +31,12 @@ function Login() {
         const FetchData = async () => {
             await apis.Login(formData)
             .then(res=>{
-                console.log(res)
+                console.log(res.data.token)
                 if (res.errors) {
                     setErrors(res.errors);
                     alert('Login failed!');
                 } else {
+                    window.sessionStorage.setItem('token', res.data.token)
                     dispatch(actions.ModalLogin(false))
                     navigate('/');
                 }

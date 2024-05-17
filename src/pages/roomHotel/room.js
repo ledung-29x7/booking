@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useStore } from "../../store/contexts";
 import { actions } from "../../store/action";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as apis from "../../apis"
 import TitleRoom from "../../componet/roomComponets/titleRoom";
 import SlideRoom from "../../componet/roomComponets/slideRoom";
@@ -12,22 +12,46 @@ import Utilitie from "../../componet/roomComponets/utilitie";
 import CheckBox from "../../componet/hotelComponets/checkBox";
 import InfoRoom from "../../componet/roomComponets/infoRoom";
 import DetailRoom from "../../componet/roomComponets/detailRoom";
-import FormBooking from "./formBooking";
 
 function Room() {
-    const {id} = useParams()
+    const { id } = useParams()
     const [state, dispatch] = useStore();
     const [showInfoRoom, setShowInfoRoom] = useState(false);
     const [showFormBooking, setShowFromBooking] = useState(false);
     const [dataRoom, setDataRoom] = useState([])
-    const { isInforoom,isFormBooking,getSearch } = state;
+    const [total, setTotal] = useState(0);
+    const navigate = useNavigate();
+    const { 
+        isInforoom, 
+        isFormBooking, 
+        getSearch, 
+        priceRoomS, 
+        priceRoomD, 
+        priceRoomF,
+        checkin,
+        checkout,
+        countNType
+        } = state;
+    const [roomBooking, setRoomBooking ] = useState({
+        roomType: "",
+        count: 0
+    });
+    const [bookingInfo,setBookingInfo] = useState({
+        checkinDate: "",
+        checkoutDate: "",
+        durationDays: 0,
+        roomSelections: [
 
-    // get 
-    useEffect(()=>{
+        ],
+        totalPrice: 0
+    });
+
+    // get API
+    useEffect(() => {
         if (getSearch !== null) {
-            const FetchData = async() => {
+            const FetchData = async () => {
                 try {
-                    const response = await apis.getRoom(getSearch,id)
+                    const response = await apis.getRoom(getSearch, id)
                     setDataRoom(response)
                 } catch (error) {
                     console.log(error)
@@ -35,17 +59,61 @@ function Room() {
             }
             FetchData();
         }
-    },[getSearch])
+    }, [getSearch])
+
+    // total price
+    useEffect(() => {
+        setTotal(priceRoomS + priceRoomF + priceRoomD)
+    }, [priceRoomS, priceRoomD, priceRoomF])
+
 
     // Open Information Room
     useEffect(() => {
         setShowInfoRoom(isInforoom)
     }, [isInforoom])
 
+    
+    useEffect(()=> {
+        const datein = new Date(checkin);
+        const dateout = new Date(checkout);
+        const msin = datein.getTime();
+        const msout = dateout.getTime();
+        const duration = Math.ceil((msout-msin) / (24*60*60*1000))
+        
+        setBookingInfo(b => b = {
+            checkinDate:checkin,
+            checkoutDate:checkout,
+            durationDays: duration,
+            roomSelections:[countNType],
+            totalPrice:total
+        })
+        
+    },[countNType,checkin,checkout,total])
+
+    
+    
     // Open Form Booking
-    useEffect(() =>{
+    const handleOpenBooking = () => {
+
+        const FetchData = async () => {
+            try {
+                const response = await apis.Booking(bookingInfo)
+                .then(res=> {
+                    if (res.status === 200) {
+                        navigate("/pay")
+                    }
+                })
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        FetchData();
+    }
+    
+    useEffect(() => {
         setShowFromBooking(isFormBooking)
-    },[isFormBooking])
+    }, [isFormBooking])
+
 
     // when click
     const handleClickOutsideModal = (event) => {
@@ -119,7 +187,7 @@ function Room() {
 
                         {/* cac loai phong gia */}
                         <div className=" flex flex-col gap-10">
-                            <TitleHome title={"Cac loai phong & gia"} />
+                            <TitleHome title={"Các loại phòng $ giá"} />
                             <div className="flex flex-col gap-6 border rounded-lg px-5 py-6">
                                 <span className=" text-lg font-semibold ">
                                     Tìm kiếm nhanh hơn bằng cách chọn những tiện nghi bạn cần
@@ -132,15 +200,36 @@ function Room() {
                                 </div>
                             </div>
                             <div className=" p-8 rounded-3xl bg-[url('https://mixivivu.com/section-background.png')] flex flex-col gap-10 bg-[#f2f4f7]">
-                                {dataRoom.roomDTOs?.map((dtroom,key)=>
-                                    <InfoRoom 
-                                    key={key}
-                                    dataInfoRoom={dtroom}
-                                />
+
+                                <div className="flex justify-end px-2">
+                                    <button className=" text-[#0e4f4f] font-semibold px-6 py-4 rounded-2xl bg-white">
+                                        Xóa lựa chọn
+                                    </button>
+                                </div>
+                                {dataRoom.roomDTOs?.map((dtroom, key) =>
+                                    <InfoRoom
+                                        key={key}
+                                        dataInfoRoom={dtroom}
+                                    />
                                 )}
+                                <div className=" flex justify-between">
+                                    <div className="flex flex-col px-2">
+                                        <span className=" text-gray-700">
+                                            Tổng tiền
+                                        </span>
+                                        <span className=" pl-2 text-2xl font-bold text-[#0e4f4f]">
+                                            {total} $
+                                        </span>
+                                    </div>
+                                    <button className=" bottom bg-[#77dada]" onClick={handleOpenBooking}>
+                                        <div>Đặt ngay</div>
+                                        <FontAwesomeIcon icon="fa-solid fa-arrow-right" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    {/* đây là thông tin của khách sạn  */}
                     <div className=" min-w-96 max-w-[25vw]">
                         <div className=" rounded-[32px] box ">
                             <div className=" px-6 py-5 border-b-2 border-b-[#eaecf0]">Room Information</div>
@@ -168,7 +257,7 @@ function Room() {
             }
 
             {/* Form Booking */}
-            {showFormBooking ?
+            {/* {showFormBooking ?
                 <div className="modal">
                     <div className="flex h-full w-full">
                         <div id="overlay" className="modal_overlay"></div>
@@ -178,7 +267,7 @@ function Room() {
                     </div>
                 </div>
                 : null
-            }
+            } */}
         </div>
     );
 }
