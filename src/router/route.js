@@ -5,6 +5,7 @@ import Hanoitravelpartone from "../pages/thingsToDo/details/hanoitravel";
 import Huetravel from "../pages/thingsToDo/details/huetravel";
 import Hotel from "../pages/hotel/hotel";
 import ThingsToDo from "../pages/thingsToDo/thingsToDo";
+import About from "../pages/admins/about";
 import Admin from "../pages/admins/homeAdmin/admin";
 import DefaultLayoutAdmin from "../layout/defaultLayout/defaultLayoutAdmin";
 import ListUser from "../pages/admins/listUser/listUsers";
@@ -16,6 +17,7 @@ import HomeManage from "../pages/manage/homeManages/homeManage";
 import MyHotel from "../pages/manage/myHotels/myHotel";
 import ManagerBooking from "../pages/manage/manageBookings/manageBooking";
 import Pay from "../pages/roomHotel/pay";
+import Payment from "../pages/admins/payment";
 import BookingComfirmation from "../pages/roomHotel/bookingComfirmation";
 import MyBookings from "../pages/roomHotel/myBookings";
 import Login from "../layout/user/logIn";
@@ -26,6 +28,7 @@ const publicRoute = [
     { path: '/', componet: Home },
     { path: '/hotel', componet: Hotel },
     { path: '/thingsToDo', componet: ThingsToDo },
+    { path: '/about', componet: About },
     { path: '/admin', componet: Admin, layout: DefaultLayoutAdmin },
     { path: '/admin/listUser', componet: ListUser, layout: DefaultLayoutAdmin },
     { path: '/admin/listHotel', componet: ListHotel, layout: DefaultLayoutAdmin },
@@ -40,6 +43,7 @@ const publicRoute = [
     { path: '/manage/myHotels', componet: MyHotel, layout: DefaultLayoutAdmin },
     { path: '/manage/manageBookings', componet: ManagerBooking, layout: DefaultLayoutAdmin },
     { path: '/pay', componet: Pay, layout: DefaultLayoutAdmin },
+    { path: '/payment', componet: Payment },
     { path: '/bookingConfirmation', componet: BookingComfirmation, layout: DefaultLayoutAdmin },
     { path: '/bookings', componet: MyBookings },
     { path: '/user/signin', componet: Login, layout: DefaultLayoutLogin },

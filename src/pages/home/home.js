@@ -1,4 +1,3 @@
-
 import Search from "./search";
 import Popular from "../../componet/homeComponets/popular";
 import LocaltionPicnic from "../../componet/homeComponets/localtionPicnic";
