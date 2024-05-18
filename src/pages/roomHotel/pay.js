@@ -25,13 +25,12 @@ function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
                 const response = await apis.Payment(infoPay)
                 .then(res=> {
                     if (res.status === 200) {
+                        sessionStorage.setItem("idBooking",res.data.id)
                         navigate("/bookingConfirmation")
-                        
                         console.log(res)
                     }
                 })
             } catch (error) {
-                console.log(sessionStorage.getItem("bookingRoom"))
                 console.log(error)
             }
         }

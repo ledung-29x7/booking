@@ -61,6 +61,7 @@ export const getRoom = (search,id) => new Promise(async(resolve, reject) => {
     }
 })
 
+//lấy ảnh hotel
 export const GetImage = ({id}) => new Promise(async(resolve, reject) => {
     try {
         const response = await axios({
@@ -74,6 +75,7 @@ export const GetImage = ({id}) => new Promise(async(resolve, reject) => {
     }
 })
 
+// admin thêm người dùng
 export const addUser = (post) => new Promise(async(resolve, reject) => {
     try {
         const response= await axios.post('admin/',post);
@@ -83,6 +85,7 @@ export const addUser = (post) => new Promise(async(resolve, reject) => {
     }
 })
 
+// đăng ký
 export const SignUp = (post) => new Promise(async(resolve, reject) => {
     try {
         const response= await axios.post('auth/signup',post);
@@ -92,6 +95,7 @@ export const SignUp = (post) => new Promise(async(resolve, reject) => {
     }
 })
 
+// đăng nhập
 export const Login = (post) => new Promise(async(resolve, reject) => {
     try {
         const response = await axios.post('auth/login',post)
@@ -101,6 +105,7 @@ export const Login = (post) => new Promise(async(resolve, reject) => {
     }
 })
 
+// admin chỉnh sửa người dùng
 export const editUser = (host,id,put) => new Promise(async(resolve,reject) => {
     try {
         const response = await axios.put(`admin/${host}/${id}`,put)
@@ -110,7 +115,7 @@ export const editUser = (host,id,put) => new Promise(async(resolve,reject) => {
     }
 })
 
-// Get Room
+// manager lấy list hotel 
 export const getManager = (host) => new Promise(async(resolve,reject) => {
     try {
         const response = await axios({
@@ -126,6 +131,7 @@ export const getManager = (host) => new Promise(async(resolve,reject) => {
     }
 })
 
+// chỉnh sửa hotel and room hotel
 export const editRoom = (host,id,put) => new Promise(async(resolve,reject) => {
     try {
         const response = await axios({
@@ -161,6 +167,7 @@ export const Booking = (bok) => new Promise(async(resolve,reject)=> {
         reject(error)
     }
 })
+
 // PAYMENT
 export const Payment = (pay) => new Promise(async(resolve,reject)=> {
     try {
@@ -173,6 +180,22 @@ export const Payment = (pay) => new Promise(async(resolve,reject)=> {
             }
         })
         resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+// confirmation
+export const Confirmation  = () => new Promise(async(resolve,reject)=> {
+    try {
+        const response = await axios({
+            url:`confirmation/${sessionStorage.getItem("idBooking")}`,
+            method: "get",
+            headers: {
+                'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
+            }
+        })
+        resolve(response.data)
     } catch (error) {
         reject(error)
     }

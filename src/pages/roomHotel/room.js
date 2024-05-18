@@ -18,25 +18,27 @@ function Room() {
     const [state, dispatch] = useStore();
     const [showInfoRoom, setShowInfoRoom] = useState(false);
     const [showFormBooking, setShowFromBooking] = useState(false);
+    const [imagesHotel, setImagesHotel ] = useState([]);
     const [dataRoom, setDataRoom] = useState([])
     const [total, setTotal] = useState(0);
     const navigate = useNavigate();
-    const { 
-        isInforoom, 
-        isFormBooking, 
-        getSearch, 
-        priceRoomS, 
-        priceRoomD, 
+    const {
+        isInforoom,
+        isFormBooking,
+        getSearch,
+        priceRoomS,
+        priceRoomD,
         priceRoomF,
         checkin,
         checkout,
         countNType
-        } = state;
-    const [roomBooking, setRoomBooking ] = useState({
+    } = state;
+    const [roomBooking, setRoomBooking] = useState({
         roomType: "",
         count: 0
     });
-    const [bookingInfo,setBookingInfo] = useState({
+    const [bookingInfo, setBookingInfo] = useState({
+        hotelId : 1,
         checkinDate: "",
         checkoutDate: "",
         durationDays: 0,
@@ -72,44 +74,58 @@ function Room() {
         setShowInfoRoom(isInforoom)
     }, [isInforoom])
 
-    
-    useEffect(()=> {
+
+    useEffect(() => {
         const datein = new Date(checkin);
         const dateout = new Date(checkout);
         const msin = datein.getTime();
         const msout = dateout.getTime();
-        const duration = Math.ceil((msout-msin) / (24*60*60*1000))
-        
-        setBookingInfo(b => b = {
-            checkinDate:checkin,
-            checkoutDate:checkout,
-            durationDays: duration,
-            roomSelections:[countNType],
-            totalPrice:total
-        })
-        
-    },[countNType,checkin,checkout,total])
+        const duration = Math.ceil((msout - msin) / (24 * 60 * 60 * 1000))
 
+        setBookingInfo(b => b = {
+            ...bookingInfo,
+            checkinDate: checkin,
+            checkoutDate: checkout,
+            durationDays: duration,
+            roomSelections: [countNType],
+            totalPrice: total
+        })
+
+    }, [countNType, checkin, checkout, total])
+
+    // Get Image Hotel
+    useEffect(() => {
+        // Hàm để hiển thị ảnh từ JSON
+        const images = [];
+        function displayImages(imageDTOs) {
+            imageDTOs?.forEach(imageDTO => {
+                images.push(`data:${imageDTO?.type};base64,${imageDTO?.image}`)
+            });
+        }
+        // Gọi hàm hiển thị ảnh
+        displayImages(dataRoom?.imageDTOs);
+        setImagesHotel(images);
+    }, [dataRoom])
     
-    
+    console.log(bookingInfo)
     // Open Form Booking
     const handleOpenBooking = () => {
 
         const FetchData = async () => {
             try {
                 const response = await apis.Booking(bookingInfo)
-                .then(res=> {
-                    if (res.status === 200) {
-                        navigate("/pay")
-                    }
-                })
+                    .then(res => {
+                        if (res.status === 200) {
+                            navigate("/pay")
+                        }
+                    })
             } catch (error) {
                 console.log(error)
             }
         }
         FetchData();
     }
-    
+
     useEffect(() => {
         setShowFromBooking(isFormBooking)
     }, [isFormBooking])
