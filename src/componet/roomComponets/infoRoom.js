@@ -9,6 +9,7 @@ function InfoRoom({ dataInfoRoom }) {
 
     const [, dispath] = useStore();
     const [count, setCount] = useState(0);
+    const [imageHotel, setImageHotel] = useState('');
     const [singleRoomCount, setSingleRoomCount] = useState(0);
     const [doubleRoomCount, setDoubleRoomCount] = useState(0);
     const [familyRoomCount, setFamilyRoomCount] = useState(0);
@@ -81,6 +82,16 @@ function InfoRoom({ dataInfoRoom }) {
         }))
     }, [familyRoomCount])
 
+    useEffect(()=> {
+        // Hàm để hiển thị ảnh từ JSON
+    function displayImages(imageDTOs) {
+        
+        setImageHotel(`data:${imageDTOs[0]?.type};base64,${imageDTOs[0]?.image}`)
+    }
+    // Gọi hàm hiển thị ảnh
+    displayImages(dataInfoRoom?.imageDTOs);
+},[dataInfoRoom])
+
     return (
         <div className="box px-5 py-6">
             {/* title */}
@@ -94,7 +105,7 @@ function InfoRoom({ dataInfoRoom }) {
                 {/* image and size Room */}
                 <div className=" flex flex-col gap-5 flex-1 pr-4">
                     <div className=" w-72 rounded-2xl overflow-hidden">
-                        <img src="https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/Ph%C3%B2ng%20Delta%20Suite/a6f3b1uro1rfttjx.webp" alt="" />
+                        <img loading="lazy" src={imageHotel} alt="" />
                     </div>
                     <div className="flex flex-col gap-6">
                         <span className=" text-gray-600">

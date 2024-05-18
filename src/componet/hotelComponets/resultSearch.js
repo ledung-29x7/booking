@@ -13,9 +13,7 @@ function ResultSearch({resul}){
             // Hàm để hiển thị ảnh từ JSON
         function displayImages(imageDTOs) {
             
-            
-                setImageHotel(`data:${imageDTOs[0]?.type};base64,${imageDTOs[0]?.image}`)
-           
+            setImageHotel(`data:${imageDTOs[0]?.type};base64,${imageDTOs[0]?.image}`)
         }
         // Gọi hàm hiển thị ảnh
         displayImages(resul?.imageDTOs);
