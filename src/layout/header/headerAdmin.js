@@ -90,7 +90,7 @@ function HeaderAdmin() {
                 <button className=" bg-cyan-200 border-cyan-200 flex items-center justify-center  bottom font-bold "
                     onClick={handleLogin}
                     >
-                    Sign up / Login
+                     Đăng ký / Đăng nhập
                 </button>
             </div>
             {isShowingSignUp ?

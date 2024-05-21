@@ -200,3 +200,24 @@ export const Confirmation  = () => new Promise(async(resolve,reject)=> {
         reject(error)
     }
 })
+// contact
+// export const addContact = (contact) => new Promise(async(resolve,reject)=> {
+//     try {
+//         const response = await axios({
+//             url:`contact`,
+//             method: "post",
+//             data:contact,
+//         })
+//         resolve(response)
+//     } catch (error) {
+//         reject(error)
+//     }
+// })
+export const addContact = (post) => new Promise(async(resolve, reject) => {
+    try {
+        const response= await axios.post('contact/',post);
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})

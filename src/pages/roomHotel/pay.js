@@ -39,102 +39,102 @@ function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
 
     return (
         <div className="flex flex-col containerr px-8 ">
-            <div className=" flex py-6 border-b font-bold">
-                <button className=" hover:text-cyan-600 flex-1">Your Selection</button>
-                <button className=" hover:text-cyan-600 flex-1">Complete Detail</button>
-            </div>
+        <div className=" flex py-6 border-b font-bold">
+            <button className=" hover:text-cyan-600 flex-1">Lựa chọn của bạn</button>
+            <button className=" hover:text-cyan-600 flex-1">Chi tiết đầy đủ</button>
+        </div>
 
-            <div className="py-5 flex">
-                {/* info date booking */}
-                <div className="flex flex-col gap-3 flex-1 px-3">
-                    <div className="border p-4 rounded-lg flex flex-col gap-3">
-                        <div>
-                            Swisstoel The Bosphorus Itanbul
-                        </div>
-                        <div>
-                            Acisu Sokagi No:19,34357
-                        </div>
-                        <div>
-                            Istanbul, Turkey
-                        </div>
+        <div className="py-5 flex">
+            {/* info date booking */}
+            <div className="flex flex-col gap-3 flex-1 px-3">
+                <div className="border p-4 rounded-lg flex flex-col gap-3">
+                    <div>
+                        Hà Nội 
                     </div>
-                    <div className="border p-4 rounded-lg flex flex-col gap-10">
-                        <div className=" grid grid-cols-2">
-                            <div className="flex flex-col gap-2">
-                                <h4 className=" font-semibold">Check In</h4>
-                                <div className=" text-gray-600">{"dateIn"}</div>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <h4 className="font-semibold">Check Out</h4>
-                                <div className="text-gray-600">{"dateOut"}</div>
-                            </div>
+                    <div>
+                       DungLe No:19,34357
+                    </div>
+                    <div>
+                        Hà Nội, Việt Nam
+                    </div>
+                </div>
+                <div className="border p-4 rounded-lg flex flex-col gap-10">
+                    <div className=" grid grid-cols-2">
+                        <div className="flex flex-col gap-2">
+                            <h4 className=" font-semibold">Đăng ký vào</h4>
+                            <div className=" text-gray-600">{"dateIn"}</div>
                         </div>
                         <div className="flex flex-col gap-2">
-                            <h4 className="font-semibold">Duration of stay</h4>
-                            <div className="text-gray-600">
-                                {dateOut - dateIn} nights
-                            </div>
+                            <h4 className="font-semibold">Thủ tục thanh toán</h4>
+                            <div className="text-gray-600">{"dateOut"}</div>
                         </div>
-                        <div className="flex flex-col gap-3">
-                            <h4 className="font-semibold">Selected rooms</h4>
-                            <div className="flex flex-col gap-2">
-                                <div className="text-gray-600">
-                                    {roomSingle} Single
-                                </div>
-                                <div className="text-gray-600">
-                                    {roomDouble} Double
-                                </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                        <h4 className="font-semibold">Thời gian cư trú</h4>
+                        <div className="text-gray-600">
+                            {dateOut - dateIn} Đêm
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-3">
+                        <h4 className="font-semibold">Phòng đã chọn</h4>
+                        <div className="flex flex-col gap-2">
+                            <div className="text-gray-600">
+                                {roomSingle} Đơn
+                            </div>
+                            <div className="text-gray-600">
+                                {roomDouble} Đôi
                             </div>
                         </div>
                     </div>
                 </div>
-                {/* enter info Pay */}
-                <form action="/pay" className="flex flex-col justify-between flex-[2_1_0%] px-5" onSubmit={handleSubmit}>
-                    <div className="">
-                        <h3 className="font-bold text-xl">Total Price: </h3>
-                        <div>{totalPrice}</div>
-                    </div>
-                    <div className="flex flex-col gap-6">
-                        <InputRoom
-                            nameInput={"cardholderName"}
-                            placeholder={"Cardholder Name"}
-                            onChange={handleChange}
-                            value={infoPay.cardholderName}
-                        />
-                        <InputRoom
-                            nameInput={"cardNumber"}
-                            placeholder={"Card Number"}
-                            onChange={handleChange}
-                            value={infoPay.cardNumber}
-                        />
-                        <div className="flex justify-between gap-5">
-                            <div className="flex-1">
-                                <InputRoom
-                                    nameInput={"expirationDate"}
-                                    placeholder={"Expiration Date"}
-                                    onChange={handleChange}
-                                    value={infoPay.expirationDate}
-                                />
-                            </div>
-                            <div className="flex-1">
-                                <InputRoom
-                                    nameInput={"cvc"}
-                                    placeholder={"CVC"}
-                                    onChange={handleChange}
-                                    value={infoPay.cvc}
-                                />
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div>
-                        <button  className="  bg-sky-600 rounded-3xl text-white px-6 py-3">
-                            Complete Booking
-                        </button>
-                    </div>
-                </form>
             </div>
+            {/* enter info Pay */}
+            <form action="/pay" className="flex flex-col justify-between flex-[2_1_0%] px-5" onSubmit={handleSubmit}>
+                <div className="">
+                    <h3 className="font-bold text-xl">Tổng giá: </h3>
+                    <div>{totalPrice}</div>
+                </div>
+                <div className="flex flex-col gap-6">
+                    <InputRoom
+                         nameInput={"cardName"}
+                         placeholder={"Tên chủ thẻ"}
+                        onChange={handleChange}
+                        value={infoPay.cardholderName}
+                    />
+                    <InputRoom
+                        nameInput={"cardNumber"}
+                        placeholder={"Số thẻ"}
+                        onChange={handleChange}
+                        value={infoPay.cardNumber}
+                    />
+                    <div className="flex justify-between gap-5">
+                        <div className="flex-1">
+                            <InputRoom
+                                 nameInput={"expiration"}
+                                 placeholder={"Nhập Họ và tên"}
+                                onChange={handleChange}
+                                value={infoPay.expirationDate}
+                            />
+                        </div>
+                        <div className="flex-1">
+                            <InputRoom
+                                nameInput={"CVC"}
+                                placeholder={"Nhập Họ và tên"}
+                                onChange={handleChange}
+                                value={infoPay.cvc}
+                            />
+                        </div>
+                        
+                    </div>
+                </div>
+                <div>
+                    <button  className="  bg-sky-600 rounded-3xl text-white px-6 py-3">
+                    Hoàn tất đặt chỗ
+                    </button>
+                </div>
+            </form>
         </div>
+    </div>
     );
 }
 export default Pay;

@@ -3,13 +3,17 @@ import IconNText from "./iconNText";
 import { useStore } from "../../store/contexts";
 import { actions } from "../../store/action";
 import { useEffect, useState } from "react";
-
-
 function DetailRoom({dataInfoRoom}){
 
     const [state,dispatch] = useStore();
     const {getIdRoom} = state;
     const [dtDetail,setDtDetail] = useState({});
+    const [imageRoom, setImageRoom] = useState('');
+    const [imageDetail, setImageDetail] = useState([]);
+    // const MyImage=({imageDetail=[{image:""}]}) => {return
+    //     const[mainImage,setMainImage] = useState(imageDetail[0]);
+    // };
+
 
     useEffect(()=>{
         var findData = dataInfoRoom.find((ob)=>ob.id === getIdRoom)
@@ -19,31 +23,42 @@ function DetailRoom({dataInfoRoom}){
     function handleClose(){
         dispatch(actions.ModalInforRoom(false))
     }
+    useEffect(()=>{
+        const images = [];
+        function displayImages(imageDTOs){
+           if(imageDTOs?.length>0){
+                setImageRoom(`data:${imageDTOs[0]?.type};base64,${imageDTOs[0]?.image}`)
+                
+                imageDTOs?.forEach(imageDTO=>{
+                    images.push(`data:${imageDTO?.type};base64,${imageDTO?.image}`)
+                });
+           }
+        }
+        displayImages(dtDetail?.imageDTOs);
+        setImageDetail(images);
+    },[dtDetail])
+    console.log(dataInfoRoom)
+
     return(
         <div className=" p-2 ">
             <div className="w-[960px] flex p-6">
                 <div className="">
                     <div className="flex flex-col justify-center items-center gap-2">
                         <div className=" w-[400px] h-[400px] rounded-xl overflow-hidden">
-                            
-                                <DetailImageRoom src={"https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/Ph%C3%B2ng%20Delta%20Suite/ji40giht574e26xg.webp"}/>
+                                <DetailImageRoom src={imageRoom}/>
                             
                         </div>
                         <div className=" max-w-[400px] overflow-auto  flex gap-2">
-                            <div className=" min-w-16 w-16 h-16 rounded-xl overflow-hidden cursor-pointer">
-                                <DetailImageRoom src={"https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/Ph%C3%B2ng%20Delta%20Suite/kg6xnii8w2pvebyk.webp"}/>
-                            </div>
-                            <div className=" min-w-16 w-16 h-16 rounded-xl overflow-hidden cursor-pointer">
-                                <DetailImageRoom src={"https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/Ph%C3%B2ng%20Delta%20Suite/kg6xnii8w2pvebyk.webp"}/>
-                            </div>
-                            <div className=" min-w-16 w-16 h-16 rounded-xl overflow-hidden cursor-pointer">
-                                <DetailImageRoom src={"https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/Ph%C3%B2ng%20Delta%20Suite/kg6xnii8w2pvebyk.webp"}/>
-                            </div>
+                            {imageDetail?.map((img)=>
+                                <div className=" min-w-16 w-16 h-16 rounded-xl overflow-hidden cursor-pointer">
+                                <DetailImageRoom src={img}/>
+                                </div>
+                            )}
+                            
                         </div>
                     </div>
                 </div>
                 <div className=" px-5 w-full flex flex-col justify-between">
-                    
                     <h3 className="text-2xl font-semibold">{dtDetail?.roomType}</h3>
                     
                     <div className="py-5 flex-initial flex flex-col gap-3 ">

@@ -1,6 +1,4 @@
 
-
-
 function Footer() {
     return (
         <div className=" bg-black flex justify-center text-gray-400 ">
@@ -17,29 +15,29 @@ function Footer() {
                 </div>
                 <div className=" flex flex-grow gap-8 justify-between ">
                     <div className="flex flex-col gap-4">
-                        <span className="text-white font-bold">Gioi thieu</span>
+                        <span className="text-white font-bold">Giới thiệu</span>
                         <div className="flex gap-2 flex-col">
-                            <a href="/" >ve chunng toi</a>
-                            <a href="/">Dieu khoan va dieu kien</a>
-                            <a href="/">Huong Dan su dung</a>
-                            <a href="/">Huong dan thah toan</a>
-                            <a href="/">Lien he</a>
-                            <a href="/">HotLine: </a>
-                            <a href="/">Email:</a>
+                            <a href="/" >Về chúng tôi</a>
+                            <a href="/">Điều khoản và điều kiện</a>
+                            <a href="/">Hướng dẫn sử dụng</a>
+                            <a href="/">Hướng dẫn thanh toán</a>
+                            <a href="/">Liên hệ</a>
+                            <a href="/">HotLine:09999999999 </a>
+                            <a href="/">Email:chungdunghotel@gmail.com</a>
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
-                        <span className="text-white font-bold">San Pham</span>
+                        <span className="text-white font-bold">Sản phẩm</span>
                         <div className="flex gap-2 flex-col">
-                            <a href="/">Booking Khach San</a>
-                            <a href="/">quan ly khach hang</a>
+                            <a href="/">Đặt khách sạn</a>
+                            <a href="/">Quản lý khách hàng</a>
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
-                        <span className="text-white font-bold">Khach San</span>
+                        <span className="text-white font-bold">Khách sạn</span>
                         <div className="flex gap-2 flex-col">
                             <a href="/">Blog</a>
-                            <a href="/">Dieu khoan Dieu kien chung</a>
+                            <a href="/">Điều khoản điều khiện chung</a>
                         </div>
                     </div>
                 </div>

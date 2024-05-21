@@ -86,17 +86,17 @@ function HeaderUp() {
                 </div>
                 {/* thanh điều hướng */}
                 <div className="flex gap-10 items-center cursor-pointer h-full">
-                    <MenuItem to={'/hotel'} title="Hotel" />
-                    <MenuItem to={'/thingsToDo'} title="Things to Do" />
-                    <MenuItem to={'/bookings'} title="Bookings" />
-                    <MenuItem to={'/parnership'} title="Partnership" />
+                    <MenuItem to={'/hotel'} title="Khách sạn" />
+                    <MenuItem to={'/thingsToDo'} title="Blog" />
+                    <MenuItem to={'/bookings'} title="Đặt chỗ" />
+                    <MenuItem to={'/contact'} title="Liên hệ" />
                 </div>
             </div>
             {/* đăng nhập đăng xuất */}
             <div className=" flex gap-10 items-center">
                 <button className=" bg-cyan-200 flex items-center justify-center  bottom font-bold "
                     onClick={handleLogin}>
-                    Sign up / Login
+                                      Đăng ký / Đăng nhập
                 </button>
             </div>
             {isShowingSignUp ?
