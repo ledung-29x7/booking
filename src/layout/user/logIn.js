@@ -20,10 +20,15 @@ function Login() {
         dispatch(actions.Modal(true)); // deponsit action = true for form signUp in header
     }
 
+
     // write info
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+    
+    // Hàm để lấy giá trị của một cookie
+
+   
 
     // submit
     const handleSubmit = (e) => {
@@ -31,14 +36,31 @@ function Login() {
         const FetchData = async () => {
             await apis.Login(formData)
             .then(res=>{
-                console.log(res.data.token)
-                if (res.errors) {
-                    setErrors(res.errors);
-                    alert('Login failed!');
-                } else {
+                
+                console.log(res)
+                if (res.status === 200){
                     window.sessionStorage.setItem('token', res.data.token)
+                    sessionStorage.setItem('nameUser', res.data.username);
+                    dispatch(actions.CheckLogin(true));
                     dispatch(actions.ModalLogin(false))
-                    navigate('/');
+                    switch (res.data.role) {
+                        case "ADMIN":
+                            return(
+                                    navigate("/admin")
+                                )
+                        case "MANAGER":
+                            return(
+                                navigate("/manager")
+                            )
+                        case "CUSTOMER":
+                            return(
+                                navigate("/")
+                            )
+                        default:
+                            return alert("loi roi");
+                    }
+                } else {
+                    alert("dang nhap that bai")
                 }
             })
             .catch(errors=>{
@@ -54,8 +76,8 @@ function Login() {
             {/* modal header */}
             <div className="auth-form_header">
                 <div className="flex justify-between mb-4 mt-2">
-                    <h3 className=" text-3xl font-semibold">Login</h3>
-                    <span onClick={handleSignUp} className="auth-form_btn ">SignUp</span>
+                    <h3 className=" text-3xl font-semibold">Đăng nhập</h3>
+                    <span onClick={handleSignUp} className="auth-form_btn ">Đăng ký</span>
                 </div>
             </div>
 
@@ -82,7 +104,7 @@ function Login() {
             <div className="">
                 <button className="border text-teal-800 rounded-lg  w-full h-12 font-bold bg-cyan-200"
                 >
-                    Login
+                    Đăng nhập
                 </button>
             </div>
             </form>

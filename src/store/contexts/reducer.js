@@ -16,7 +16,8 @@ import {
     PRICEROOMFAMILY,
     CHECKINDATE,
     CHECKOUTDATE,
-    COUNTROOM
+    COUNTROOM,
+    CHECKLOGIN
 } from "../action/constants";
 
 export const initState = {
@@ -37,7 +38,8 @@ export const initState = {
     priceRoomF: 0,
     checkin : "",
     checkout : "",
-    countNType: {}
+    countNType: {},
+    checkLogin: false,
 }
 
 function Reducers(state,action){
@@ -131,6 +133,11 @@ function Reducers(state,action){
             return {
                 ...state,
                 countNType: action.countNtype
+            }
+        case CHECKLOGIN:
+            return {
+                ...state,
+                checkLogIn: action.blo
             }
         default:
             return state;

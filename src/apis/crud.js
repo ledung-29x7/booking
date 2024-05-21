@@ -98,7 +98,9 @@ export const SignUp = (post) => new Promise(async(resolve, reject) => {
 // đăng nhập
 export const Login = (post) => new Promise(async(resolve, reject) => {
     try {
-        const response = await axios.post('auth/login',post)
+        const response = await axios.post('auth/login',post,{
+            withCredentials: true,
+        })
         resolve(response)
     } catch (error) {
         reject(error)
@@ -249,6 +251,32 @@ export const HistoryBookings = (host) =>new Promise(async(resolve,reject)=> {
             }
         })
         resolve(response.data)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+// Log Out
+export const LogOut = () => new Promise(async(resolve,reject)=> {
+    try {
+        const response = await axios({
+            url:`auth/logout`,
+            method: "post",
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
+            }
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+// contact
+export const addContact = (post) => new Promise(async(resolve, reject) => {
+    try {
+        const response= await axios.post('contact/',post);
+        resolve(response)
     } catch (error) {
         reject(error)
     }

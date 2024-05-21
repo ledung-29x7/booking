@@ -5,11 +5,10 @@ import { actions, actionsGetData } from "../../store/action";
 import { useEffect, useState } from "react";
 import Room from "../../pages/roomHotel/room";
 
-function InfoRoom({ dataInfoRoom }) {
+function InfoRoom({ dataInfoRoom}) {
 
     const [, dispath] = useStore();
     const [count, setCount] = useState(0);
-    const [imageHotel, setImageHotel] = useState('');
     const [singleRoomCount, setSingleRoomCount] = useState(0);
     const [doubleRoomCount, setDoubleRoomCount] = useState(0);
     const [familyRoomCount, setFamilyRoomCount] = useState(0);
@@ -81,16 +80,22 @@ function InfoRoom({ dataInfoRoom }) {
 
         }))
     }, [familyRoomCount])
+   
+    const [imageRoom, setImageRoom] = useState('');
 
-    useEffect(()=> {
-        // Hàm để hiển thị ảnh từ JSON
-    function displayImages(imageDTOs) {
+    useEffect(()=>{
         
-        setImageHotel(`data:${imageDTOs[0]?.type};base64,${imageDTOs[0]?.image}`)
-    }
-    // Gọi hàm hiển thị ảnh
-    displayImages(dataInfoRoom?.imageDTOs);
-},[dataInfoRoom])
+        function displayImages(imageDTOs){
+           if(imageDTOs?.length>0){
+                setImageRoom(`data:${imageDTOs[0]?.type};base64,${imageDTOs[0]?.image}`)
+           }
+           
+        }
+        displayImages(dataInfoRoom?.imageDTOs);
+
+    },[dataInfoRoom])
+    console.log(dataInfoRoom)
+
 
     return (
         <div className="box px-5 py-6">
@@ -105,7 +110,7 @@ function InfoRoom({ dataInfoRoom }) {
                 {/* image and size Room */}
                 <div className=" flex flex-col gap-5 flex-1 pr-4">
                     <div className=" w-72 rounded-2xl overflow-hidden">
-                        <img loading="lazy" src={imageHotel} alt="" />
+                        <img src={imageRoom} alt="" />
                     </div>
                     <div className="flex flex-col gap-6">
                         <span className=" text-gray-600">
@@ -131,10 +136,10 @@ function InfoRoom({ dataInfoRoom }) {
                         </span>
                         <div className=" flex justify-between px-4 text-gray-600">
                             <span className="">
-                                {1}
+                                {1} người
                             </span>
                             <span className="">
-                                {2} nguoi
+                                {2} người
                             </span>
                         </div>
                     </div>

@@ -16,4 +16,5 @@ export const PRICEROOMFAMILY = 'priceRoomFamily';
 export const CHECKINDATE = 'checkinDate';
 export const CHECKOUTDATE = 'checkoutDate';
 export const COUNTROOM = 'countRoom';
-export const ROOMTYPE = 'roomType;'
+export const ROOMTYPE = 'roomType';
+export const CHECKLOGIN = "checkLogIn";

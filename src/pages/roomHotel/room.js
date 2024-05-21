@@ -45,7 +45,7 @@ function Room() {
         roomSelections: [
 
         ],
-        totalPrice: 0
+        amount: 0
     });
 
     // get API
@@ -88,7 +88,7 @@ function Room() {
             checkoutDate: checkout,
             durationDays: duration,
             roomSelections: [countNType],
-            totalPrice: total
+            amount: total
         })
 
     }, [countNType, checkin, checkout, total])
@@ -248,7 +248,7 @@ function Room() {
                     {/* đây là thông tin của khách sạn  */}
                     <div className=" min-w-96 max-w-[25vw]">
                         <div className=" rounded-[32px] box ">
-                            <div className=" px-6 py-5 border-b-2 border-b-[#eaecf0]">Room Information</div>
+                            <div className=" px-6 py-5 border-b-2 border-b-[#eaecf0]">Thông tin phòng</div>
                             <div className="py-5 px-6 flex flex-col gap-4">
                                 <Utilitie src={"../icon/icon-utiliti.svg"} util={"sang "} />
                                 <Utilitie src={"../icon/icon-utiliti.svg"} util={"xin"} />

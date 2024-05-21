@@ -57,8 +57,8 @@ function SignUp() {
             {/* modal header */}
             <div className="auth-form_header">
                 <div className="flex justify-between mb-4 mt-2">
-                    <h3 className=" text-3xl font-semibold">SignUp</h3>
-                    <span onClick={handleLogin} className="auth-form_btn ">Login</span>
+                    <h3 className=" text-3xl font-semibold">Đăng ký</h3>
+                    <span onClick={handleLogin} className="auth-form_btn ">Đăng nhập</span>
                 </div>
             </div>
 
@@ -110,7 +110,7 @@ function SignUp() {
                     <button className=" rounded-lg w-full h-12 font-bold bg-cyan-200"
                        
                     >
-                        SignUp
+                        Đăng ký
                     </button>
                 </div>
             </form>

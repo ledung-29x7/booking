@@ -10,6 +10,7 @@ import {
     GETIDROOM,
     ISSUCCESSFULL,
     GETPRICEROOM,
+    CHECKLOGIN,
 } from "./constants"
 
 // modal SignUp, Login
@@ -93,6 +94,14 @@ export const GetPriceRoom = (price) => {
     return {
         type:GETPRICEROOM,
         price
+    }
+}
+
+// get Price Room
+export const CheckLogin = (blo) => {
+    return {
+        type:CHECKLOGIN,
+        blo
     }
 }
 

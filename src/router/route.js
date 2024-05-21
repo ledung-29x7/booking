@@ -20,6 +20,8 @@ import DefaultLayoutLogin from "../layout/defaultLayout/defaultLayoutLogin";
 import EditManagerHotel from "../pages/manage/myHotels/editHotel";
 import AddManagerHotel from "../pages/manage/myHotels/addManagerHotel";
 import AddImageHotel from "../pages/manage/myHotels/addImageHotel";
+import Contact from "../pages/contact/contact";
+
 
 const publicRoute = [
     { path: '/', componet: Home },
@@ -41,7 +43,9 @@ const publicRoute = [
     { path: '/user/signup', componet: SignUp, layout: DefaultLayoutLogin },
     { path: '/manager/myHotels/edit/:id', componet: EditManagerHotel, layout: DefaultLayoutAdmin },
     { path: '/manager/myHotel/add', componet: AddManagerHotel, layout: DefaultLayoutAdmin },
-    { path: '/manager/myHotel/add/imagehotel', componet: AddImageHotel, Layout:DefaultLayoutAdmin }
+    { path: '/manager/myHotel/add/imagehotel', componet: AddImageHotel, Layout:DefaultLayoutAdmin },
+    { path: '/contact', componet: Contact}
+
 ]
 
 export default publicRoute;
