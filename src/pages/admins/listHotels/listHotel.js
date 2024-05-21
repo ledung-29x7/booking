@@ -21,7 +21,7 @@ function ListHotel() {
         }));
     }
 
-    // callBack apis 5s
+    // callBack apis 
     useEffect(() => {
         CallData();
     },[])

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function TitleRoom({title,introduce,sao,address}) {
 
     const specificAddress = address?.addressLine + ", " + address?.district + ", " + address?.city + ", " + address?.country;
-    const price = introduce?.find(ob => ob.roomType === "SINGLE").pricePerNight;
+    const price = introduce?.find(ob => ob.roomType === "SINGLE")?.pricePerNight;
 
     return (
         <div className="flex justify-between">

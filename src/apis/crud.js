@@ -157,6 +157,7 @@ export const Booking = (bok) => new Promise(async(resolve,reject)=> {
             url:`booking/initiate`,
             method: 'POST',
             data:bok,
+            withCredentials: true,
             headers: {
                
                 'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
@@ -175,6 +176,7 @@ export const Payment = (pay) => new Promise(async(resolve,reject)=> {
             url:`booking/payment`,
             method: "post",
             data:pay,
+            withCredentials: true,
             headers: {
                 'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
             }
@@ -190,6 +192,57 @@ export const Confirmation  = () => new Promise(async(resolve,reject)=> {
     try {
         const response = await axios({
             url:`confirmation/${sessionStorage.getItem("idBooking")}`,
+            method: "get",
+            headers: {
+                'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
+            }
+        })
+        resolve(response.data)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+// Add Hotel Manager 
+export const AddManagerHotel = (add) => new Promise(async(resolve,reject)=> {
+    try {
+        const response = await axios({
+            url:`manager/hotels`,
+            method: "post",
+            data: add,
+            headers: {
+                'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
+            }
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+// Add Image
+export const AddImage = (host,id,dt) => new Promise(async(resolve,reject)=> {
+    try {
+        const response = await axios({
+            url:`/image/upload/${host}/${id}`,
+            method: "post",
+            data:dt,
+            headers: {
+                "Content-Type": "multipart/form-data",
+                'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
+            }
+        })
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+// Get list Custommer Booked
+export const HistoryBookings = (host) =>new Promise(async(resolve,reject)=> {
+    try {
+        const response = await axios({
+            url:`${host}`,
             method: "get",
             headers: {
                 'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`

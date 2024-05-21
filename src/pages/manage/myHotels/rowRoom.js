@@ -11,6 +11,7 @@ function RowRoom({ room}) {
 
     function HandleEdit() {
         navigate(`/manager/myHotels/edit/${room.id}`)
+        dispatch(actions.getIdEND(room.id));
     }
 
     return (

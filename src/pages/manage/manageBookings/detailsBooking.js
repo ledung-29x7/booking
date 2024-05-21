@@ -1,23 +1,29 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as apis from "../../apis"
+import { useState,useEffect } from "react";
+import { useStore } from "../../../store/contexts";
+import { actions } from "../../../store/action";
+import * as apis from "../../../apis"
 
-function BookingComfirmation() {
+function DetailsBookings() {
 
     const navigate = useNavigate()
     const [infoBooked,setInfoBooked] = useState();
+    const [state,] = useStore();
+    const {idEdit} = state;
 
     useEffect(() => {
         const FetchData = async () => {
             try {
-                const response = await apis.Confirmation()
-                setInfoBooked(response.data)
+                if(idEdit !== null){
+                    const response = await apis.getManager(`booking/${idEdit}`)
+                    setInfoBooked(response.data)
+                }
             } catch (error) {
                 console.log(error)
             }
         }
         FetchData();
-    }, [])
+    }, [idEdit])
 
     return (
         <div className="">
@@ -91,12 +97,11 @@ function BookingComfirmation() {
                 </div>
 
                 <div className="flex gap-5 justify-end">
-                    <button onClick={() => navigate("/")} className="bottom border font-bold border-cyan-500">Back to Home</button>
-                    <a href="/bookings"
-                        className="bottom font-bold bg-cyan-500">My Booking</a>
+                    <button onClick={() => navigate("/manager/manageBookings")} className="bottom border font-bold border-cyan-500">Back</button>
+                    
                 </div>
             </div>
         </div>
     );
 }
-export default BookingComfirmation;
+export default DetailsBookings;

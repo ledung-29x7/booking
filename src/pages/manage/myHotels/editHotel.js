@@ -5,61 +5,83 @@ import * as apis from "../../../apis";
 import { useNavigate } from "react-router-dom";
 import InputRoom from "../../roomHotel/inputRoom";
 
-function EditManagerHotel({ room }) {
+function EditManagerHotel() {
 
-    const [valueEdit,setValueEdit] = useState({
-        
-        name: "Khách sạn Thiên Đường",
+    const [editRoomDTO, setEditRoomDTO] = useState({});
+    const navigate = useNavigate();
+    const [state, dispatch] = useStore();
+    const [editRoom, setEditRoom] = useState({});
+    const [rooms, setRooms] = useState([]);
+    const { idEdit } = state;
+    const [imageInfo, setImageInfo] = useState({
+        id: '',
+        image: '',
+        name: '',
+        type: ''
+    });
+    const [valueEdit, setValueEdit] = useState({
+        ...rooms,
+        name: "",
         addressDTO: {
-            addressLine: "ss",
+            id: 0,
+            addressLine: "",
             district: "",
             city: "",
             country: ""
         },
-        roomDTOs: [
-            {
-                roomType: "SINGLE",
-                roomCount: 20,
-                pricePerNight: 150.0,
-                services: null,
-                image: null
-            },
-            {
-                roomType: "DOUBLE",
-                roomCount: 25,
-                pricePerNight: 250.0,
-                services: null,
-                image: null
-            },
-            {
-                roomType: "FAMILY",
-                roomCount: 10,
-                pricePerNight: 450.0,
-                services: null,
-                image: null
-            }
-        ],
-        managerUsername: "",
-        starRating: "FIVESTAR",
-        image: null
+        imageDTOs:[]
     })
+    console.log(valueEdit)
 
-    const [editRoomDTO,setEditRoomDTO] = useState({});
-    const navigate = useNavigate();
-    const [state, dispatch] = useStore();
-    const {idEdit} = state;
+    // call api
+    useEffect(() => {
+        const FetchData = async () => {
+            try {
+                const response = await apis.getManager("hotels")
+                setRooms(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        FetchData()
+    }, [])
 
-    // as
-    useEffect(()=> {
-        setValueEdit(room)
-    },[room])
+
+    // get hotel edit 
+    useEffect(() => {
+        const GetEdit = (id) => {
+            if (id != null) {
+                const getIdEND = rooms?.find(ob => ob.id === id)
+                console.log(getIdEND)
+                setEditRoom(getIdEND)
+            }
+        }
+        GetEdit(idEdit)
+    }, [rooms])
+
+    // gán cho valueedit
+    useEffect(() => {
+        setValueEdit(editRoom)
+    }, [editRoom])
 
     function HandleCloseEdit() {
         navigate("/manager/myHotels")
     }
 
-    function handleChange (e){
-        const { name, value } = e.target;
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        
+        setImageInfo((prevInfo) => ({
+            ...prevInfo,
+            name: file.name,
+            type: file.type
+        }));
+    };
+
+    // hand Change
+    function handleChange(e) {
+        const { name, file, value } = e.target;
+        // Nếu trường đang thay đổi thuộc addressDTO
         if (name.includes('addressDTO')) {
             const addressName = name.split('.')[1]; // Lấy tên trường con (ví dụ: addressLine, district, city, country)
             setValueEdit({
@@ -69,24 +91,29 @@ function EditManagerHotel({ room }) {
                     [addressName]: value
                 }
             });
-        } 
-        setValueEdit({...valueEdit,[e.target.name]: e.target.value})
+        } else {
+            setValueEdit({
+                ...valueEdit,
+                [name]: value
+            });
+        }
     }
 
+    // Submit
     function handleSubmit(e) {
-        const FetchEdit = async() => {
+        const FetchEdit = async () => {
             try {
                 e.preventDefault();
-                await apis.editRoom("users",idEdit,valueEdit)
-                .then(res=>{
-                    if(res.status === 200){
-                        return(
-                            setValueEdit(res.data),
-                            dispatch(actions.ModalEdit(false)),
-                            dispatch(actions.ModalSuccsessfull(true))
-                        )
-                    }
-                })
+                await apis.editRoom("users", idEdit, valueEdit)
+                    .then(res => {
+                        if (res.status === 200) {
+                            return (
+                                setValueEdit(res.data),
+                                dispatch(actions.ModalEdit(false)),
+                                dispatch(actions.ModalSuccsessfull(true))
+                            )
+                        }
+                    })
             } catch (error) {
                 console.log(error)
             }
@@ -107,6 +134,14 @@ function EditManagerHotel({ room }) {
                 <form onSubmit={handleSubmit} className=" my-10 flex flex-col gap-10">
                     {/* form edit */}
                     <div className=" flex flex-col gap-6">
+                        <input
+
+                            type="file"
+                            placeholder={"tên khách sạn"}
+                            name={"image"}
+                            value={valueEdit?.image}
+                            onChange={handleFileChange}
+                        />
                         <InputRoom
                             placeholder={"tên khách sạn"}
                             nameInput={"name"}
@@ -119,29 +154,34 @@ function EditManagerHotel({ room }) {
                             placeholder="số nhà/thôn/xóm"
                             value={valueEdit?.addressDTO?.addressLine}
                             nameInput="addressDTO.addressLine"
-                            onChange={handleChange}  
+                            onChange={handleChange}
                             titleInput={"Địa Chỉ Cụ Thể"}
                         />
+
                         <InputRoom
-                            placeholder="Firt Name"
+                            placeholder="District"
                             name="addressDTO.district"
                             value={valueEdit?.addressDTO?.district}
                             onChange={handleChange}
-                            titleInput={""}
+                            titleInput={"district"}
                         />
 
-                        <div className="border-gray-500 border text-right rounded-lg overflow-hidden text-sm h-9">
-                            <input
-                                className="outline-none w-11/12 h-full"
-                                placeholder="Last Name"
-                                type="text"
-                                name="addressDTO.city"
-                                value={valueEdit?.addressDTO?.city}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        
-                        
+                        <InputRoom
+                            placeholder="City"
+                            name="addressDTO.city"
+                            value={valueEdit?.addressDTO?.city}
+                            onChange={handleChange}
+                            titleInput={"City"}
+                        />
+
+                        <InputRoom
+                            placeholder="Country"
+                            name="addressDTO.country"
+                            value={valueEdit?.addressDTO?.country}
+                            onChange={handleChange}
+                            titleInput={"Country"}
+                        />
+
                     </div>
                     <div className="border-gray-500 border text-right rounded-lg overflow-hidden h-9">
                         <button className=" bg-blue-500 h-full w-full font-bold text-white">Update</button>

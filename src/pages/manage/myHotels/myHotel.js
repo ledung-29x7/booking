@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 import * as apis from "../../../apis"
 import RowList from "./rowRoom";
 
+
 function ListUser() {
     const navigate = useNavigate();
     const [rooms,setRooms] = useState([]);
-    const [editRoom,setEditRoom] = useState({});
     const [state, dispatch] = useStore();   
-    const { idEdit,getToken } = state;
+    
 
     // Read apis
-    console.log(getToken)
+    
     useEffect(() => {
         const FetchData = async() => {
             try {
@@ -27,15 +27,6 @@ function ListUser() {
         FetchData()
     },[])
 
-    useEffect(() => {
-        const GetEdit = (id) => {
-            if(id != null){
-                var getIdEND = rooms.find(ob => ob.id ===id) 
-            }
-            setEditRoom(getIdEND)
-        }
-        GetEdit(idEdit)
-    },[idEdit])
 
     return (
         <div className=" my-10 px-10">
@@ -46,10 +37,12 @@ function ListUser() {
                         Add New Hotel                        </h4>
                         <img className="w-24" src="../icon/heading-border.png" alt="" />
                     </div>
-                    <div className="mx-10 bg-lime-600 w-32 h-10 flex justify-center items-center gap-3 rounded-md">
+                    <button className="mx-10 bg-lime-600 w-32 h-10 flex justify-center items-center gap-3 rounded-md"
+                        onClick={()=>navigate('/manager/myHotel/add')}
+                    >
                         <FontAwesomeIcon style={{color:"white"}} icon="fa-solid fa-plus"/>
-                        <button className="buttom_crud ">Add hotel</button>
-                    </div>
+                        <span className="buttom_crud ">Add hotel</span>
+                    </button>
                 </div>
                 <div>
                     

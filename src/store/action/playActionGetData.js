@@ -32,6 +32,22 @@ export const GetDataUser = (resul) =>{
         resul
     }
 }// End apis user
+// Manager
+export const getDataManager = async(host) =>{
+    try {
+        const response = await apis.getManager(host)
+        if(response.status === 200){
+            return response
+        }
+        return{
+            response: []
+        }
+    } catch (error) {
+        return{
+            response: []
+        }
+    }
+}
 
 // total price roomType
 export const TotalPriceS = (priceS) => {

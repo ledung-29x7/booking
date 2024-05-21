@@ -1,46 +1,6 @@
-import { useEffect, useState } from "react";
-import { useStore } from "../../../store/contexts";
-import { actionsGetData } from "../../../store/action";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
-import * as apis from "../../../apis"
-import RowList from "./rowList";
+import RowBooking from "../../pages/manage/manageBookings/rowBooking";
 
-function ListUser() {
-    const [isSucc,setIsSucc] = useState(false);
-    const [bookings,setBookings] = useState([]);
-    const [detailBk,setDetailBk] = useState({});
-    const [state, dispatch] = useStore();
-    const { idEdit,getData } = state;
-
-    
-    useEffect(() => {
-        const CallData = () => {
-            dispatch(actionsGetData.getData("bookings")
-            .then((data)=>{
-                dispatch(actionsGetData.GetDataUser(data.data))
-            }));
-        }
-        CallData()
-    },[])
-
-    // assign value to users
-    useEffect(()=>{
-        setBookings(getData)
-    },[getData])
-    console.log(bookings)
-
-
-    // get id Edit
-    useEffect(() => {
-        const GetEdit = (idEdit) => {
-            if(idEdit !== null){
-                var getIdEND = bookings?.find(ob => ob.id === idEdit) 
-                setDetailBk(getIdEND)
-            }
-        }
-        GetEdit(idEdit)
-    },[idEdit])
+function TableBooked({bookings}) {
 
     return(
         <div className=" my-10 px-10">
@@ -62,21 +22,21 @@ function ListUser() {
                             <th>ID</th>
                             <th>Email khách hàng</th>
                             <th>Tên khách sạn </th>
+                            <th>Ngày đặt</th>
                             <th>Ngày check in</th>
                             <th>Ngày checkout</th>
                             <th>Tổng tiền</th>
                             <th>Details</th>
                         </tr>
                         {bookings?.map((dt)=>
-                            <RowList
-                                room={dt}
+                            <RowBooking
+                                booking={dt}
                             />
                         )}
                     </table>
                 </div>
-                
             </div>
         </div>
-    );
+    )
 }
-export default ListUser;
+export default TableBooked;

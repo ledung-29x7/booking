@@ -7,29 +7,21 @@ function RowList({room}){
     const navigate  = useNavigate()
     const [,dispatch] = useStore();
 
-    const handleEdit = () => {
-        navigate(`/manager/listRooms/edit/${room.id}`)
-        dispatch(actions.getIdEND(room.id));
-    }
+    const handleOpenDetail = () =>{
+
+    }  
    
 
     return(
         <tbody className=" text-gray-600 h-11">
             <td className=" text-center">{room.id}</td>
-            <td>{room.name}</td>
-            <td>{room.addressDTO?.addressLine}</td>
-            <td>{room.roomDTOs?.roomCount}</td>
+            <td>{room?.customer}</td>
+            <td>{room?.nameHotel}</td>
+            <td>{room?.bookingDate}</td>
+            <td>{room?.checkinDate}</td>
+            <td>{room?.totalPrice}</td>
             <td className=" text-center">
-                <button className=" buttom_crud w-14 h-8 text-yellow-500"
-                    onClick={handleEdit}
-                >
-                    <FontAwesomeIcon style={{color:"#EFE616"}} icon="fa-solid fa-pen" />
-                </button>
-            </td>
-            <td className=" text-center">
-                <button className=" buttom_crud w-14 h-8 ">
-                    <FontAwesomeIcon style={{color:"#F44F44"}} icon="fa-solid fa-trash-can" />
-                </button>
+                <button onClick={handleOpenDetail}  className="buttom_crud w-14 h-8 bg-blue-500 ">Details</button>
             </td>
         </tbody>
     );

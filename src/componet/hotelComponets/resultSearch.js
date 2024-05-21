@@ -20,7 +20,7 @@ function ResultSearch({resul}){
     },[resul])
     
     console.log(resul)
-    const price = resul.roomDTOs?.find(ob => ob.roomType === "SINGLE").pricePerNight;
+    const price = resul.roomDTOs?.find(ob => ob.roomType === "SINGLE")?.pricePerNight;
 
     // useEffect(()=> {
     //     const FetchData = async() => {
