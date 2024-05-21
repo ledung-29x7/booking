@@ -1,0 +1,74 @@
+package Aptech.booking_hotel.controller;
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import Aptech.booking_hotel.model.Booking;
+import Aptech.booking_hotel.model.validate.BookingInitiationDTO;
+import Aptech.booking_hotel.service.VNPayService;
+import jakarta.servlet.http.HttpServletRequest;
+
+
+@RestController
+public class VNPayController {
+    @Autowired
+    private VNPayService vnPayService;
+
+    // @Autowired
+    // private BookingInitiationDTO bookingInitiationDTO;
+
+    // @Autowired
+    // private Booking booking;
+
+    @PostMapping("/submitOrder")
+    public Map<String, String> submitOrder(
+                                           @RequestParam("orderInfo") String orderInfo,
+                                           BookingInitiationDTO bookingInitiationDTO,
+                                           Booking booking,
+                                           HttpServletRequest request) {
+        double orderTotal = bookingInitiationDTO.getTotalPrice();
+        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+        String vnpayUrl = vnPayService.createOrder(orderTotal, orderInfo, baseUrl);
+
+        Map<String, String> response = new HashMap<>();
+        response.put("redirectUrl", vnpayUrl);
+        return response;
+    }
+
+    @GetMapping("/vnpay-payment")
+    public Map<String, Object> getPaymentResult(HttpServletRequest request, BookingInitiationDTO bookingInitiationDTO, Booking booking) {
+        int paymentStatus = vnPayService.orderReturn(request, bookingInitiationDTO, booking);
+
+        String orderInfo = request.getParameter("vnp_OrderInfo");
+        String paymentTime = request.getParameter("vnp_PayDate");
+        String transactionId = request.getParameter("vnp_TransactionNo");
+        String totalPrice = request.getParameter("vnp_Amount");
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("orderId", orderInfo);
+        response.put("totalPrice", totalPrice);
+        response.put("paymentTime", paymentTime);
+        response.put("transactionId", transactionId);
+        response.put("paymentStatus", paymentStatus == 1 ? "success" : "fail");
+
+        if (paymentStatus != 1) {
+            response.put("redirectUrl", "/retry-payment"); // URL for retrying payment
+        }
+
+        return response;
+    }
+
+    @GetMapping("/retry-payment")
+    public String retryPayment() {
+        // Logic to display the retry payment page
+        return "Please try again to make the payment.";
+    }
+}
