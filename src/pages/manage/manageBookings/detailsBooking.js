@@ -34,13 +34,13 @@ function DetailsBookings() {
 
                 <div className="flex flex-col gap-8">
                     <div className=" bg-blue-400 py-6 px-5 rounded-t-2xl">
-                        <h3 className="font-bold text-2xl">Booking Confirmation</h3>
+                        <h3 className="font-bold text-2xl">Xác nhận đặt phòng</h3>
                     </div>
                     {/*  */}
                     <div className=" flex-col flex gap-7 border-2 rounded-lg px-5">
                         {/*  number*/}
                         <div className=" border-b-2 py-4">
-                            <h4 className="font-semibold">Confirmation Number: </h4>
+                            <h4 className="font-semibold">Số xác nhận: </h4>
                             <div className="">{infoBooked?.confirmationNumber}</div>
                         </div>
                         {/* info Booking */}
@@ -54,22 +54,22 @@ function DetailsBookings() {
                             {/* Date Booking */}
                             <div className="flex justify-around">
                                 <div>
-                                    <h4 className="font-semibold">Check in</h4>
+                                    <h4 className="font-semibold">Đăng ký vào</h4>
                                     <p className=" text-gray-600">{infoBooked?.checkinDate}</p>
                                 </div>
                                 <div>
-                                    <h4 className="font-semibold">Check out</h4>
+                                    <h4 className="font-semibold">Thủ tục thanh toán</h4>
                                     <p className="text-gray-600">{infoBooked?.checkoutDate}</p>
                                 </div>
                                 <div>
-                                    <h4 className="font-semibold">Duration</h4>
-                                    <p className="">{infoBooked?.durationDays} nights</p>
+                                    <h4 className="font-semibold">Khoảng thời gian</h4>
+                                    <p className="">{infoBooked?.durationDays} đêm</p>
                                 </div>
                             </div>
 
                             {/*  */}
                             <div className="flex flex-col gap-2">
-                                <h4 className="font-semibold">Room</h4>
+                                <h4 className="font-semibold">Phòng</h4>
                                 {infoBooked?.roomSelections?.map((room)=>
                                     <div className="px-5">{room?.count} loại {room?.roomType}</div>
                                 )}
@@ -78,17 +78,17 @@ function DetailsBookings() {
                         {/* phuong thuc lien lac  */}
                         <div className="flex flex-col gap-6 pb-5">
                             <div className="flex gap-5 items-center">
-                                <h4 className=" text-xl font-bold">Total Price:</h4>
+                                <h4 className=" text-xl font-bold">Tổng giá:</h4>
                                 <p className=" font-semibold">{infoBooked?.totalPrice}</p>
                             </div>
                             <div className="flex items-center gap-5">
-                                <h4 className="font-semibold">Payment Method:</h4>
+                                <h4 className="font-semibold">Phương thức thanh toán:</h4>
                                 <p className="text-sm">{infoBooked?.paymentMethod}</p>
                             </div>
                             <div className="flex flex-col gap-4">
-                                <h4 className="font-semibold">Guest Details:</h4>
+                                <h4 className="font-semibold">Chi tiết khách hàng:</h4>
                                 <div className="flex flex-col gap-2">
-                                    <p className="text-gray-600">Name: {infoBooked?.customerName}</p>
+                                    <p className="text-gray-600">Tên khách hàng: {infoBooked?.customerName}</p>
                                     <p className="text-gray-600">Email: {infoBooked?.customerEmail}</p>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@ function DetailsBookings() {
                 </div>
 
                 <div className="flex gap-5 justify-end">
-                    <button onClick={() => navigate("/manager/manageBookings")} className="bottom border font-bold border-cyan-500">Back</button>
+                    <button onClick={() => navigate("/manager/manageBookings")} className="bottom border font-bold border-cyan-500">Thoát</button>
                     
                 </div>
             </div>

@@ -65,7 +65,7 @@ function FormBooking({ dataRoom }) {
                                 type={"button"}
                             />
                             <FontAwesomeIcon style={{ color: "#98a2b3" }} icon="fa-solid fa-chevron-down" />
-                            <label className=" absolute top-0 left-6 bg-white px-2 -translate-y-1/2 text-[#475467] text-sm">So luong nguoi</label>
+                            <label className=" absolute top-0 left-6 bg-white px-2 -translate-y-1/2 text-[#475467] text-sm">Số lượng người</label>
                         </div>
                     </div>
                 </div>

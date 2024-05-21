@@ -186,7 +186,7 @@ function Room() {
                     <div className="flex flex-col gap-20 flex-grow">
                         {/* dac diem noi bat */}
                         <div className="flex flex-col gap-10">
-                            <TitleHome title={"Outstanding Features"} />
+                            <TitleHome title={"Tính năng nổi bật"} />
                             <div className=" grid grid-cols-2 gap-x-8 gap-y-6">
                                 <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
                                 <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />

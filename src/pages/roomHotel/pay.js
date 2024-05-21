@@ -40,8 +40,8 @@ function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
     return (
         <div className="flex flex-col containerr px-8 ">
             <div className=" flex py-6 border-b font-bold">
-                <button className=" hover:text-cyan-600 flex-1">Your Selection</button>
-                <button className=" hover:text-cyan-600 flex-1">Complete Detail</button>
+                <button className=" hover:text-cyan-600 flex-1">Lựa chọn của bạn</button>
+                <button className=" hover:text-cyan-600 flex-1">Chi tiết đầy đủ</button>
             </div>
 
             <div className="py-5 flex">
@@ -98,13 +98,13 @@ function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
                     <div className="flex flex-col gap-6">
                         <InputRoom
                             nameInput={"cardholderName"}
-                            placeholder={"Cardholder Name"}
+                            placeholder={"Tên khách hàng"}
                             onChange={handleChange}
                             value={infoPay.cardholderName}
                         />
                         <InputRoom
                             nameInput={"cardNumber"}
-                            placeholder={"Card Number"}
+                            placeholder={"Số thẻ"}
                             onChange={handleChange}
                             value={infoPay.cardNumber}
                         />
@@ -112,7 +112,7 @@ function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
                             <div className="flex-1">
                                 <InputRoom
                                     nameInput={"expirationDate"}
-                                    placeholder={"Expiration Date"}
+                                    placeholder={"Ngày hết hạn"}
                                     onChange={handleChange}
                                     value={infoPay.expirationDate}
                                 />

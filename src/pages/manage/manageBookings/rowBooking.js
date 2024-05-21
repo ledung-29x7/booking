@@ -20,7 +20,7 @@ function RowBooking({booking}){
             <td>{booking?.checkoutDate}</td>
             <td>{booking?.totalPrice}</td>
             <td className=" text-center">
-                <button onClick={handleOpenDetail}  className="buttom_crud w-14 h-8 bg-blue-500 ">Details</button>
+                <button onClick={handleOpenDetail}  className="buttom_crud w-14 h-8 bg-blue-500 ">Chi tiết</button>
             </td>
         </tbody>
     );

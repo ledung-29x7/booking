@@ -36,16 +36,16 @@ function Hotel(){
 
     return(
         <div className=" section-bg">
-            <div className=" py-16">
-                <div className=" relative h-80">
-                <div className=" searchHotel flex flex-col gap-10 box">
-                    <div className="flex flex-col gap-4">
-                        <h4 className=" text-center font-bold text-4xl">Rong chơi bốn phương,giá vẫn yêu thương</h4>
-                        <p className=" text-center text-lg text-gray-900 opacity-60">Hơn 10000 khách sạn gì tốt đang chờ bạn</p>
-                    </div>
-                    <Search setSearch={getSearch}/>
+        <div className=" py-16">
+            <div className=" relative h-80">
+            <div className=" searchHotel flex flex-col gap-10 box">
+                <div className="flex flex-col gap-4">
+                    <h4 className=" text-center font-bold text-4xl">Rong chơi bốn phương,giá vẫn yêu thương</h4>
+                    <p className=" text-center text-lg text-gray-900 opacity-60">Hơn 10000 khách sạn gì tốt đang chờ bạn</p>
                 </div>
-                </div>
+                <Search setSearch={getSearch}/>
+            </div>
+            </div>
                 {/* result search */}
                 <div>
                     <div className="containerr px-8 ">

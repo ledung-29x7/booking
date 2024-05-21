@@ -67,7 +67,7 @@ function AddImageHotel() {
                         multiple
                     />
                     <label></label>
-                    <button type="submit">Add</button>
+                    <button type="submit">Thêm</button>
                 </form>
             </div>
         </div>

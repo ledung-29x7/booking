@@ -124,7 +124,7 @@ function EditManagerHotel() {
     return (
         <div className="containerr">
             <div className="px-10 my-7 flex justify-between w-full h-14 font-bold text-xl border-b border-b-slate-400 ">
-                <span>Edit User</span>
+                <span>Người dùng biên tập</span>
                 <span onClick={HandleCloseEdit} className=" w-6 h-6 text-2xl text-slate-500 flex justify-center items-center text-center cursor-pointer "  >
                     &times;
                 </span>
@@ -184,11 +184,11 @@ function EditManagerHotel() {
 
                     </div>
                     <div className="border-gray-500 border text-right rounded-lg overflow-hidden h-9">
-                        <button className=" bg-blue-500 h-full w-full font-bold text-white">Update</button>
+                        <button className=" bg-blue-500 h-full w-full font-bold text-white">Cập nhật</button>
                     </div>
                 </form>{/* end form */}
                 <div className=" h-14 flex justify-end items-center">
-                    <button onClick={HandleCloseEdit} className=" rounded-md text-white bg-zinc-400  font-bold w-32 h-8 ">Cancel</button>
+                    <button onClick={HandleCloseEdit} className=" rounded-md text-white bg-zinc-400  font-bold w-32 h-8 ">Hủy bỏ</button>
                 </div>
             </div>
         </div>

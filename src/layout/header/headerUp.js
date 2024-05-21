@@ -135,7 +135,7 @@ function HeaderUp() {
           <MenuItem to={"/hotel"} title="Khách sạn" />
           <MenuItem to={"/thingsToDo"} title="Blog" />
           <MenuItem to={"/bookings"} title="Đặt chỗ" />
-          <MenuItem to={"/parnership"} title="Liên hệ" />
+          <MenuItem to={"/contact"} title="Liên hệ" />
         </div>
       </div>
       {/* đăng nhập đăng xuất */}

@@ -34,14 +34,14 @@ function ListUser() {
                 <div className=" flex justify-between items-center">
                     <div className="flex flex-col gap-5">
                         <h4 className="font-bold text-4xl w-80">
-                        Add New Hotel                        </h4>
+                        Thêm khách sạn mới                      </h4>
                         <img className="w-24" src="../icon/heading-border.png" alt="" />
                     </div>
                     <button className="mx-10 bg-lime-600 w-32 h-10 flex justify-center items-center gap-3 rounded-md"
                         onClick={()=>navigate('/manager/myHotel/add')}
                     >
                         <FontAwesomeIcon style={{color:"white"}} icon="fa-solid fa-plus"/>
-                        <span className="buttom_crud ">Add hotel</span>
+                        <span className="buttom_crud ">Thêm khách sạn</span>
                     </button>
                 </div>
                 <div>

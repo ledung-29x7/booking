@@ -40,12 +40,12 @@ function ManagerBooking(){
                 <div className=" flex justify-between items-center">
                     <div className="flex flex-col gap-5">
                         <h4 className="font-bold text-4xl w-80">
-                            User List
+                        Danh sách người dùng
                         </h4>
                         <img className="w-24" src="../icon/heading-border.png" alt="" />
                     </div>
                     <div className="mx-10 ">
-                        <button className="buttom_crud w-20 h-8 bg-lime-600">Add</button>
+                        <button className="buttom_crud w-20 h-8 bg-lime-600">Thêm</button>
                     </div>
                 </div>
                 <div className="frame mt-5 shadow_uslist relative">
