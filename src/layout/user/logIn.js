@@ -25,24 +25,20 @@ function Login() {
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-    
-    // Hàm để lấy giá trị của một cookie
 
    
-
     // submit
     const handleSubmit = (e) => {
         e.preventDefault();
         const FetchData = async () => {
             await apis.Login(formData)
             .then(res=>{
-                
                 console.log(res)
                 if (res.status === 200){
                     window.sessionStorage.setItem('token', res.data.token)
                     sessionStorage.setItem('nameUser', res.data.username);
                     dispatch(actions.CheckLogin(true));
-                    dispatch(actions.ModalLogin(false))
+                    dispatch(actions.ModalLogin(false)) 
                     switch (res.data.role) {
                         case "ADMIN":
                             return(

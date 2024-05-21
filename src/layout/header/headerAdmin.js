@@ -106,7 +106,7 @@ function HeaderAdmin() {
             setIsShowingSignUp(false);
         }
     };
-    
+
     useEffect(() => {
         window.addEventListener("click", handleClickOutsideModal);
     }, []);
@@ -128,7 +128,7 @@ function HeaderAdmin() {
                         </div>
                     </Link>
                 </div>
-               
+
             </div>
             {/* đăng nhập đăng xuất */}
             {
@@ -144,14 +144,14 @@ function HeaderAdmin() {
                     )
                     :
                     (
-            <div className=" flex gap-10 items-center">
+                        <div className=" flex gap-10 items-center">
                             <button
                                 className=" bg-cyan-200 flex items-center justify-center  bottom font-bold "
-                    onClick={handleLogin}
-                    >
-                Đăng ký / Đăng nhập
-                </button>
-            </div>
+                                onClick={handleLogin}
+                            >
+                                Đăng ký / Đăng nhập
+                            </button>
+                        </div>
                     )
             }
 
