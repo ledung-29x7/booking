@@ -137,7 +137,7 @@ function Reducers(state,action){
         case CHECKLOGIN:
             return {
                 ...state,
-                checkLogIn: action.blo
+                checkLogin: action.blo
             }
         default:
             return state;
