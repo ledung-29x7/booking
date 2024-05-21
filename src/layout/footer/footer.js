@@ -19,9 +19,9 @@ function Footer() {
                         <span className="text-white font-bold">Introduction</span>
                         <div className="flex gap-2 flex-col">
                             <Link to={"/about"}>About Us</Link>
-                            <a href="/">Term And Use</a>
+                            <Link to="/termanduse">Term And Use</Link>
                             <Link to={"/payment"}>Payment</Link>
-                            <a href="/">Contract Us</a>
+                            <Link to="/contracts">Contract Us</Link>
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">

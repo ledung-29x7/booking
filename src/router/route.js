@@ -1,4 +1,5 @@
 import Home from "../pages/home/home";
+import Contracts from "../pages/admins/contracts";
 import HaLongresorts from "../pages/thingsToDo/details/halongresorts";
 import HanoiSfood from "../pages/thingsToDo/details/hanoispecialtyfood";
 import Hanoitravelpartone from "../pages/thingsToDo/details/hanoitravel";
@@ -26,6 +27,7 @@ import DefaultLayoutLogin from "../layout/defaultLayout/defaultLayoutLogin";
 
 const publicRoute = [
     { path: '/', componet: Home },
+    { path: '/contracts', componet: Contracts },
     { path: '/hotel', componet: Hotel },
     { path: '/thingsToDo', componet: ThingsToDo },
     { path: '/about', componet: About },
