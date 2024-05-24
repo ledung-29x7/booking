@@ -11,6 +11,8 @@ import {
     ISSUCCESSFULL,
     GETPRICEROOM,
     CHECKLOGIN,
+    GETIDBOOKING,
+    ISSHOWINGDELETE,
 } from "./constants"
 
 // modal SignUp, Login
@@ -41,7 +43,14 @@ export const ModalAdd = (showAdd) => {
     }
 }
 
-// Edit and delete
+export const ModalDelete = (showDelete) => {
+    return {
+        type: ISSHOWINGDELETE,
+        showDelete
+    }
+}
+
+// id Edit and delete
 export const getIdEND = (id) => {
     return {
         type : EDITNDELETE,
@@ -105,4 +114,11 @@ export const CheckLogin = (blo) => {
     }
 }
 
+// get ID Booking
+export const GetIdBooking = (id) => {
+    return {
+        type: GETIDBOOKING,
+        id
+    }
+}
 

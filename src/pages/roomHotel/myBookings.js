@@ -13,7 +13,7 @@ function MyBookings() {
         const FetchData = async () => {
             try {
                 const response = await apis.HistoryBookings("customer/bookings")
-                setInfoBooked(response.data)
+                setInfoBooked(response)
             } catch (error) {
                 console.log(error)
             }
@@ -30,21 +30,23 @@ function MyBookings() {
 
     return (
         <div className="bg-[#CDD0D1]/[.44] ">
-            <div className=" flex m-auto py-8 w-[960px] min-h-[720px]">
+            <div className=" flex m-auto py-8 w-[1200px] min-h-[720px]">
                 <div className=" px-3 flex-1">
-                    <h1 aria-level="1" dir="auto" role="heading" className=" mb-4 text-2xl text-left font-medium text-[#030810]">Đặt chỗ chưa hoàn tất</h1>
-                    <a href="/bookings" className="flex items-center p-2 rounded-md bg-white group hover:bg-[#0264c8]">
-                        <div className=" pr-4 text-2xl text-[#605f63] group-hover:text-white">
+                    <h1 dir="auto" role="heading" className=" mb-4 text-2xl text-left font-medium text-[#030810]">Đặt chỗ chưa hoàn tất</h1>
+                    <a href="/bookings" className="flex items-center p-2 rounded-md group bg-[#0264c8] hover:bg-[#0264c8] active:bg-[#0264b8]">
+                        <div className=" pr-4 text-2xl text-white group-hover:text-gray-300">
                             <FontAwesomeIcon icon="fa-solid fa-rectangle-list" rotation={180} />
                         </div>
-                        <div className=" group-hover:text-white text-[rgb(104,113,118)] ">
+                        <div className=" group-hover:text-gray-300 text-white  ">
                         Tất cả phòng
                         </div>
                     </a>
                 </div>
                 {/*  */}
                 {checkEmty ?
-                   <TableBooked bookings={infoBooked}/>
+                   <div className="flex items-stretch flex-col flex-[3_1_0%] pl-3">
+                        <TableBooked bookings={infoBooked}/>
+                   </div>
                 :
                     <div className=" flex items-stretch flex-col flex-[2_1_0%] px-3">
                         {/* banner login */}

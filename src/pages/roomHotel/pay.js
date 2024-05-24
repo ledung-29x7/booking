@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router-dom";
+import { useStore } from "../../store/contexts";
+import { actions } from "../../store/action";
 import InputRoom from "./inputRoom";
 import * as apis from "../../apis";
 import { useState } from "react";
 
-function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
+function Pay() {
+
+    const [,dispatch] = useStore();
     const navigate = useNavigate();
     const [infoPay,setInfoPay] = useState({
         
@@ -22,10 +26,10 @@ function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
         const FetchData = async () => {
             e.preventDefault();
             try {
-                const response = await apis.Payment(infoPay)
+                await apis.Payment(infoPay)
                 .then(res=> {
                     if (res.status === 200) {
-                        sessionStorage.setItem("idBooking",res.data.id)
+                        dispatch(actions.GetIdBooking(res.data.id))
                         navigate("/bookingConfirmation")
                         console.log(res)
                     }
@@ -73,17 +77,17 @@ function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
                         <div className="flex flex-col gap-2">
                             <h4 className="font-semibold">Thời gian cư trú</h4>
                             <div className="text-gray-600">
-                                {dateOut - dateIn} Đêm
+                                {"dateOut - dateIn"} Đêm
                             </div>
                         </div>
                         <div className="flex flex-col gap-3">
                             <h4 className="font-semibold">Phòng đã chọn</h4>
                             <div className="flex flex-col gap-2">
                                 <div className="text-gray-600">
-                                    {roomSingle} Đơn
+                                    {"roomSingle"} Đơn
                                 </div>
                                 <div className="text-gray-600">
-                                    {roomDouble} Đôi
+                                    {"roomDouble"} Đôi
                                 </div>
                             </div>
                         </div>
@@ -93,7 +97,7 @@ function Pay({ dateIn, dateOut, totalPrice, roomSingle, roomDouble }) {
                 <form action="/pay" className="flex flex-col justify-between flex-[2_1_0%] px-5" onSubmit={handleSubmit}>
                     <div className="">
                         <h3 className="font-bold text-xl">Tổng tiền: </h3>
-                        <div>{totalPrice}</div>
+                        <div>{"totalPrice"}</div>
                     </div>
                     <div className="flex flex-col gap-6">
                         <InputRoom

@@ -1,35 +1,30 @@
-import RowBooking from "../../pages/manage/manageBookings/rowBooking";
+import RowMyBookings from "./rowMyBookings";
 
 function TableBooked({bookings}) {
 
     return(
-        <div className=" my-10 px-10">
-            <div className=" containerr">
+        <div className=" my-2 pl-4">
+            <div className=" ">
                 <div className=" flex justify-between items-center">
                     <div className="flex flex-col gap-5">
-                        <h4 className="font-bold text-4xl w-80">
-                        Danh sách người dùng
+                        <h4 className=" font-semibold text-2xl text-gray-700 w-80">
+                            Lịch sử booking
                         </h4>
-                        <img className="w-24" src="../icon/heading-border.png" alt="" />
-                    </div>
-                    <div className="mx-10 ">
-                        <button className="buttom_crud w-20 h-8 bg-lime-600">Thêm vào</button>
+                        
                     </div>
                 </div>
-                <div className="frame mt-5 shadow_uslist relative">
-                    <table className=" w-full shadow ">
-                        <tr className="sticky top-0 bg-slate-200 h-12">
-                            <th>ID</th>
-                            <th>Email khách hàng</th>
-                            <th>Tên khách sạn </th>
-                            <th>Ngày đặt</th>
+                <div className=" mt-5 relative">
+                    <table className=" w-full rounded-md overflow-hidden ">
+                        <thead className=" bg-[#0264c8] text-white text-left  h-12">
+                            <th>Tên người dùng</th>
+                            <th>Tên khách sạn</th>
                             <th>Ngày check in</th>
-                            <th>Ngày checkout</th>
+                            <th>Ngày check out</th>
                             <th>Tổng tiền</th>
                             <th>Details</th>
-                        </tr>
+                        </thead>
                         {bookings?.map((dt)=>
-                            <RowBooking
+                            <RowMyBookings
                                 booking={dt}
                             />
                         )}

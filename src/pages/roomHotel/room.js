@@ -204,7 +204,7 @@ function Room() {
                         {/* cac loai phong gia */}
                         <div className=" flex flex-col gap-10">
                             <TitleHome title={"Các loại phòng $ giá"} />
-                            <div className="flex flex-col gap-6 border rounded-lg px-5 py-6">
+                            {/* <div className="flex flex-col gap-6 border rounded-lg px-5 py-6">
                                 <span className=" text-lg font-semibold ">
                                     Tìm kiếm nhanh hơn bằng cách chọn những tiện nghi bạn cần
                                 </span>
@@ -214,7 +214,7 @@ function Room() {
                                     <CheckBox amenities={"abc"} />
                                     <CheckBox amenities={"abc"} />
                                 </div>
-                            </div>
+                            </div> */}
                             <div className=" p-8 rounded-3xl bg-[url('https://mixivivu.com/section-background.png')] flex flex-col gap-10 bg-[#f2f4f7]">
 
                                 <div className="flex justify-end px-2">
@@ -272,18 +272,6 @@ function Room() {
                 : null
             }
 
-            {/* Form Booking */}
-            {/* {showFormBooking ?
-                <div className="modal">
-                    <div className="flex h-full w-full">
-                        <div id="overlay" className="modal_overlay"></div>
-                        <div className="modal_body">
-                            <FormBooking dataRoom={dataRoom.roomDTOs} />
-                        </div>
-                    </div>
-                </div>
-                : null
-            } */}
         </div>
     );
 }

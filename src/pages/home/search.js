@@ -20,7 +20,6 @@ function Search({setSearch}) {
         checkinDate: new Date(),
         checkoutDate: setDateout 
     })
-    console.log(searchValue)
 
     
     const { RangePicker } = DatePicker;
@@ -29,6 +28,7 @@ function Search({setSearch}) {
     return current && current < dayjs().endOf('day')
     }
 
+    // xử lý lấy định dạng ngày
     const dateFormatAux = (date) => {
         
         let d = new Date(date),
@@ -43,7 +43,7 @@ function Search({setSearch}) {
         return [year, month, day].join('-')
     }
 
-
+    // xử lý khi thay đổi ngày
     const handleinDate = (dates,dateStrings) => {
         
         setSearchValue({
@@ -52,11 +52,13 @@ function Search({setSearch}) {
             checkoutDate:dateFormatAux(dateStrings[1] && dateFormatAux(dates[1]))
         })
     }
+    
+    //  xử lý khi thay điền thông tin cần search
     const handleSearch = (e) => {
         setSearchValue({ ...searchValue, [e.target.name]: e.target.value });
     }
     
-
+    // xử lý 
     const handleKeyDown = (e) => {
         try {
             e.preventDefault();

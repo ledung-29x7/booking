@@ -5,15 +5,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditUser from "./editUser";
 import RowUser from "./rowUser";
 import AddUser from "./addUser";
+import Delete from "./Delete";
 
 function ListUser() {
     const [isShowEdit, setIsShowEdit] = useState(false);
     const [isShowAdd, setisShowAdd] = useState(false);
+    const [isShowDelete, setIsShowDelete] = useState(false);
     const [isSucc,setIsSucc] = useState(false);
     const [users,setUser] = useState([]);
     const [editUs,setEditUs] = useState({});
     const [state, dispatch] = useStore();
-    const { isEdit,isAdd,idEdit,getData,isSuccessfull } = state;
+    const { isEdit,isAdd,isDelete,idEdit,getData,isSuccessfull } = state;
 
     // Call apis
     const CallData = () => {
@@ -22,10 +24,13 @@ function ListUser() {
             dispatch(actionsGetData.GetDataUser(data.data))
         }));
     }
-
+    
     // callBack apis 
     useEffect(() => {
         CallData();
+        const callBack = setInterval(CallData,5000);
+        
+        return()=> callBack && clearInterval(callBack)
     },[])
 
     // assign value to users
@@ -44,7 +49,7 @@ function ListUser() {
         GetEdit(idEdit)
     },[idEdit])
 
-    // open form Edit
+    // Open form Edit
     useEffect(() => {
         function OpenEdit(isEdit) {
             return (
@@ -68,6 +73,15 @@ function ListUser() {
         }
         OpenAdd(isAdd)
     },[isAdd])
+
+    useEffect(() => {
+        function OpenDelete(dlete) {
+            return (
+                setIsShowDelete(dlete)
+            );
+        }
+        OpenDelete(isDelete)
+    }, [isDelete])
 
     // 
     useEffect(() => {
@@ -153,6 +167,18 @@ function ListUser() {
                         <div id="overlay" className="modal_overlay"></div>
                         <div className="modal_body">
                             <AddUser />
+                        </div>
+                    </div>
+                </div>
+                : null
+            }
+            {/* modal Delete */}
+            {isShowDelete ?
+                <div className="modal z-50">
+                    <div className="flex w-full h-full">
+                        <div id="overlay" className="modal_overlay"></div>
+                        <div className="modal_body">
+                            <Delete delet={editUs}/>
                         </div>
                     </div>
                 </div>

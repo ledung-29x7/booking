@@ -30,9 +30,6 @@ function Hotel(){
         }
     },[getSearch])
 
-   
-
-    console.log(searchResult)
 
     return(
         <div className=" section-bg">
@@ -56,7 +53,7 @@ function Hotel(){
                         </div>
 
                         <div className="flex gap-6 py-8">
-                            <div className=" box w-1/4 ">
+                            {/* <div className=" box w-1/4 ">
                                 <div className="border-b border-gray-300 filter-result">
                                     <h4>Lọc kết quả</h4>
                                 </div>
@@ -67,7 +64,7 @@ function Hotel(){
                                     <CheckBox amenities="abc" />    
                                     <CheckBox amenities="abc" />    
                                 </div>
-                            </div>
+                            </div> */}
                             <div className=" w-3/4 flex flex-col gap-8">
                                 {searchResult?.map((resul)=>
                                     <ResultSearch

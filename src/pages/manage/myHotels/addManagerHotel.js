@@ -10,14 +10,30 @@ function AddManagerHotel() {
     const [editRoomDTO, setEditRoomDTO] = useState({});
     const navigate = useNavigate();
     const [state, dispatch] = useStore();
-    const [rooms, setRooms] = useState({
-
-        roomType: "",
-        pricePerNight:0,
+    
+    const [roomSing, setRoomSing] = useState({
+        roomType: "SINGLE",
+        pricePerNight: 0,
         roomCount: 0,
         imageDTOs: [],
         serviceDTOs: []
     });
+
+    const [roomDou, setRoomDou] = useState({
+        roomType: "DOUBLE",
+        pricePerNight: 0,
+        roomCount: 0,
+        imageDTOs: [],
+        serviceDTOs: []
+    });
+    const [roomFami,setRoomFami] = useState({
+        roomType: "FAMILY",
+        pricePerNight: 0,
+        roomCount: 0,
+        imageDTOs: [],
+        serviceDTOs: []
+    })
+
     const service = [
         "Wifi",
         "Bồn tắm",
@@ -80,8 +96,8 @@ function AddManagerHotel() {
         }
     }
 
-    // 
-    function handleChangeRoom(e) {
+    // Single
+    function handleChangeRoomSing(e) {
         const { name, value } = e.target;
         switch (name) {
             case "service":
@@ -90,32 +106,125 @@ function AddManagerHotel() {
                 // Lặp qua từng checkbox để lấy giá trị
                 for (var i = 0; i < checkbox.length; i++) {
                     if (checkbox[i].checked === true) {
-                        resule.push({name:checkbox[i].value})
+                        resule.push({ name: checkbox[i].value })
                     }
                 }
                 return (
-                    setRooms({ ...rooms, serviceDTOs: resule })
+                    setRoomSing({ ...roomSing, serviceDTOs: resule })
                 )
 
             case "roomCount":
-                return(
-                    setRooms({ ...rooms, roomCount: parseInt(value, 10) })
-                )
-                
+                if (roomSing?.roomCount >= 0) {
+                    return setRoomSing({ ...roomSing, roomCount: parseInt(value, 10) });
+                }
+
             case "pricePerNight":
-                return(
-                    setRooms({...rooms,pricePerNight: parseInt(value, 10)})
-                )
+                if (roomSing.pricePerNight >= 0) {
+                    setRoomSing({ ...roomSing, pricePerNight: parseInt(value, 10) })
+                }
             default:
-                return(
-                    setRooms({...rooms,[name]:value})
+                return (
+                    setRoomSing({ ...roomSing, [name]: value })
                 )
         }
     }
 
+    // Double
+    function handleChangeRoomDou(e) {
+        const { name, value } = e.target;
+        switch (name) {
+            case "service":
+                var checkbox = document.getElementsByName('service');
+                var resule = []
+                // Lặp qua từng checkbox để lấy giá trị
+                for (var i = 0; i < checkbox.length; i++) {
+                    if (checkbox[i].checked === true) {
+                        resule.push({ name: checkbox[i].value })
+                    }
+                }
+                return (
+                    setRoomDou({ ...roomDou, serviceDTOs: resule })
+                )
+
+            case "roomCount":
+                if (roomDou?.roomCount >= 0) {
+                    return setRoomDou({ ...roomDou, roomCount: parseInt(value, 10) });
+                }
+
+            case "pricePerNight":
+                if (roomDou?.pricePerNight >= 0) {
+                    setRoomDou({ ...roomDou, pricePerNight: parseInt(value, 10) })
+                }
+            default:
+                return (
+                    setRoomDou({ ...roomDou, [name]: value })
+                )
+        }
+    }
+
+    // Family
+    function handleChangeRoomFami(e) {
+        const { name, value } = e.target;
+        switch (name) {
+            case "service":
+                var checkbox = document.getElementsByName('service');
+                var resule = []
+                // Lặp qua từng checkbox để lấy giá trị
+                for (var i = 0; i < checkbox.length; i++) {
+                    if (checkbox[i].checked === true) {
+                        resule.push({ name: checkbox[i].value })
+                    }
+                }
+                return (
+                    setRoomFami({ ...roomFami, serviceDTOs: resule })
+                )
+
+            case "roomCount":
+                if (roomFami?.roomCount >= 0) {
+                    return setRoomFami({ ...roomFami, roomCount: parseInt(value, 10) });
+                }
+
+            case "pricePerNight":
+                if (roomFami?.pricePerNight >= 0) {
+                    setRoomFami({ ...roomFami, pricePerNight: parseInt(value, 10) })
+                }
+            default:
+                return (
+                    setRoomFami({ ...roomFami, [name]: value })
+                )
+        }
+    }
+
+    // push Single
     useEffect(() => {
-        setValueAdd({ ...valueAdd, roomDTOs: [rooms] })
-    }, [rooms])
+        const newRooms = []
+        if (roomSing?.roomCount > 0 && 
+            roomSing?.pricePerNight > 0 && 
+            roomSing?.serviceDTOs.length > 0
+            ) {
+                newRooms.push(roomSing)
+        }
+
+        if (roomDou?.roomCount > 0 && 
+            roomDou?.pricePerNight > 0 && 
+            roomDou?.serviceDTOs.length > 0
+            ) {
+                newRooms.push(roomDou)
+        }
+
+        if (roomFami?.roomCount > 0 && 
+            roomFami?.pricePerNight > 0 && 
+            roomFami?.serviceDTOs.length > 0
+            ) {
+                newRooms.push(roomFami)
+        }
+
+        setValueAdd((pre)=> ({
+            ...pre,
+            roomDTOs: newRooms
+        }))
+    }, [roomSing,roomDou,roomFami])
+
 
 
     // Submit
@@ -128,7 +237,7 @@ function AddManagerHotel() {
                         console.log(res)
                         if (res.status === 200) {
                             return (
-                                sessionStorage.setItem("idHotel",res.data.id),
+                                sessionStorage.setItem("idHotel", res.data.id),
                                 dispatch(actions.ModalSuccsessfull(true)),
                                 navigate("/manager/myHotel/add/imagehotel")
                             )
@@ -201,43 +310,133 @@ function AddManagerHotel() {
                         />
 
                     </div>
-                    <div>
-                       <div>
-                       <InputRoom
-                            type={"text"}
-                            placeholder={"Kiểu phòng"}
-                            nameInput={"roomType"}
-                            value={rooms?.roomType}
-                            onChange={handleChangeRoom}
-                            titleInput={"Kiểu Phòng"}
-                        />
-                        <InputRoom
-                            type={"number"}
-                            placeholder={"số phòng"}
-                            nameInput={"roomCount"}
-                            value={rooms?.roomCount}
-                            onChange={handleChangeRoom}
-                            titleInput={"Số lượng phòng"}
-                        />
-                        <InputRoom
-                            type={"number"}
-                            placeholder={"giá phòng"}
-                            nameInput={"pricePerNight"}
-                            value={rooms?.pricePerNight}
-                            onChange={handleChangeRoom}
-                            titleInput={"Gía Phòng"}
-                        />
-                       </div>
+                    <div className=" flex flex-col gap-28">
+                        {/* Single */}
                         <div>
-                            <span>Dịch vụ Phòng</span>
-                            {service.map((serv) =>
-                                <CheckBox
-
-                                    amenities={serv}
-                                    value={serv}
-                                    onClick={handleChangeRoom}
+                            <div className=" flex justify-around ">
+                                <input
+                                    className="outline-none pl-1 w-28"
+                                    type={"text"}
+                                    name={"roomType"}
+                                    value={"SINGLE"}
+                                    onChange={handleChangeRoomSing}
                                 />
-                            )}
+                                <InputRoom
+                                    type={"number"}
+                                    placeholder={"số phòng"}
+                                    nameInput={"roomCount"}
+                                    value={roomSing?.roomCount}
+                                    onChange={handleChangeRoomSing}
+                                    titleInput={"Số lượng phòng"}
+                                />
+                                <InputRoom
+                                    type={"number"}
+                                    placeholder={"giá phòng"}
+                                    nameInput={"pricePerNight"}
+                                    value={roomSing?.pricePerNight}
+                                    onChange={handleChangeRoomSing}
+                                    titleInput={"Gía Phòng"}
+                                />
+
+                                
+                            </div>  
+
+                            <span>Dịch vụ Phòng</span>
+                                <div className=" grid grid-cols-5">
+                                    {service.map((serv) =>
+                                        <CheckBox
+
+                                            amenities={serv}
+                                            value={serv}
+                                            onClick={handleChangeRoomSing}
+                                        />
+                                    )}
+                                </div>
+
+                        </div>
+                        
+                        {/* Double */}
+                        <div>
+                            <div className=" flex justify-around ">
+                                <input
+                                    className="outline-none pl-1 w-28"
+                                    type={"text"}
+                                    name={"roomType"}
+                                    value={"DOUBLE"}
+                                    onChange={handleChangeRoomDou}
+                                />
+                                <InputRoom
+                                    type={"number"}
+                                    placeholder={"số phòng"}
+                                    nameInput={"roomCount"}
+                                    value={roomDou?.roomCount}
+                                    onChange={handleChangeRoomDou}
+                                    titleInput={"Số lượng phòng"}
+                                />
+                                <InputRoom
+                                    type={"number"}
+                                    placeholder={"giá phòng"}
+                                    nameInput={"pricePerNight"}
+                                    value={roomDou?.pricePerNight}
+                                    onChange={handleChangeRoomDou}
+                                    titleInput={"Gía Phòng"}
+                                />
+
+                            </div>  
+
+                            <span>Dịch vụ Phòng</span>
+                                <div className=" grid grid-cols-5">
+                                    {service.map((serv) =>
+                                        <CheckBox
+
+                                            amenities={serv}
+                                            value={serv}
+                                            onClick={handleChangeRoomDou}
+                                        />
+                                    )}
+                                </div>
+
+                        </div>
+                        {/* Family  */}
+                        <div>
+                            <div className=" flex justify-around ">
+                                <input
+                                    className="outline-none pl-1 w-28"
+                                    type={"text"}
+                                    name={"roomType"}
+                                    value={"FAMILY"}
+                                    onChange={handleChangeRoomFami}
+                                />
+                                <InputRoom
+                                    type={"number"}
+                                    placeholder={"số phòng"}
+                                    nameInput={"roomCount"}
+                                    value={roomFami?.roomCount}
+                                    onChange={handleChangeRoomFami}
+                                    titleInput={"Số lượng phòng"}
+                                />
+                                <InputRoom
+                                    type={"number"}
+                                    placeholder={"giá phòng"}
+                                    nameInput={"pricePerNight"}
+                                    value={roomFami?.pricePerNight}
+                                    onChange={handleChangeRoomFami}
+                                    titleInput={"Gía Phòng"}
+                                />
+
+                            </div>  
+
+                                <div className=" grid grid-cols-5 gap-y-4">
+                                    {service.map((serv) =>
+                                        <CheckBox
+
+                                            amenities={serv}
+                                            value={serv}
+                                            onClick={handleChangeRoomFami}
+                                        />
+                                    )}
+                                </div>
+
                         </div>
                     </div>
                     <div className="border-gray-500 border text-right rounded-lg overflow-hidden h-9">

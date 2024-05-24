@@ -122,15 +122,16 @@ function InfoRoom({ dataInfoRoom}) {
                             <Utilities utilitie={"máy lạnh"} />
                         </div>
                         <div className="flex justify-center">
-                            <button className=" rounded-2xl px-6 py-1 bg-cyan-400 text-white" type="buttom" onClick={handleDetailRoom} >
+                            <button className=" rounded-2xl px-6 py-1 bg-cyan-400 text-white active:bg-cyan-600 hover:bg-cyan-500 " type="buttom" 
+                            onClick={handleDetailRoom} >
                                 xem chi tiết phòng
                             </button>
                         </div>
                     </div>
                 </div>
                 {/* Utilitis Room */}
-                <div className=" flex flex-col justify-between gap-6 flex-1 border-2 rounded-2xl px-4 py-6">
-                    <div className=" flex flex-col gap-4 pb-3 border-b-2 ">
+                <div className=" flex flex-col justify-between gap-6 flex-1 border-2 rounded-xl px-4 py-6">
+                    <div className=" flex flex-col gap-4 pb-3 border-b ">
                         <span className=" text-lg font-semibold">
                             {dataInfoRoom.roomType}
                         </span>
@@ -144,7 +145,7 @@ function InfoRoom({ dataInfoRoom}) {
                         </div>
                     </div>
                     {/*  */}
-                    <div className="flex-1 border-b-2">
+                    <div className="flex-1 border-b pb-4">
                         <div className=" grid grid-cols-2  gap-y-4">
                             <Utilities utilitie={"không gồm bữa sáng "} />
                             <Utilities utilitie={"Không đổi lịch "} />
@@ -156,20 +157,20 @@ function InfoRoom({ dataInfoRoom}) {
                     </div>
                     <div className=" flex justify-between items-center">
                         <div className=" px-5 py-3 box flex gap-5 ">
-                            <button className=""
+                            <button className="text-green-400 active:text-green-600"
                                 onClick={handleMinusCount}
                             >
                                 <FontAwesomeIcon icon="fa-solid fa-minus" />
                             </button>
                             <span>{count}</span>
-                            <button className=" "
+                            <button className=" text-green-400 gap-5 active:text-green-600"
                                 onClick={handlePlusCount}
                             >
                                 <FontAwesomeIcon icon="fa-solid fa-plus" />
                             </button>
                         </div>
                         <span className=" text-xl font-semibold">
-                            {dataInfoRoom.pricePerNight}$
+                            {dataInfoRoom.pricePerNight} VND
                         </span>
                     </div>
                 </div>

@@ -12,6 +12,7 @@ function EditUser({ user }) {
     ]
 
     const [valueEdit,setValueEdit] = useState({
+        id:0,
         username: '' ,
         phone: '',
         firstName: '',
@@ -27,6 +28,7 @@ function EditUser({ user }) {
     useEffect(()=> {
         setValueEdit(user)
     },[user])
+
 
     function HandleCloseEdit() {
         dispatch(actions.ModalEdit(false));
@@ -46,15 +48,21 @@ function EditUser({ user }) {
         }
     }
 
+    function handleUpdated(data) {
+        setValueEdit(data)
+    }
+    
+
     function handleSubmit(e) {
         const FetchEdit = async() => {
             try {
                 e.preventDefault();
                 await apis.editUser("users",idEdit,valueEdit)
                 .then(res=>{
+                    console.log(res)
                     if(res.status === 200){
                         return(
-                            setValueEdit(res.data),
+                            
                             dispatch(actions.ModalEdit(false)),
                             dispatch(actions.ModalSuccsessfull(true))
                         )
@@ -84,7 +92,7 @@ function EditUser({ user }) {
                             <input
                                 className="outline-none w-11/12 h-full"
                                 placeholder="Username"
-                                value={valueEdit.username}
+                                value={valueEdit?.username}
                                 type="text"
                                 name="username"
                                 onChange={handleChange}  
@@ -95,7 +103,7 @@ function EditUser({ user }) {
                             <input
                                 className="outline-none w-11/12 h-full"
                                 placeholder="Phone"
-                                value={valueEdit.phone}
+                                value={valueEdit?.phone}
                                 type="text"
                                 name="phone"
                                 onChange={handleChange}  
@@ -108,7 +116,7 @@ function EditUser({ user }) {
                                 type="text"
                                 placeholder="Firt Name"
                                 name="firstName"
-                                value={valueEdit.firstName}
+                                value={valueEdit?.firstName}
                                 onChange={handleChange}
                             />
                         </div>
@@ -119,7 +127,7 @@ function EditUser({ user }) {
                                 placeholder="Last Name"
                                 type="text"
                                 name="lastName"
-                                value={valueEdit.lastName}
+                                value={valueEdit?.lastName}
                                 onChange={handleChange}
                             />
                         </div>

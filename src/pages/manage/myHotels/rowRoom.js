@@ -14,6 +14,11 @@ function RowRoom({ room}) {
         dispatch(actions.getIdEND(room.id));
     }
 
+    const handleDelete = () => {
+        dispatch(actions.ModalDelete(true))
+        dispatch(actions.getIdEND(room?.id))
+    }
+
     return (
         <tbody className=" text-gray-600 h-11">
             <td className=" text-center">{room.id}</td>
@@ -28,7 +33,9 @@ function RowRoom({ room}) {
                 </button>
             </td>
             <td className=" text-center">
-                <button className=" buttom_crud w-14 h-8 ">
+                <button className=" buttom_crud w-14 h-8 "
+                    onClick={handleDelete}
+                >
                     <FontAwesomeIcon style={{ color: "#F44F44" }} icon="fa-solid fa-trash-can" />
                 </button>
             </td>

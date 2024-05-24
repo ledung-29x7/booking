@@ -5,16 +5,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import * as apis from "../../../apis"
 import RowList from "./rowRoom";
+import Delete from "../../admins/listUser/Delete";
 
 
 function ListUser() {
     const navigate = useNavigate();
+    const [isShowDelete, setIsShowDelete] = useState(false);
     const [rooms,setRooms] = useState([]);
     const [state, dispatch] = useStore();   
-    
+    const {isDelete,isEdit} = state;
+
+
+    useEffect(()=> {
+        setIsShowDelete(isDelete)
+    },[isDelete])
 
     // Read apis
-    
     useEffect(() => {
         const FetchData = async() => {
             try {
@@ -29,19 +35,22 @@ function ListUser() {
 
 
     return (
-        <div className=" my-10 px-10">
+        <div className=" my-14 px-10">
             <div className=" containerr">
-                <div className=" flex justify-between items-center">
+                <div className=" flex justify-between items-center pb-6">
                     <div className="flex flex-col gap-5">
-                        <h4 className="font-bold text-4xl w-80">
-                        Thêm khách sạn mới                      </h4>
-                        <img className="w-24" src="../icon/heading-border.png" alt="" />
+                        <h4 className="font-bold text-4xl">
+                            Danh sách khách sạn  
+                        </h4>
                     </div>
-                    <button className="mx-10 bg-lime-600 w-32 h-10 flex justify-center items-center gap-3 rounded-md"
+                    <button className="mx-10 px-4 py-3 bg-lime-600 flex justify-center items-center gap-3 rounded-md"
                         onClick={()=>navigate('/manager/myHotel/add')}
                     >
-                        <FontAwesomeIcon style={{color:"white"}} icon="fa-solid fa-plus"/>
-                        <span className="buttom_crud ">Thêm khách sạn</span>
+                        <span className=" w-6 h-6 border-2 border-white rounded-full flex justify-center items-center">
+
+                            <FontAwesomeIcon style={{color:"white"}} icon="fa-solid fa-plus"/>
+                        </span>
+                        <span className=" text-white ">Thêm khách sạn</span>
                     </button>
                 </div>
                 <div>
@@ -66,7 +75,18 @@ function ListUser() {
                     </table>
                 </div>
             </div>
-            {/* modal add */}
+            {/* modal delete */}
+            {isShowDelete ?
+                <div className="modal z-50">
+                    <div className="flex w-full h-full">
+                        <div id="overlay" className="modal_overlay"></div>
+                        <div className="modal_body">
+                            <Delete delet={isEdit}/>
+                        </div>
+                    </div>
+                </div>
+                : null
+            }
         </div>
     );
 }

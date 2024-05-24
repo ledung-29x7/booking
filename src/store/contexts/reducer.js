@@ -17,7 +17,9 @@ import {
     CHECKINDATE,
     CHECKOUTDATE,
     COUNTROOM,
-    CHECKLOGIN
+    CHECKLOGIN,
+    GETIDBOOKING,
+    ISSHOWINGDELETE
 } from "../action/constants";
 
 export const initState = {
@@ -25,6 +27,7 @@ export const initState = {
     isLogin : false,
     isEdit: false,
     isAdd: false,
+    isDelete: false,
     idEdit : null,
     isInforoom : false,
     isFormBooking : false,
@@ -40,6 +43,7 @@ export const initState = {
     checkout : "",
     countNType: {},
     checkLogin: false,
+    getIdBooking: 0,
 }
 
 function Reducers(state,action){
@@ -63,6 +67,11 @@ function Reducers(state,action){
             return {
                 ...state,
                 isAdd: action.showAdd
+            }
+        case ISSHOWINGDELETE : // Open form Modal Delete
+            return {
+                ...state,
+                isDelete: action.showDelete
             }
         case EDITNDELETE : // ID  EDIT
             return {
@@ -129,15 +138,20 @@ function Reducers(state,action){
                 ...state,
                 checkout: action.date
             }
-        case COUNTROOM:
+        case COUNTROOM: // get count room
             return {
                 ...state,
                 countNType: action.countNtype
             }
-        case CHECKLOGIN:
+        case CHECKLOGIN: // check xem đã login chưa
             return {
                 ...state,
                 checkLogin: action.blo
+            }
+        case GETIDBOOKING: // lấy id của thông tin bookings
+            return {
+                ...state,
+                getIdBooking: action.id
             }
         default:
             return state;

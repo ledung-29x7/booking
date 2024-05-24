@@ -36,7 +36,7 @@ function Login() {
                 console.log(res)
                 if (res.status === 200){
                     window.sessionStorage.setItem('token', res.data.token)
-                    sessionStorage.setItem('nameUser', res.data.username);
+                    localStorage.setItem('nameUser', res.data.username);
                     dispatch(actions.CheckLogin(true));
                     dispatch(actions.ModalLogin(false)) 
                     switch (res.data.role) {

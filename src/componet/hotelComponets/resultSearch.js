@@ -68,14 +68,14 @@ function ResultSearch({resul}){
                 <div className="flex items-center justify-between pt-5 border-t border-gray-300">
 
                     <p className=" text-lg font-semibold">{price}$/ Khách</p>
-                    <button className=" bg-[#77dada] border-4  w-24
-                    border-[#77dada]
+                    <button className=" bg-cyan-500 text-white px-5 py-4 rounded-2xl
+                     hover:bg-cyan-700
+                     active:bg-cyan-800
                     flex 
                     items-center 
                     justify-center 
-                    h-fit bottom 
+                    h-fit 
                     font-bold
-                    opacity-60 
                     ">
                          Đặt ngay
                     </button>

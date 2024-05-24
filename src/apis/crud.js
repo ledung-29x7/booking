@@ -190,10 +190,10 @@ export const Payment = (pay) => new Promise(async(resolve,reject)=> {
 })
 
 // confirmation
-export const Confirmation  = () => new Promise(async(resolve,reject)=> {
+export const Confirmation  = (id) => new Promise(async(resolve,reject)=> {
     try {
         const response = await axios({
-            url:`confirmation/${sessionStorage.getItem("idBooking")}`,
+            url:`booking/confirmation/${id}`,
             method: "get",
             headers: {
                 'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
@@ -272,10 +272,27 @@ export const LogOut = () => new Promise(async(resolve,reject)=> {
         reject(error)
     }
 })
+
 // contact
 export const addContact = (post) => new Promise(async(resolve, reject) => {
     try {
         const response= await axios.post('contact/',post);
+        resolve(response)
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const Delete = (host) =>new Promise(async(resolve,reject)=> {
+    try {
+        const response = await axios({
+            url:`${host}`,
+            method: "delete",
+            withCredentials: true,
+            headers: {
+                'Authorization': `Bearer ${ window.sessionStorage.getItem('token')}`
+            }
+        })
         resolve(response)
     } catch (error) {
         reject(error)
