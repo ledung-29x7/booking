@@ -19,7 +19,7 @@ function Search() {
     // xử lý ngày tháng
     useEffect(()=>{
         let date =  new Date()
-        setSearchValue({dateIn:["0"+date.getDay()+"/"+"0"+date.getDate()+"/"+date.getFullYear()]})
+        setSearchValue({dateIn:["0"+date.getDate()+"/"+"0"+date.getMonth()+"/"+date.getFullYear()]})
     },[])
 
     const handleKeyDown = (e) =>{

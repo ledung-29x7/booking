@@ -3,9 +3,9 @@ import InfoContracts from "../../componet/otherComponets/infoContracts";
 
 function Contracts() {
     return(
-        <div>
+        <div className="pt-32 flex-wrap">
             <h1 style={{fontFamily: "Times New Roman", fontSize: "50px", textAlign: "center"}}>Liên hệ</h1>
-            <div className="containerr flex flex-col gap-10 px-8 py-20">
+            <div className="container flex flex-col gap-20 px-8 py-20">
                 <InfoContracts
                 src=""
                 name="Lê Chung Dũng"
