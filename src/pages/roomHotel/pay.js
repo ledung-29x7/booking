@@ -7,19 +7,21 @@ import { useState } from "react";
 
 function Pay() {
 
-    const [,dispatch] = useStore();
+    const [state, dispatch] = useStore();
+    const {getinfoBK} = state;
+    const specificAddress = getinfoBK?.address?.addressLine + ", " + getinfoBK?.address?.district + ", " + getinfoBK?.address?.city + ", " + getinfoBK?.address?.country;
     const navigate = useNavigate();
-    const [infoPay,setInfoPay] = useState({
-        
-            cardholderName:"",
-            cardNumber:"",
-            expirationDate:"",
-            cvc:""
-        
+    const [infoPay, setInfoPay] = useState({
+
+        cardholderName: "",
+        cardNumber: "",
+        expirationDate: "",
+        cvc: ""
+
     });
 
     const handleChange = (e) => {
-        setInfoPay({...infoPay,[e.target.name]: e.target.value})
+        setInfoPay({ ...infoPay, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = (e) => {
@@ -27,13 +29,13 @@ function Pay() {
             e.preventDefault();
             try {
                 await apis.Payment(infoPay)
-                .then(res=> {
-                    if (res.status === 200) {
-                        dispatch(actions.GetIdBooking(res.data.id))
-                        navigate("/bookingConfirmation")
-                        console.log(res)
-                    }
-                })
+                    .then(res => {
+                        if (res.status === 200) {
+                            dispatch(actions.GetIdBooking(res.data.id))
+                            navigate("/bookingConfirmation")
+                            console.log(res)
+                        }
+                    })
             } catch (error) {
                 console.log(error)
             }
@@ -50,54 +52,51 @@ function Pay() {
 
             <div className="py-5 flex">
                 {/* info date booking */}
-                <div className="flex flex-col gap-3 flex-1 px-3">
-                    <div className="border p-4 rounded-lg flex flex-col gap-3">
-                        <div>
-                        Hà Nội 
+                <div className="flex flex-col gap-3 flex-1 px-3 ">
+                    <div className="border p-4 rounded-lg flex flex-col gap-3 bg-gray-50">
+                        <div className=" font-bold text-xl">
+                            {getinfoBK?.nameHotel}
                         </div>
-                        <div>
-                        DungLe No:19,34357
-                        </div>
-                        <div>
-                        Hà Nội, Việt Nam
-
+                        <div className=" text-sm">
+                            {specificAddress}
                         </div>
                     </div>
-                    <div className="border p-4 rounded-lg flex flex-col gap-10">
+                    <div className="border p-4 rounded-lg flex flex-col gap-10 bg-gray-50">
                         <div className=" grid grid-cols-2">
                             <div className="flex flex-col gap-2">
                                 <h4 className=" font-semibold">Đăng ký vào</h4>
-                                <div className=" text-gray-600">{"dateIn"}</div>
+                                <div className=" text-gray-600">{getinfoBK?.checkinDate}</div>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <h4 className="font-semibold">Thủ tục thanh toán</h4>
-                                <div className="text-gray-600">{"dateOut"}</div>
+                                <div className="text-gray-600">{getinfoBK?.checkoutDate}</div>
                             </div>
                         </div>
                         <div className="flex flex-col gap-2">
                             <h4 className="font-semibold">Thời gian cư trú</h4>
                             <div className="text-gray-600">
-                                {"dateOut - dateIn"} Đêm
+                                {getinfoBK?.durationDays} Đêm
                             </div>
                         </div>
                         <div className="flex flex-col gap-3">
                             <h4 className="font-semibold">Phòng đã chọn</h4>
                             <div className="flex flex-col gap-2">
-                                <div className="text-gray-600">
-                                    {"roomSingle"} Đơn
-                                </div>
-                                <div className="text-gray-600">
-                                    {"roomDouble"} Đôi
-                                </div>
+                                {getinfoBK?.roomSelections?.map((typeR)=>
+                                    <div className=" text-gray-600 flex gap-2">
+                                        <span>{typeR?.count} phòng</span>
+                                        <span> loại</span>
+                                        <span className=" font-semibold">{typeR?.roomType}</span>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
                 {/* enter info Pay */}
-                <form action="/pay" className="flex flex-col justify-between flex-[2_1_0%] px-5" onSubmit={handleSubmit}>
-                    <div className="">
+                <form action="/pay" className="flex flex-col justify-between flex-[2_1_0%] px-5 gap-10" onSubmit={handleSubmit}>
+                    <div className=" flex gap-5 items-center">
                         <h3 className="font-bold text-xl">Tổng tiền: </h3>
-                        <div>{"totalPrice"}</div>
+                        <div className=" text-lg font-semibold">{getinfoBK?.amount} VND</div>
                     </div>
                     <div className="flex flex-col gap-6">
                         <InputRoom
@@ -129,12 +128,12 @@ function Pay() {
                                     value={infoPay.cvc}
                                 />
                             </div>
-                            
+
                         </div>
                     </div>
                     <div>
-                        <button  className="  bg-sky-600 rounded-3xl text-white px-6 py-3">
-                        Hoàn tất đặt chỗ
+                        <button className="  bg-sky-600 rounded-3xl text-white px-6 py-3">
+                            Hoàn tất đặt chỗ
                         </button>
                     </div>
                 </form>

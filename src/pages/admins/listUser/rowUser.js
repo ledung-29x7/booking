@@ -16,8 +16,8 @@ function RowUser({user}){
     
     return(
         <tbody className=" text-gray-600 h-11">
-            <td className=" text-center">{user.id}</td>
-            <td>{user.username}</td>
+            <td className=" text-center">{user?.id}</td>
+            <td>{user?.username}</td>
             <td>{user?.firstName}</td>
             <td>{user?.lastName}</td>
             <td>{user.role?.roleType}</td>
@@ -26,7 +26,7 @@ function RowUser({user}){
                     <FontAwesomeIcon icon="fa-solid fa-pen" />
                 </button>
             </td>
-            <td className=" text-center">
+            <td className=" text-center">   
                 <button onClick={handleDelete} className=" buttom_crud w-14 h-8 text-red-500">
                     <FontAwesomeIcon icon="fa-solid fa-trash-can" />
                 </button>

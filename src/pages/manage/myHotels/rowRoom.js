@@ -19,6 +19,11 @@ function RowRoom({ room}) {
         dispatch(actions.getIdEND(room?.id))
     }
 
+    const handelDetail = () => {
+        navigate("/manager/myHotels/detail")
+        sessionStorage.setItem("idDetail", room?.id)
+    }
+
     return (
         <tbody className=" text-gray-600 h-11">
             <td className=" text-center">{room.id}</td>
@@ -37,6 +42,13 @@ function RowRoom({ room}) {
                     onClick={handleDelete}
                 >
                     <FontAwesomeIcon style={{ color: "#F44F44" }} icon="fa-solid fa-trash-can" />
+                </button>
+            </td>
+            <td>
+                <button className=" buttom_crud px-5 py-4"
+                    onClick={handelDetail}
+                >
+                    <FontAwesomeIcon icon="fa-solid fa-circle-info" />
                 </button>
             </td>
         </tbody>

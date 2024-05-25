@@ -10,7 +10,7 @@ function AddManagerHotel() {
     const [editRoomDTO, setEditRoomDTO] = useState({});
     const navigate = useNavigate();
     const [state, dispatch] = useStore();
-    
+
     const [roomSing, setRoomSing] = useState({
         roomType: "SINGLE",
         pricePerNight: 0,
@@ -26,7 +26,7 @@ function AddManagerHotel() {
         imageDTOs: [],
         serviceDTOs: []
     });
-    const [roomFami,setRoomFami] = useState({
+    const [roomFami, setRoomFami] = useState({
         roomType: "FAMILY",
         pricePerNight: 0,
         roomCount: 0,
@@ -60,6 +60,7 @@ function AddManagerHotel() {
             city: "",
             country: ""
         },
+        description: "",
         imageDTOs: [],
         managerUsername: 'manager@gmail.com',
         roomDTOs: [],
@@ -110,17 +111,17 @@ function AddManagerHotel() {
                     }
                 }
                 return (
-                    setRoomSing({ ...roomSing, serviceDTOs: resule })
+                    setRoomSing(prev => ({ ...prev, serviceDTOs: resule }))
                 )
 
             case "roomCount":
                 if (roomSing?.roomCount >= 0) {
-                    return setRoomSing({ ...roomSing, roomCount: parseInt(value, 10) });
+                    return setRoomSing(prev => ({ ...prev, roomCount: parseInt(value, 10) }));
                 }
 
             case "pricePerNight":
                 if (roomSing.pricePerNight >= 0) {
-                    setRoomSing({ ...roomSing, pricePerNight: parseInt(value, 10) })
+                    setRoomSing(prev => ({ ...prev, pricePerNight: parseInt(value, 10) }))
                 }
             default:
                 return (
@@ -143,17 +144,17 @@ function AddManagerHotel() {
                     }
                 }
                 return (
-                    setRoomDou({ ...roomDou, serviceDTOs: resule })
+                    setRoomDou(prev => ({ ...prev, serviceDTOs: resule }))
                 )
 
             case "roomCount":
-                if (roomDou?.roomCount >= 0) {
-                    return setRoomDou({ ...roomDou, roomCount: parseInt(value, 10) });
+                if (roomDou?.roomCount > 0) {
+                    return setRoomDou(prev => ({ ...prev, roomCount: parseInt(value, 10) }));
                 }
 
             case "pricePerNight":
-                if (roomDou?.pricePerNight >= 0) {
-                    setRoomDou({ ...roomDou, pricePerNight: parseInt(value, 10) })
+                if (roomDou?.pricePerNight > 0) {
+                    setRoomDou(prev => ({ ...prev, pricePerNight: parseInt(value, 10) }))
                 }
             default:
                 return (
@@ -176,17 +177,17 @@ function AddManagerHotel() {
                     }
                 }
                 return (
-                    setRoomFami({ ...roomFami, serviceDTOs: resule })
+                    setRoomFami(prev => ({ ...prev, serviceDTOs: resule }))
                 )
 
             case "roomCount":
-                if (roomFami?.roomCount >= 0) {
-                    return setRoomFami({ ...roomFami, roomCount: parseInt(value, 10) });
+                if (roomFami?.roomCount > 0) {
+                    return setRoomFami(prev => ({ ...prev, roomCount: parseInt(value, 10) }));
                 }
 
             case "pricePerNight":
-                if (roomFami?.pricePerNight >= 0) {
-                    setRoomFami({ ...roomFami, pricePerNight: parseInt(value, 10) })
+                if (roomFami?.pricePerNight > 0) {
+                    setRoomFami(prev => ({ ...prev, pricePerNight: parseInt(value, 10) }))
                 }
             default:
                 return (
@@ -197,33 +198,33 @@ function AddManagerHotel() {
 
     // push Single
     useEffect(() => {
-        const newRooms = []
-        if (roomSing?.roomCount > 0 && 
-            roomSing?.pricePerNight > 0 && 
+        var newRooms = []
+        if (roomSing?.roomCount > 0 &&
+            roomSing?.pricePerNight > 0 &&
             roomSing?.serviceDTOs.length > 0
-            ) {
-                newRooms.push(roomSing)
+        ) {
+            newRooms.push(roomSing)
         }
 
-        if (roomDou?.roomCount > 0 && 
-            roomDou?.pricePerNight > 0 && 
+        if (roomDou?.roomCount > 0 &&
+            roomDou?.pricePerNight > 0 &&
             roomDou?.serviceDTOs.length > 0
-            ) {
-                newRooms.push(roomDou)
+        ) {
+            newRooms.push(roomDou)
         }
 
-        if (roomFami?.roomCount > 0 && 
-            roomFami?.pricePerNight > 0 && 
+        if (roomFami?.roomCount > 0 &&
+            roomFami?.pricePerNight > 0 &&
             roomFami?.serviceDTOs.length > 0
-            ) {
-                newRooms.push(roomFami)
+        ) {
+            newRooms.push(roomFami)
         }
 
-        setValueAdd((pre)=> ({
+        setValueAdd((pre) => ({
             ...pre,
             roomDTOs: newRooms
         }))
-    }, [roomSing,roomDou,roomFami])
+    }, [roomSing, roomDou, roomFami])
 
 
 
@@ -235,11 +236,11 @@ function AddManagerHotel() {
                 await apis.AddManagerHotel(valueAdd)
                     .then(res => {
                         console.log(res)
-                        if (res.status === 200) {
+                        if (res.status === 201) {
                             return (
-                                sessionStorage.setItem("idHotel", res.data.id),
+                                navigate("/manager/myHotel/add/imagehotel"),
                                 dispatch(actions.ModalSuccsessfull(true)),
-                                navigate("/manager/myHotel/add/imagehotel")
+                                sessionStorage.setItem("idHotel", res?.data?.id)
                             )
                         }
                     });
@@ -309,6 +310,20 @@ function AddManagerHotel() {
                             type={"text"}
                         />
 
+                        <div className=" relative">
+                            <textarea
+                                className="block w-full rounded-md outline-none border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                name={"description"}
+                                rows={4}
+                                value={valueAdd?.description}
+                                onChange={handleChange}
+                                placeholder={"Nhập nội dung"}
+                            />
+                            <label className="absolute -top-1 left-4 bg-white px-2 -translate-y-1/2 text-[#475467] text-sm font-semibold">
+                                Description
+                            </label>
+                        </div>
+
                     </div>
                     <div className=" flex flex-col gap-28">
                         {/* Single */}
@@ -338,23 +353,22 @@ function AddManagerHotel() {
                                     titleInput={"Gía Phòng"}
                                 />
 
-                                
-                            </div>  
+                            </div>
 
                             <span>Dịch vụ Phòng</span>
-                                <div className=" grid grid-cols-5">
-                                    {service.map((serv) =>
-                                        <CheckBox
+                            <div className=" grid grid-cols-5">
+                                {service.map((serv) =>
+                                    <CheckBox
 
-                                            amenities={serv}
-                                            value={serv}
-                                            onClick={handleChangeRoomSing}
-                                        />
-                                    )}
-                                </div>
+                                        amenities={serv}
+                                        value={serv}
+                                        onClick={handleChangeRoomSing}
+                                    />
+                                )}
+                            </div>
 
                         </div>
-                        
+
                         {/* Double */}
                         <div>
                             <div className=" flex justify-around ">
@@ -382,19 +396,19 @@ function AddManagerHotel() {
                                     titleInput={"Gía Phòng"}
                                 />
 
-                            </div>  
+                            </div>
 
                             <span>Dịch vụ Phòng</span>
-                                <div className=" grid grid-cols-5">
-                                    {service.map((serv) =>
-                                        <CheckBox
+                            <div className=" grid grid-cols-5">
+                                {service.map((serv) =>
+                                    <CheckBox
 
-                                            amenities={serv}
-                                            value={serv}
-                                            onClick={handleChangeRoomDou}
-                                        />
-                                    )}
-                                </div>
+                                        amenities={serv}
+                                        value={serv}
+                                        onClick={handleChangeRoomDou}
+                                    />
+                                )}
+                            </div>
 
                         </div>
                         {/* Family  */}
@@ -424,18 +438,17 @@ function AddManagerHotel() {
                                     titleInput={"Gía Phòng"}
                                 />
 
-                            </div>  
+                            </div>
 
-                                <div className=" grid grid-cols-5 gap-y-4">
-                                    {service.map((serv) =>
-                                        <CheckBox
-
-                                            amenities={serv}
-                                            value={serv}
-                                            onClick={handleChangeRoomFami}
-                                        />
-                                    )}
-                                </div>
+                            <div className=" grid grid-cols-5 gap-y-4">
+                                {service.map((serv) =>
+                                    <CheckBox
+                                        amenities={serv}
+                                        value={serv}
+                                        onClick={handleChangeRoomFami}
+                                    />
+                                )}
+                            </div>
 
                         </div>
                     </div>

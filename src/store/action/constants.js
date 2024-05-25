@@ -19,4 +19,5 @@ export const CHECKOUTDATE = 'checkoutDate';
 export const COUNTROOM = 'countRoom';
 export const ROOMTYPE = 'roomType';
 export const CHECKLOGIN = "checkLogIn";
-export const GETIDBOOKING = "getIdBooking"
+export const GETIDBOOKING = "getIdBooking";
+export const GETINFOBOOKING = "getInfoBooking";

@@ -19,7 +19,8 @@ import {
     COUNTROOM,
     CHECKLOGIN,
     GETIDBOOKING,
-    ISSHOWINGDELETE
+    ISSHOWINGDELETE,
+    GETINFOBOOKING
 } from "../action/constants";
 
 export const initState = {
@@ -44,6 +45,7 @@ export const initState = {
     countNType: {},
     checkLogin: false,
     getIdBooking: 0,
+    getinfoBK: {}
 }
 
 function Reducers(state,action){
@@ -152,6 +154,11 @@ function Reducers(state,action){
             return {
                 ...state,
                 getIdBooking: action.id
+            }
+        case GETINFOBOOKING: // get Info booking
+            return {
+                ...state,
+                getinfoBK: action.info
             }
         default:
             return state;

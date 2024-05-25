@@ -8,6 +8,11 @@ function RowHotel({hotels}){
     function HandleEdit(){
         dispatch(actions.ModalEdit(true))
         dispatch(actions.getIdEND(hotels?.id))
+    }   
+
+    const handleDelete = () => {
+        dispatch(actions.ModalDelete(true))
+        dispatch(actions.getIdEND(hotels?.id))
     }
 
     return(
@@ -19,7 +24,7 @@ function RowHotel({hotels}){
                 <button onClick={HandleEdit} className="buttom_crud w-14 h-8 bg-amber-400 ">Edit</button>
             </td>
             <td className=" text-center">
-                <button className=" buttom_crud w-14 h-8 bg-red-500">Delete</button>
+                <button onClick={handleDelete} className=" buttom_crud w-14 h-8 bg-red-500">Delete</button>
             </td>
         </tbody>
     );

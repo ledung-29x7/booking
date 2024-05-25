@@ -107,7 +107,7 @@ function Home() {
                 </div>
                 <div className=" ">
                     <div className="flex">
-                        <LocaltionPicnic50 onClick={()=>handleSearch("Thanh Pho Ho Chi Minh")}
+                        <LocaltionPicnic50 onClick={()=>handleSearch("Ho Chi Minh")}
                             src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/DJI_0550-HDR-Pano.jpg/1200px-DJI_0550-HDR-Pano.jpg"
                         />
                         <LocaltionPicnic50 onClick={()=>handleSearch("Ha NOi")}

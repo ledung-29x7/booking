@@ -52,7 +52,7 @@ function BookingComfirmation() {
                                 <span className=" text-sm text-gray-600">
                                     {infoBooked?.hotelAddress?.addressLine },
                                 </span>
-
+                                
                                 <span className="text-sm text-gray-600">
                                     {infoBooked?.hotelAddress?.district},  
                                     

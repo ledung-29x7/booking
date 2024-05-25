@@ -13,6 +13,7 @@ import {
     CHECKLOGIN,
     GETIDBOOKING,
     ISSHOWINGDELETE,
+    GETINFOBOOKING,
 } from "./constants"
 
 // modal SignUp, Login
@@ -119,6 +120,14 @@ export const GetIdBooking = (id) => {
     return {
         type: GETIDBOOKING,
         id
+    }
+}
+
+// get inFo  Booking
+export const getInfoBooking = (info) => {
+    return {
+        type: GETINFOBOOKING,
+        info
     }
 }
 

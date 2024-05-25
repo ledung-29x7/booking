@@ -13,6 +13,7 @@ function HeaderAdmin() {
     const [isShowingSignUp, setIsShowingSignUp] = useState(false);
     const [isShowingLogin, setIsShowingLogin] = useState(false);
     const [isChecking, setIsChecking] = useState(false);
+    const [isLogout,setIsLogout] = useState(true);
     const [state, dispatch] = useStore();
     const { isSignUp, isLogin, checkLogin } = state;
 
@@ -74,6 +75,10 @@ function HeaderAdmin() {
         OpenLogin(isLogin);
     }, [isLogin]);
 
+    function handleHidden() {
+        setIsLogout(!isLogout)
+    }
+
     // handle Logout
     const handleLogout = () => {
         const FetchData = async () => {
@@ -133,12 +138,29 @@ function HeaderAdmin() {
             {/* đăng nhập đăng xuất */}
             {
                 isChecking ?
-                    (<div>
-                        <button onClick={handleLogout} className=" border  w-36 h-20 ">
-                            <FontAwesomeIcon icon="fa-solid fa-right-to-bracket" />
-                        </button>
-                        <div>
-                            <span className="">{sessionStorage.getItem("nameUser")}</span>
+                    (<div className=" relative drop-slect">
+                        {/* <div id="logout" className=" absolute top-0 left-0 right-0 bottom-0"></div> */}
+                        <div className="flex justify-center items-center gap-2">
+                            <button onClick={handleHidden}
+                                className=" z-50 text-2xl rounded-full border-2 border-gray-800 w-[2.8rem] h-11"
+                            >
+                                <FontAwesomeIcon icon="fa-regular fa-user" />
+                            </button>
+
+                            <span className=" text-slate-600 font-bold">
+                                {localStorage.getItem("nameUser")}
+                            </span>
+                        </div>
+
+                        <div onClick={handleLogout} className={isLogout && "hidden"}>
+                            <ul className="absolute top-full -left-6 cursor-pointer mt-2 h-14 w-28 rounded-lg flex items-center justify-center bg-red-50">
+                                <li className="">
+                                    <span className=" ">
+                                        <FontAwesomeIcon icon="fa-solid fa-arrow-right-from-bracket" />
+                                        LogOut
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     )

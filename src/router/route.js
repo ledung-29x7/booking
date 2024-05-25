@@ -21,6 +21,8 @@ import EditManagerHotel from "../pages/manage/myHotels/editHotel";
 import AddManagerHotel from "../pages/manage/myHotels/addManagerHotel";
 import AddImageHotel from "../pages/manage/myHotels/addImageHotel";
 import Contact from "../pages/contact/contact";
+import DetailHotel from "../pages/manage/myHotels/detailHotel";
+import AddImageRoom from "../pages/manage/myHotels/addImageRoom";
 
 
 const publicRoute = [
@@ -43,8 +45,11 @@ const publicRoute = [
     { path: '/user/signup', componet: SignUp, layout: DefaultLayoutLogin },
     { path: '/manager/myHotels/edit/:id', componet: EditManagerHotel, layout: DefaultLayoutAdmin },
     { path: '/manager/myHotel/add', componet: AddManagerHotel, layout: DefaultLayoutAdmin },
-    { path: '/manager/myHotel/add/imagehotel', componet: AddImageHotel, Layout:DefaultLayoutAdmin },
-    { path: '/contact', componet: Contact}
+    { path: '/manager/myHotel/add/imagehotel', componet: AddImageHotel, layout: DefaultLayoutAdmin },
+    { path: '/manager/myHotel/add/imageroom', componet: AddImageRoom, layout: DefaultLayoutAdmin },
+    { path: '/manager/myHotels/detail', componet: DetailHotel, layout: DefaultLayoutAdmin },
+    { path: '/contact', componet: Contact }
+
 
 ]
 

@@ -38,7 +38,7 @@ function Room() {
         count: 0
     });
     const [bookingInfo, setBookingInfo] = useState({
-        hotelId : 1,
+        hotelId : id,
         checkinDate: "",
         checkoutDate: "",
         durationDays: 0,
@@ -82,14 +82,14 @@ function Room() {
         const msout = dateout.getTime();
         const duration = Math.ceil((msout - msin) / (24 * 60 * 60 * 1000))
 
-        setBookingInfo(b => b = {
-            ...bookingInfo,
+        setBookingInfo(b=>({
+            ...b,
             checkinDate: checkin,
             checkoutDate: checkout,
             durationDays: duration,
             roomSelections: [countNType],
             amount: total
-        })
+        }))
 
     }, [countNType, checkin, checkout, total])
 
@@ -107,15 +107,19 @@ function Room() {
         setImagesHotel(images);
     }, [dataRoom])
     
-    console.log(bookingInfo)
     // Open Form Booking
     const handleOpenBooking = () => {
 
         const FetchData = async () => {
             try {
-                const response = await apis.Booking(bookingInfo)
+                await apis.Booking(bookingInfo)
                     .then(res => {
+                        
                         if (res.status === 200) {
+                            dispatch(actions.getInfoBooking({...bookingInfo,
+                                                                nameHotel:dataRoom?.name,
+                                                                address : dataRoom?.addressDTO,
+                                                            }))
                             navigate("/pay")
                         }
                     })
@@ -170,9 +174,9 @@ function Room() {
                         <FontAwesomeIcon icon="fa-solid fa-arrow-right" />
                     </button>
                     {/* images */}
-                    <SlideRoom imgSlide={"https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/images/2l1uxvb4jp973ya1.webp"} />
-                    <SlideRoom imgSlide={"https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/images/2l1uxvb4jp973ya1.webp"} />
-                    <SlideRoom imgSlide={"https://minio.fares.vn/mixivivu-dev/tour/du-thuyen-heritage-binh-chuan-cat-ba/images/2l1uxvb4jp973ya1.webp"} />
+                    {imagesHotel.map((img)=> 
+                        <SlideRoom imgSlide={img} />
+                    )}
                 </div>
             </div>
             {/* end slide */}
@@ -187,17 +191,10 @@ function Room() {
                         {/* dac diem noi bat */}
                         <div className="flex flex-col gap-10">
                             <TitleHome title={"Tính năng nổi bật"} />
-                            <div className=" grid grid-cols-2 gap-x-8 gap-y-6">
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"bo suc"} />
-                            </div>
                             <div className="flex flex-col gap-6">
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
-                                <Utilitie src={"../../icon/icon-utiliti.svg"} util={"Du thuyền được thiết kế với phong cách sang trọng và truyền thống"} />
+                              
+                                    <Utilitie src={"../../icon/icon-utiliti.svg"} util={dataRoom?.description} />
+                                
                             </div>
                         </div>
 
@@ -215,7 +212,7 @@ function Room() {
                                     <CheckBox amenities={"abc"} />
                                 </div>
                             </div> */}
-                            <div className=" p-8 rounded-3xl bg-[url('https://mixivivu.com/section-background.png')] flex flex-col gap-10 bg-[#f2f4f7]">
+                            <div className=" px-20 py-8 rounded-3xl bg-[url('https://mixivivu.com/section-background.png')] flex flex-col gap-10 bg-[#f2f4f7]">
 
                                 <div className="flex justify-end px-2">
                                     <button className=" text-[#0e4f4f] font-semibold px-6 py-4 rounded-2xl bg-white">
@@ -226,6 +223,7 @@ function Room() {
                                     <InfoRoom
                                         key={key}
                                         dataInfoRoom={dtroom}
+                                        max={dataRoom}
                                     />
                                 )}
                                 <div className=" flex justify-between">
@@ -245,17 +243,7 @@ function Room() {
                             </div>
                         </div>
                     </div>
-                    {/* đây là thông tin của khách sạn  */}
-                    <div className=" min-w-96 max-w-[25vw]">
-                        <div className=" rounded-[32px] box ">
-                            <div className=" px-6 py-5 border-b-2 border-b-[#eaecf0]">Thông tin phòng</div>
-                            <div className="py-5 px-6 flex flex-col gap-4">
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"sang "} />
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"xin"} />
-                                <Utilitie src={"../icon/icon-utiliti.svg"} util={"min"} />
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
 

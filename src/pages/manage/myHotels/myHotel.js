@@ -11,18 +11,18 @@ import Delete from "../../admins/listUser/Delete";
 function ListUser() {
     const navigate = useNavigate();
     const [isShowDelete, setIsShowDelete] = useState(false);
-    const [rooms,setRooms] = useState([]);
-    const [state, dispatch] = useStore();   
-    const {isDelete,isEdit} = state;
+    const [rooms, setRooms] = useState([]);
+    const [state, dispatch] = useStore();
+    const { isDelete, isEdit } = state;
 
 
-    useEffect(()=> {
+    useEffect(() => {
         setIsShowDelete(isDelete)
-    },[isDelete])
+    }, [isDelete])
 
     // Read apis
     useEffect(() => {
-        const FetchData = async() => {
+        const FetchData = async () => {
             try {
                 const response = await apis.getManager("hotels")
                 setRooms(response.data)
@@ -31,7 +31,7 @@ function ListUser() {
             }
         }
         FetchData()
-    },[])
+    }, [])
 
 
     return (
@@ -40,21 +40,21 @@ function ListUser() {
                 <div className=" flex justify-between items-center pb-6">
                     <div className="flex flex-col gap-5">
                         <h4 className="font-bold text-4xl">
-                            Danh sách khách sạn  
+                            Danh sách khách sạn
                         </h4>
                     </div>
                     <button className="mx-10 px-4 py-3 bg-lime-600 flex justify-center items-center gap-3 rounded-md"
-                        onClick={()=>navigate('/manager/myHotel/add')}
+                        onClick={() => navigate('/manager/myHotel/add')}
                     >
                         <span className=" w-6 h-6 border-2 border-white rounded-full flex justify-center items-center">
 
-                            <FontAwesomeIcon style={{color:"white"}} icon="fa-solid fa-plus"/>
+                            <FontAwesomeIcon style={{ color: "white" }} icon="fa-solid fa-plus" />
                         </span>
                         <span className=" text-white ">Thêm khách sạn</span>
                     </button>
                 </div>
                 <div>
-                    
+
                 </div>
                 <div className=" mt-4">
                     <table className="  w-full shadow ">
@@ -66,11 +66,11 @@ function ListUser() {
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
-                        {rooms.map((us)=>(
+                        {rooms.map((us) => (
                             <RowList
-                            key={us.id}
-                            room={us}
-                        />
+                                key={us.id}
+                                room={us}
+                            />
                         ))}
                     </table>
                 </div>
@@ -81,7 +81,7 @@ function ListUser() {
                     <div className="flex w-full h-full">
                         <div id="overlay" className="modal_overlay"></div>
                         <div className="modal_body">
-                            <Delete delet={isEdit}/>
+                            <Delete delet={isEdit} />
                         </div>
                     </div>
                 </div>
