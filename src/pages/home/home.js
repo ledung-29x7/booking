@@ -14,8 +14,8 @@ function Home() {
                 {/*<video className="home-bn-video" src="../video/Cartoon Network soidutS VHS intro.mp4" autoPlay muted playsInline loop></video>*/}
                 <div className="searchBox flex flex-col gap-10 box">
                     <div className="flex flex-col gap-4">
-                        <h1 style={{fontSize: "40px", textAlign: "center"}}>WHERE DO YOU WANT TO GO?</h1>
-                        <h2 style={{fontSize: "20px", textAlign: "center"}}>Hundreds of places for you to explore</h2>
+                        <h1 style={{fontFamily:"Bahnschrift", fontSize: "40px", textAlign: "center"}}>Bạn muốn đi đâu?</h1>
+                        <h2 style={{fontFamily:"Bahnschrift", fontSize: "20px", textAlign: "center"}}>Hàng ngàn địa điểm khám phá</h2>
                     </div>
                     <Search />
                 </div>
@@ -24,55 +24,55 @@ function Home() {
             {/* Popular home */}
             <div className=" pt-32 ">
                 <div className="containerr flex flex-col gap-20 px-8 py-20">
-                    <TitleHome title="Hotels" introduce="..."/>
+                    <TitleHome title="Khách sạn" introduce="..."/>
                     <div className=" flex gap-6 flex-wrap">
                         <Popular local="Hanoi" nameHotel="Sofitel Legend Metropole Hotel"
-                            infoHotel="More info >>"
+                            infoHotel="Chi tiết >>"
                             src="../image/hotels/sofitel.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Meliá Hanoi"
-                            infoHotel="More info >>"
+                            infoHotel="Chi tiết >>"
                             src="../image/hotels/meliahn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Pan Pacific Hanoi"
-                            infoHotel="More info >>"
+                            infoHotel="Chi tiết >>"
                             src="../image/hotels/panpacific.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Grand Vista Hanoi"
-                            infoHotel="More info >>"
+                            infoHotel="Chi tiết >>"
                             src="../image/hotels/grandvista.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="InterContinential Hanoi Westlake"
-                            infoHotel="More info >>"
+                            infoHotel="Chi tiết >>"
                             src="../image/hotels/intercontinentalwestlake.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Movenpick Hanoi"
-                            infoHotel="More info >>"
+                            infoHotel="Chi tiết >>"
                             src="../image/hotels/movenpickhn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Hilton Hanoi Opera"
-                            infoHotel="More info >>"
+                            infoHotel="Chi tiết >>"
                             src="../image/hotels/hiltonhn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Elegant Suites Westlake"
-                            infoHotel="More info >>"
+                            infoHotel="Chi tiết >>"
                             src="../image/hotels/elegantsuite.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="Pullman Hanoi"
-                            infoHotel="More info >>"
+                            infoHotel="Chi tiết >>"
                             src="../image/hotels/pullmanhn.jpg"
                             rating="5/5"
                         />
                         <Popular local="Hanoi" nameHotel="JW Mariott Hotel Hanoi"
-                            infoHotel="More info >>"
+                            infoHotel="Chi tiết >>"
                             src="../image/hotels/mariotthn.jpg"
                             rating="5/5"
                         />

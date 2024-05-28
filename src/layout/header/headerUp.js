@@ -70,34 +70,26 @@ function HeaderUp() {
 
     return (
         <header className="container m-auto flex justify-between items-center h-[96px]" >
-            <div className=" flex items-center gap-24 h-full">
+            <div className=" flex items-center gap-10 h-full">
                 {/* logo home */}
                 <div className="h-full">
                     <Link className=" h-full flex items-center" to={"/"} >
-                        <div className=" ">
-                            <b>Home</b>
-                        </div>
-                        <div>
-                            <span>
-                                <span></span>
-                                <img src="" alt="" />
-                            </span>
-                        </div>
+                        <img className=" w-5 h-5 " src="./icon/icons8-home-50.png" alt="" />
                     </Link>
                 </div>
                 {/* thanh điều hướng */}
                 <div className="flex gap-10 items-center cursor-pointer h-full">
-                    <MenuItem to={'/hotel'} title="Hotel" />
-                    <MenuItem to={'/thingsToDo'} title="Things to Do" />
-                    <MenuItem to={'/bookings'} title="Bookings" />
-                    <MenuItem to={'/parnership'} title="Partnership" />
+                    <MenuItem to={'/hotel'} title="Khách sạn" />
+                    <MenuItem to={'/thingsToDo'} title="Blog" />
+                    <MenuItem to={'/bookings'} title="Đặt phòng" />
+                    <MenuItem to={'/parnership'} title="Đối tác" />
                 </div>
             </div>
             {/* đăng nhập đăng xuất */}
             <div className=" flex gap-10 items-center">
                 <button className=" bg-cyan-200 flex items-center justify-center  bottom font-bold "
                     onClick={handleLogin}>
-                    Sign up / Login
+                    Đăng nhập / Đăng ký
                 </button>
             </div>
             {isShowingSignUp ?

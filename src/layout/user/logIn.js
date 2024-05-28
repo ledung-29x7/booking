@@ -54,8 +54,8 @@ function Login() {
             {/* modal header */}
             <div className="auth-form_header">
                 <div className="flex justify-between mb-4 mt-2">
-                    <h3 className=" text-3xl font-semibold">Login</h3>
-                    <span onClick={handleSignUp} className="auth-form_btn ">SignUp</span>
+                    <h1 className=" text-3xl font-semibold">Đăng Nhập</h1>
+                    <span onClick={handleSignUp} className="auth-form_btn ">Đăng Ký</span>
                 </div>
             </div>
 
@@ -65,7 +65,7 @@ function Login() {
                     icon={"fa-solid fa-user"}
                     type={"text"}
                     nameInput={"userName"}
-                    placeholder={"User Name"}
+                    placeholder={"Tên tài khoản"}
                     value={formData.userName}
                     onChange={handleChange}
                 />
@@ -74,16 +74,15 @@ function Login() {
                     icon={"fa-solid fa-lock"}
                     type={"password"}
                     nameInput={"password"}
-                    placeholder={"Password"}
+                    placeholder={"Mật khẩu"}
                     value={formData.password}
                     onChange={handleChange}
                 />
             </form>
             {/* modal footer */}
             <div className="">
-                <button className="border text-teal-800 rounded-lg  w-full h-12 font-bold bg-cyan-200"
-                >
-                    Login
+                <button className="border text-teal-800 rounded-lg  w-full h-12 font-bold bg-cyan-200">
+                    Đăng Nhập
                 </button>
             </div>
         </div>

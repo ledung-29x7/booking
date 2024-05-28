@@ -5,35 +5,31 @@ function Footer() {
     return (
         <div className=" bg-black flex justify-center text-gray-400 ">
             <div className="footer">
-                <div className="flex flex-col gap-4 first-child">
-                    <a href="/" className=" w-40 h-16 ">
-                        <img src="" alt="" />
-                        Booking
-                    </a>
+                <div className="flex flex-col gap-2 first-child">
                     <div className=" ">
                         <p className="">© 2024 Dung Le Pte. Ltd. All Rights Reserved.</p>
                     </div>
                 </div>
                 <div className=" flex flex-grow gap-8 justify-between ">
                     <div className="flex flex-col gap-4">
-                        <span className="text-white font-bold">Introduction</span>
+                        <span className="text-white font-bold">Giới thiệu</span>
                         <div className="flex gap-2 flex-col">
-                            <Link to={"/about"}>About Us</Link>
-                            <Link to="/termanduse">Term And Use</Link>
-                            <Link to={"/payment"}>Payment</Link>
-                            <Link to="/contracts">Contract Us</Link>
+                            <Link to={"/about"}>Về chúng tôi</Link>
+                            <Link to="/termanduse">Điều khoản</Link>
+                            <Link to={"/payment"}>Thanh toán</Link>
+                            <Link to="/contracts">Liên hệ</Link>
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
-                        <span className="text-white font-bold">Production</span>
+                        <span className="text-white font-bold">Sản phẩm</span>
                         <div className="flex gap-2 flex-col">
-                            <Link to={"/hotel"}>Hotel Booking</Link>
+                            <Link to={"/hotel"}>Đặt phòng</Link>
                         </div>
                     </div>
                     <div className="flex flex-col gap-4">
-                        <span className="text-white font-bold">Travel</span>
+                        <span className="text-white font-bold">Khám phá</span>
                         <div className="flex gap-2 flex-col">
-                            <Link to={"/thingsToDo"}>Things To Do</Link>
+                            <Link to={"/thingsToDo"}>Blog</Link>
                         </div>
                     </div>
                 </div>

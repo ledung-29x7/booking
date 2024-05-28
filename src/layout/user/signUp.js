@@ -42,8 +42,8 @@ function SignUp() {
             {/* modal header */}
             <div className="auth-form_header">
                 <div className="flex justify-between mb-4 mt-2">
-                    <h3 className=" text-3xl font-semibold">SignUp</h3>
-                    <span onClick={handleLogin} className="auth-form_btn ">Login</span>
+                    <h1 className=" text-3xl font-semibold">Đăng Ký</h1>
+                    <span onClick={handleLogin} className="auth-form_btn ">Đăng Nhập</span>
                 </div>
             </div>
 
@@ -61,7 +61,7 @@ function SignUp() {
                     icon={"fa-solid fa-user"}
                     type={"text"}
                     nameInput={"userName"}
-                    placeholder={"User Name"}
+                    placeholder={"Tên tài khoản"}
                     value={formData.userName}
                     onChange={handleChange}
                 />
@@ -69,7 +69,7 @@ function SignUp() {
                     icon={"fa-solid fa-lock"}
                     type={"password"}
                     nameInput={"password"}
-                    placeholder={"Password"}
+                    placeholder={"Mật khẩu"}
                     value={formData.password}
                     onChange={handleChange}
                 />
@@ -77,17 +77,15 @@ function SignUp() {
                     icon={"fa-solid fa-lock"}
                     type={"password"}
                     nameInput={"confirmPassword"}
-                    placeholder={"Confirm Password"}
+                    placeholder={"Nhập lại mật khẩu"}
                     value={formData.confirmPassword}
                     onChange={handleChange}
                 />
             </div>
             {/* modal footer */}
             <div className="">
-                <button className=" rounded-lg w-full h-12 font-bold bg-cyan-200"
-                    onSubmit={handleSubmit}
-                >
-                    SignUp
+                <button className=" rounded-lg w-full h-12 font-bold bg-cyan-200" onSubmit={handleSubmit}>
+                    Đăng Ký
                 </button>
             </div>
         </div>
